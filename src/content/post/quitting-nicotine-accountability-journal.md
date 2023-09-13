@@ -3,7 +3,7 @@ title: "Quitting Nicotine - Accountability journal"
 description: "This is my accountability journal about my journey quitting Nicotine after being a smoker for the last 15 years..."
 publishDate: "12 Sept 2023"
 tags: ["accountability", "personal"]
-draft: true
+draft: false
 ---
 
 This is my accountability journal about my journey quitting Nicotine after being a smoker for the last 15 years.
@@ -30,4 +30,8 @@ That's it, these are my short term imperative and long term goals. So yesterday 
 
 Feeling pretty bad already! Through my research yesterday I found out that the Nicotine withdrawal really kicks in hard from Day 3 but I already feel pretty bad. I am supposed to be working today, but the foggy brain is making it difficult, irritability is very present and my coworkers are annoying me much faster than usual, this led me to excuse myself (I left with a "sorry i have to go") out of the daily meeting before the end.
 
-Hunger was annoying all day, or it may be that I am coping with the withdrawal
+I am very irritable, sometimes sad, and then suddenly after a strong craving I feel this state of hapiness, calmness or bliss lasting for one or two minutes. A feeling similar to indulging into my nicotine craving by finally having a puff! But instead, I didn't do anything, and just waited for the symptoms to fade away.
+
+Hunger was annoying all day, or it may be that I am coping with the withdrawal by eating. Symptoms are very similar to the flu.
+
+Relationships with my girlfriend were complicated, she had a very bad day and was in need of venting away her problems for a moment. She knew that I would be irritable but initially I responded well to the start of the conversation. Then I slowly began to loose patience, be irritated and spit out criticism without filter with a random level of truth. Sometimes I would want to hurt because I felt hurt, sometimes I just didn't want to take the time to think about what I was saying as I usually do.

@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 
 import PageLayout from "@/layouts/Base";
-import aboutImg from "@/assets/about.jpg";
+import logoImg from "@/assets/logo.png";
 
 const meta = {
   title: "Oops! You found a missing page!",
@@ -14,6 +14,6 @@ const meta = {
   <h1 class="title mb-6">404 | Oops something went wrong</h1>
   <p class="mb-8">Please use the navigation to find your way back</p>
   <div class="my-4 grid justify-center">
-    <Image class="rotate-180" src={aboutImg} alt="PhilDL - About logo" loading="eager" />
+    <Image class="rotate-180" src={logoImg} alt="PhilDL - About logo" loading="eager" />
   </div>
 </PageLayout>
