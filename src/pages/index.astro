@@ -1,0 +1,67 @@
+---
+import PageLayout from "@/layouts/Base";
+import PostPreview from "@/components/blog/PostPreview";
+import SocialList from "@/components/SocialList";
+import { getAllPosts, sortMDByDate } from "@/utils";
+
+const MAX_POSTS = 10;
+const allPosts = await getAllPosts();
+const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+
+const craftsList: Array<{ title: string; desc: string; href: string }> = [
+  {
+    title: "ts-ghost",
+    desc: `A collection of tools written in TypeScript to interract with a your Ghost Blog!
+End-to-end type-safety 🦾, built on top of Zod, the Content and Admin API clients are type-safe and validated at runtime. There is also a beautiful CLI to interract with your Ghost Blog and extract data in Markdown or JSON.`,
+    href: "https://ts-ghost.dev/",
+  },
+  {
+    title: "Remix Gospel stack",
+    desc: "Remix monorepo template with Turborepo, TypeScript and pnpm. The remix app deploys to fly.io or build to Docker image. Example packages for Database with Prisma, UI, and internal TS packages.",
+    href: "https://github.com/PhilDL/remix-gospel-stack",
+  },
+  {
+    title: "Coding Dodo",
+    desc: "Most popular Odoo, ERP, Python & JavaScript Tutorials Website. Real-world examples and useful code snippets on all Odoo versions covered but focus on the latest releases.",
+    href: "https://codingdodo.com/",
+  },
+];
+---
+
+<PageLayout meta={{ title: "Home" }}>
+  <section>
+    <h1 class="title mb-6 font-serif">My organized chaos.</h1>
+    <p class="mb-4">
+      Hi 👋, I am Philippe L'ATTENTION, senior software engeneer born in Réunion Island 🇷🇪. Here you will find
+      technical gibberish, thoughts, discoveries.
+    </p>
+    <SocialList />
+  </section>
+  <section class="mt-16">
+    <h2 class="title mb-4 font-serif text-xl">Public and OSS work</h2>
+    <ul class="space-y-4 sm:space-y-2">
+      {
+        craftsList.map(({ href, title, desc }) => (
+          <li class="inline-block sm:mt-2">
+            <a href={href} target="_blank" rel="noopener noreferrer" class="cactus-link mr-1 inline-block">
+              {title}
+            </a>
+            <span class="mr-2">:</span> {desc}
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+  <section aria-label="Blog post list" class="mt-16">
+    <h2 class="title mb-4 font-serif text-xl">Posts</h2>
+    <ul class="space-y-4 sm:space-y-2">
+      {
+        allPostsByDate.map((p) => (
+          <li class="flex flex-col gap-x-2 sm:flex-row">
+            <PostPreview post={p} />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</PageLayout>

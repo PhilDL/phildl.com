@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Alice&family=Space+Grotesk:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    /* https://tailwindcss.com/docs/customizing-colors#using-css-variables */
+    --theme-bg: 0deg 0% 98%;
+    --theme-link: 172deg 18% 42%;
+    --theme-text: 203deg 12% 15%;
+    --theme-accent: 351deg 66% 48%;
+    --theme-accent-2: 0deg 0% 7%;
+    --theme-quote: 351deg 66% 48%;
+  }
+
+  :root.dark {
+    color-scheme: dark;
+    --theme-bg: 210deg 6% 14%;
+    --theme-link: 330deg 49% 67%;
+    --theme-text: 220deg 6% 79%;
+    --theme-accent: 84deg 82% 44%;
+    --theme-accent-2: 0deg 0% 96%;
+    --theme-quote: 102deg 100% 86%;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  html body {
+    @apply mx-auto flex min-h-screen max-w-4xl flex-col bg-bgColor px-8 pt-16 font-normal text-textColor antialiased;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .bg {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    width: 200%;
+    height: 200vh;
+    background: transparent url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
+    background-repeat: repeat;
+    animation: bg-animation 0.2s infinite;
+    opacity: 0.9;
+    visibility: visible;
+  }
+  .main {
+    @apply relative flex flex-1 flex-col;
+  }
+
+  @keyframes bg-animation {
+    0% {
+      transform: translate(0, 0);
+    }
+    10% {
+      transform: translate(-2%, -2%);
+    }
+    20% {
+      transform: translate(-4%, 2%);
+    }
+    30% {
+      transform: translate(4%, -6%);
+    }
+    40% {
+      transform: translate(-2%, 6%);
+    }
+    50% {
+      transform: translate(-4%, 2%);
+    }
+    60% {
+      transform: translate(6%, 0);
+    }
+    70% {
+      transform: translate(0, 4%);
+    }
+    80% {
+      transform: translate(-6%, 0);
+    }
+    90% {
+      transform: translate(4%, 2%);
+    }
+    100% {
+      transform: translate(2%, 0);
+    }
+  }
+}

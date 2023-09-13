@@ -1,0 +1,86 @@
+<script>
+  class ThemeToggle extends HTMLElement {
+    constructor() {
+      super();
+      const button = this.querySelector("button") as HTMLButtonElement;
+
+      if (button) {
+        // button clicked, fire event
+        button.addEventListener("click", (e) => {
+          if (e.currentTarget instanceof HTMLButtonElement) {
+            // isPressed === dark mode current on
+            let isPressed = e.currentTarget.getAttribute("aria-pressed") === "true";
+
+            // invert isPressed
+            let themeChangeEvent = new CustomEvent("theme-change", {
+              detail: {
+                theme: isPressed ? "light" : "dark",
+              },
+            });
+            // dispatch event -> ThemeProvider.astro
+            document.dispatchEvent(themeChangeEvent);
+            // toggle the aria-pressed attribute
+            button.setAttribute("aria-pressed", String(!isPressed));
+          }
+        });
+      }
+    }
+  }
+
+  customElements.define("theme-toggle", ThemeToggle);
+</script>
+
+<theme-toggle class="ms-2 sm:ms-4">
+  <button
+    type="button"
+    id="toggle-theme"
+    class="group relative h-9 w-9 rounded-md p-2 ring-zinc-400 transition-all hover:ring-2"
+    aria-label="Toggle Dark Mode"
+  >
+    <svg
+      id="sun-svg"
+      class="absolute start-1/2 top-1/2 h-7 w-7 -translate-x-1/2 -translate-y-1/2 scale-0 opacity-0 transition-all group-aria-pressed:scale-100 group-aria-pressed:opacity-100"
+      aria-hidden="true"
+      focusable="false"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+      ><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        ><circle cx="12" cy="12" r="4"></circle><path
+          d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+        ></path></g
+      ></svg
+    >
+    <svg
+      id="moon-svg"
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      aria-hidden="true"
+      focusable="false"
+      viewBox="0 0 24 24"
+      fill="none"
+      class="absolute start-1/2 top-1/2 h-7 w-7 -translate-x-1/2 -translate-y-1/2 scale-0 opacity-0 transition-all group-aria-[pressed=false]:scale-100 group-aria-[pressed=false]:opacity-100"
+      ><path
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M12 3a6 6 0 0 0 9 9a9 9 0 1 1-9-9Z"></path></svg
+    >
+  </button>
+</theme-toggle>
+
+{/* Inlined to avoid FOUC on full page load, runs once to set initial attribute */}
+<script is:inline>
+  const button = document.getElementById("toggle-theme");
+
+  function setButtonPresssed() {
+    const bodyThemeIsDark = document.documentElement.classList.contains("dark");
+    button.setAttribute("aria-pressed", String(bodyThemeIsDark));
+  }
+  setButtonPresssed();
+</script>

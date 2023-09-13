@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+
+import PageLayout from "@/layouts/Base";
+import aboutImg from "@/assets/about.jpg";
+
+const meta = {
+  title: "About",
+  description: "I'm a starter theme for Astro.build",
+};
+---
+
+<PageLayout meta={meta}>
+  <div class="space-y-6">
+    <h1 class="title">About</h1>
+    <p>
+      👋 I am Philippe L'ATTENTION, Senior Software Engineer born in Réunion Island 🇷🇪. I have 12 years of experience
+      in web development.
+    </p>
+    <p>
+      For the past 7 years I was creating and maintaining a successfull, fully vertical, ERP solution for automotive
+      industry (auto parts resellers, and garages).
+    </p>
+    <div class="flex justify-center">
+      <Image
+        src={aboutImg}
+        alt="A cartoon cactus looking at the 'Astro.build' logo"
+        loading="eager"
+        fetchpriority="high"
+        class="h-64 w-64 rounded-full"
+      />
+    </div>
+    <p>Here are my some of the things I did:</p>
+    <ul class="list-inside list-disc"></ul>
+  </div>
+</PageLayout>
