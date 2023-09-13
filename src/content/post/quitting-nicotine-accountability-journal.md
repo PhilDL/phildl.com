@@ -35,3 +35,7 @@ I am very irritable, sometimes sad, and then suddenly after a strong craving I f
 Hunger was annoying all day, or it may be that I am coping with the withdrawal by eating. Symptoms are very similar to the flu.
 
 Relationships with my girlfriend were complicated, she had a very bad day and was in need of venting away her problems for a moment. She knew that I would be irritable but initially I responded well to the start of the conversation. Then I slowly began to loose patience, be irritated and spit out criticism without filter with a random level of truth. Sometimes I would want to hurt because I felt hurt, sometimes I just didn't want to take the time to think about what I was saying as I usually do.
+
+## Day 2 - 13 Sept 2023
+
+Strangely I woke up today feeling better than yesterday. From the copious amount of Youtube I watched before, I was expecting to feel worse and worse every day for the first 3 days. I am still irritable but I feel a little bit more in control. The cravings are still there but I can manage them...?

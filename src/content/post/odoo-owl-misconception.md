@@ -3,7 +3,7 @@ title: "Odoo OWL misconception"
 description: "Changin the mindeset of Odoo developpers about OWL. For now it looks like they want to use JQuery"
 publishDate: "13 Sept 2023"
 tags: ["odoo", "javascript"]
-draft: false
+draft: true
 ---
 
 I recently stumle upon this google slides https://docs.google.com/presentation/d/1KIksFM5IuCvLP2y-sxjkcBlpnrAX9VcBhYgKvMou5-0/mobilepresent?pli=1&slide=id.gc7f9aff66a_0_5 and I think it is a very good presentation about the misconception of Odoo developpers about the OWL framework.
