@@ -1,0 +1,63 @@
+---
+title: "Odoo OWL misconception"
+description: "Changin the mindeset of Odoo developpers about OWL. For now it looks like they want to use JQuery"
+publishDate: "13 Sept 2023"
+tags: ["odoo", "javascript"]
+draft: true
+---
+
+import { CodeSandbox } from "../../components/CodeSandbox";
+
+I recently stumle upon this google slides https://docs.google.com/presentation/d/1KIksFM5IuCvLP2y-sxjkcBlpnrAX9VcBhYgKvMou5-0/mobilepresent?pli=1&slide=id.gc7f9aff66a_0_5 and I think it is a very good presentation about the misconception of Odoo developpers about the OWL framework.
+
+Lots of problems with these slides but especially:
+
+- These examples use Bus a lot which is not part of OWL anymore...
+- Slide 52 : Auction Item trigger change_screen custom events... this is fucking stupid, it should take the function callback instead declaratively instead of using a side effects.
+- Slide 57 : onMounted + setInterval for a Timer: Wrong use, should be useEffect no deps.
+
+```ts twoslash
+type Indices<L extends number, T extends number[] = []> = T["length"] extends L
+  ? T[number]
+  : Indices<L, [T["length"], ...T]>;
+
+type LengthAtLeast<T extends readonly any[], L extends number> = Pick<Required<T>, Indices<L>>;
+
+/**
+ * TypeScript type narrowing assert helper function to help with noUncheckedIndexedAccess.
+ * Only usable on small array index checking (0-4). If you need to check a larger
+ * array, please review your implementation and use a loop instead.
+ *
+ * @example
+ * const names = ["John", "Doe"];
+ * if (assertLengthAtLeast(names, 2)) {
+ *  console.log(names[1]); // no error
+ * }
+ *
+ */
+export function assertLengthAtLeast<T extends readonly any[], I extends 0 | 1 | 2 | 3 | 4>(
+  array: T,
+  length: I,
+): array is T & LengthAtLeast<T, I> {
+  return array.length >= length;
+}
+
+// ---cut---
+// @noUncheckedIndexedAccess: true
+// @errors: 2322
+
+const names = ["John", "Doe"];
+let secondName: string;
+
+if (names.length >= 2) {
+  secondName = names[1];
+}
+
+if (assertLengthAtLeast(names, 2)) {
+  secondName = names[1];
+}
+```
+
+## Why do you keep bubbling up event to change state ?
+
+<CodeSandbox client:load />

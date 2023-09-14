@@ -5,26 +5,36 @@ import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
 import prefetch from "@astrojs/prefetch";
 import remarkUnwrapImages from "remark-unwrap-images";
+import remarkShikiTwoslash from "remark-shiki-twoslash";
 // @ts-expect-error:next-line
 import { remarkReadingTime } from "./src/utils/remark-reading-time.mjs";
+import react from "@astrojs/react";
 
+// https://astro.build/config
 export default defineConfig({
   site: "https://phildl.com",
   markdown: {
-    remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
-    remarkRehype: { footnoteLabelProperties: { className: [""] } },
+    remarkPlugins: [remarkUnwrapImages, [remarkShikiTwoslash, { theme: "vitesse-dark" }], remarkReadingTime],
+    remarkRehype: {
+      footnoteLabelProperties: {
+        className: [""],
+      },
+    },
     shikiConfig: {
-      theme: "dracula",
+      theme: "vitesse-dark",
       wrap: true,
     },
   },
   integrations: [
-    mdx({}),
+    mdx({
+      remarkPlugins: [remarkUnwrapImages, [remarkShikiTwoslash, { theme: "vitesse-dark" }], remarkReadingTime],
+    }),
     tailwind({
       applyBaseStyles: false,
     }),
     sitemap(),
     prefetch(),
+    react(),
   ],
   vite: {
     plugins: [rawFonts([".ttf"])],
@@ -33,7 +43,6 @@ export default defineConfig({
     },
   },
 });
-
 function rawFonts(ext: Array<string>) {
   return {
     name: "vite-plugin-raw-fonts",

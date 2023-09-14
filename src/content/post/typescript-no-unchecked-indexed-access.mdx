@@ -1,0 +1,188 @@
+---
+title: "Assert array length in TypeScript with noUncheckedIndexedAccess"
+description: "How to make TypeScript happy when we access index on array with noUncheckedIndexedAccess compiler option set to true"
+publishDate: "15 Sept 2023"
+tags: ["typescript"]
+draft: false
+---
+
+The TypeScript Compiler options `noUncheckedIndexedAccess` is a great way to remind you that directly accessing an array index can be dangerous. But sometimes you know that the array is long enough and you want to tell TypeScript that it is safe to access a certain index.
+
+## Introduction
+
+Let's say you have some piece of TS code that gets the firstname of a name string by splitting and returning the first element of the array.
+
+```ts twoslash
+function getFirstName(inputName: string): string {
+  return inputName.split(" ")[0];
+}
+
+const userName = "John Doe";
+const userFirstName = getFirstName(userName);
+//    ^?
+```
+
+Then you decide to activate the `noUncheckedIndexedAccess` compiler option to make sure you don't access an array index that is not defined, and also probably because you saw it [from Matt Pockock](https://www.totaltypescript.com/tips/make-accessing-objects-safer-by-enabling-nouncheckedindexedaccess-in-tsconfig)
+
+```json
+{
+  "compilerOptions": {
+    "noUncheckedIndexedAccess": true,
+    ...
+  },
+}
+```
+
+## Problem with stricter `noUncheckedIndexedAccess`
+
+An then this happens:
+
+```ts twoslash
+// @noUncheckedIndexedAccess: true
+// @errors: 2322
+function getFirstName(inputName: string): string {
+  return inputName.split(" ")[0];
+}
+```
+
+The compiler is not happy because it cannot guarantee that the array returned by `split` has at least one element. And it is right, because if you pass an empty string to `getFirstName` it will return an empty string.
+
+Ok so let's check the length of the array before accessing the index:
+
+```ts twoslash
+// @noUncheckedIndexedAccess: true
+// @errors: 2322
+function getFirstName(inputName: string): string {
+  const splittedName = inputName.split(" ");
+  if (splittedName.length >= 1) {
+    return splittedName[0];
+  }
+  return "";
+}
+```
+
+🤔 We know this works at runtime but TypeScript is still unhappy. It seems that we have info that we know that the array **has at least one element, but TypeScript doesn't**.
+
+## Naive Solution: explicit length check predicate
+
+We can use a type predicate helper function to tell TypeScript that the array has at least one element.
+
+Given an array of the shape `E[]`, where E is the type of array element. There is 2 ways for TypeScript to understand that an array can be accessed through index `0` for example:
+
+### For access through index `0`:
+
+- The array is also of type `[E, ...E[]]` (tuple with at least one element)
+- The array is also of type `{ 0: E }` (index signature 0 explicitly present)
+
+Let's implement both of them:
+
+```ts twoslash
+// @noUncheckedIndexedAccess: true
+
+function atLeastOneElement<T>(arr: T[]): arr is T[] & [T, ...T[]] {
+  return arr.length > 1;
+}
+
+function isIndexZeroAccessible<T>(arr: T[]): arr is T[] & { 0: T } {
+  return arr.length > 1;
+}
+
+function getFirstName(inputName: string): string {
+  const splittedName = inputName.split(" ");
+  if (atLeastOneElement(splittedName)) {
+    return splittedName[0];
+    //     ^?
+  }
+  return "";
+}
+
+const userName = "John Doe";
+const userFirstName = getFirstName(userName);
+```
+
+This is working but limited to the first element of the array. If you want to access the second element you need to create a new type predicate function.
+
+## Arbitrary length check predicate
+
+This implementation use a recursive type generic to create a type predicate function that can check for any array length.
+
+Be careful that recursive functions **can be pretty inefficient in TypeScript**, so even if our recursive type can check an array of ANY length, we use a type narrowing of `0 | 1 | 2 | 3 | 4`.
+
+### Recursively create index access
+
+```ts twoslash
+// @noUncheckedIndexedAccess: true
+
+type IndexesUnion<L extends number, T extends number[] = []> = T["length"] extends L
+  ? T[number]
+  : IndexesUnion<L, [T["length"], ...T]>;
+
+type LengthAtLeast<T extends readonly any[], L extends number> = Pick<Required<T>, IndexesUnion<L>>;
+
+/**
+ * TypeScript type narrowing assert helper function to help with noUncheckedIndexedAccess.
+ * Only usable on small array index checking (0-4). If you need to check a larger
+ * array, please review your implementation and use a loop instead.
+ *
+ * @example
+ * const names = ["John", "Doe"];
+ * if (assertLengthAtLeast(names, 2)) {
+ *  console.log(names[1]); // no error
+ * }
+ *
+ */
+export function assertLengthAtLeast<T extends readonly any[], I extends 0 | 1 | 2 | 3 | 4>(
+  array: T,
+  length: I,
+): array is T & LengthAtLeast<T, I> {
+  return array.length >= length;
+}
+
+function getFirstName(inputName: string): string {
+  const splittedName = inputName.split(" ");
+  if (assertLengthAtLeast(splittedName, 1)) {
+    return splittedName[0];
+    //     ^?
+  }
+  return "";
+}
+
+const userName = "John Doe";
+const userFirstName = getFirstName(userName);
+```
+
+### Recursively create Tuple with min length N
+
+```ts twoslash
+// @noUncheckedIndexedAccess: true
+// @errors: 2322
+
+type TupleAtLeast<L extends number, Element, T extends Element[] = []> = T["length"] extends L
+  ? [...T, ...Element[]]
+  : TupleAtLeast<L, Element, [Element, ...T]>;
+
+export function assertLengthAtLeast<T, I extends 0 | 1 | 2 | 3 | 4>(
+  array: T[],
+  length: I,
+): array is T[] & TupleAtLeast<I, T> {
+  return array.length >= length;
+}
+
+function getFirstName(inputName: string): string {
+  const splittedName = inputName.split(" ");
+  if (assertLengthAtLeast(splittedName, 1)) {
+    return splittedName[0];
+    //     ^?
+  }
+  return "";
+}
+
+const userName = "John Doe";
+const userFirstName = getFirstName(userName);
+```
+
+## Conclusion
+
+These are just examples of how to please the `noUncheckedIndexedAccess` compiler option. Feel free to keep the function recursive or only allow checking of small array index (0, 1 or 2) or modify completely the code. Implement it as it suits you the best, mix and match the concepts here.
+
+Finally, as a general advice, you may rethink your code if you really need to access array indexes often!
