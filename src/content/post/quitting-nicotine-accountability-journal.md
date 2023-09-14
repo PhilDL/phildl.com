@@ -6,7 +6,7 @@ tags: ["accountability", "personal"]
 draft: false
 ---
 
-This is my accountability journal about my journey quitting Nicotine after being a smoker for the last 15 years.
+This is my accountability journal about my journey quitting Nicotine after being a smoker for the last 15 years. _The following content is probably full of typos and have bad grammar, it's my train of thoughts and feeling that I will slowly review and fix in the process._
 
 ## History with Nicotine
 
