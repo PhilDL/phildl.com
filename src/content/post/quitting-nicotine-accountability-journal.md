@@ -38,4 +38,16 @@ Relationships with my girlfriend were complicated, she had a very bad day and wa
 
 ## Day 2 - 13 Sept 2023
 
-Strangely I woke up today feeling better than yesterday. From the copious amount of Youtube I watched before, I was expecting to feel worse and worse every day for the first 3 days. I am still irritable but I feel a little bit more in control. The cravings are still there but I can manage them...?
+Strangely I woke up today feeling better than yesterday. From the copious amount of Youtube I watched before, I was expecting to feel worse and worse every day for the first 3 days. I am still irritable but I feel a little bit more in control. The cravings are still there but I can manage them, these were strong during the working hours, morning and evening cravings were manageable.
+
+I was coughing a lot, I think it is my lungs cleaning themselves.
+
+Relationship with my girlfriend is the hardest part, she's going through a lot of stress herself and I cannot be 100% supportive, I have less empathy so I confront her without care on problem I think she's having. This bluntness may sound nice but it often lead to unfiltered train of thoughts that are not always true and can be hurtful for no reason just because we didn't think enough before talking. I caught myself today resenting her for having problems and getting me caught in her problems leading to us arguing and me stressing. Even if in reality she never asked me anything, I am just projecting my own stress on her. I am not proud of this and it is spiraling me into self loathing.
+
+The evening and night were better, I was hungry but for now I can continue my intermittent fasting.
+
+## Day 3 - 14 Sept 2023
+
+Heavy headache as I woke up on day 3, sleep was heavy and foggy. My attempt to sleep through the headache didn't work so I just got up and took a cold shower. I am still coughing a lot.
+
+After the morning sun, talking to my wife and the first coffee of the day I already feel better.
