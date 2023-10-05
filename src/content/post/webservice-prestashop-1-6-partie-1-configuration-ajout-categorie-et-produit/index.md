@@ -2,7 +2,7 @@
 title: Ajout Catégorie et Produit via Webservice Prestashop 1.6 Part 1
 description: "Prestashop 1.6 Webservice - Configuration, Ajout Catégorie et Produit"
 publishDate: "23 Aug 2015"
-tags: ["Prestashop 1.6", "Prestashop Webservice"]
+tags: ["Prestashop-1-6", "Prestashop-Webservice"]
 ---
 
 Dans le cadre d'un projet professionnel j'ai eu à communiquer avec l'API/webservice de Prestashop, le but était d'envoyer des produits vers une boutique distante. Je tiens à préciser que le tutorial officiel est très complet, néanmoins les exemples proposés ne concernent pas les produits et j'ai eu quelques problèmes en chemin... Nous allons donc essayer ici d'envoyer un produit de façon la plus complète possible.

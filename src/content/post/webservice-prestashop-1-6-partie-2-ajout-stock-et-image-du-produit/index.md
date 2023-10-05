@@ -2,7 +2,7 @@
 title: Ajout Stock et Image via Webservice Prestashop 1.6 Part 2
 description: Utilisation de l'API/Webservice Prestashop pour envoyer des produits, partie 2.
 publishDate: "24 Aug 2015"
-tags: ["Prestashop 1.6", "Prestashop Webservice"]
+tags: ["Prestashop-1-6", "Prestashop-Webservice"]
 ---
 
 ## Introduction
