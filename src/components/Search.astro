@@ -94,12 +94,14 @@ import "@pagefind/default-ui/css/ui.css";
         if (import.meta.env.DEV) return;
         const onIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
         onIdle(async () => {
+          // @ts-expect-error - pagefind is not typed
           const { PagefindUI } = await import("@pagefind/default-ui");
           new PagefindUI({
             element: "#cactus__search",
             baseUrl: import.meta.env.BASE_URL,
-            bundlePath: import.meta.env.BASE_URL.replace(/\/$/, "") + "/_pagefind/",
+            bundlePath: import.meta.env.BASE_URL.replace(/\/$/, "") + "/pagefind/",
             showImages: false,
+            showSubResults: true,
           });
         });
       });
