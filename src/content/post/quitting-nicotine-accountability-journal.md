@@ -50,4 +50,18 @@ The evening and night were better, I was hungry but for now I can continue my in
 
 Heavy headache as I woke up on day 3, sleep was heavy and foggy. My attempt to sleep through the headache didn't work so I just got up and took a cold shower. I am still coughing a lot.
 
-After the morning sun, talking to my wife and the first coffee of the day I already feel better.
+After sunrise, talking to my wife and the first coffee of the day I already felt better. I am slowly realizing how connected my life is to nictotine. I used to smoke to enhance emotions, to celebrate, to relax, to concentrate, to calm-down, etc... Even things I would enjoy would not be totally enjoyable without adding a little smoke.
+
+Realizing that made me sad but also gave me courage to continue, I don't want to live and behave like that.
+
+## Day 7
+
+The headaches aren't here anymore, physically it is already much easier now. I am still coughing a lot, I think it is my lungs cleaning themselves. Difficult parts are not smoking when a little stress from life comes up or when I want to "reward" myself after a session of deep-work or achieving something I am very proud of. Again, I am realizing that I associated Nicotine as a reward, a stress relief, a way to enhance emotions, etc... I am slowly learning to live without it.
+
+## Day 15
+
+This is the 2 week mark. Physical symptoms of withdrawal are totally gone, and I begin to enjoy some activities without thinking about smoking. Other activities are harder, like driving the car for a long time. I was used to vape while driving so I can feel the craving sometimes. Overall the physical pain of the first few days seem like a distant memory.
+
+## Day 31
+
+I don't have any physical symptoms anymore, I can do many things without thinking about smoking, but at the end of the day I often think about it as a "reward" I would like to give myself for going through the day of work.
