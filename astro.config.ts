@@ -8,6 +8,7 @@ import remarkShikiTwoslash from "remark-shiki-twoslash";
 // @ts-expect-error:next-line
 import { remarkReadingTime } from "./src/utils/remark-reading-time.mjs";
 import react from "@astrojs/react";
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
@@ -30,6 +31,7 @@ export default defineConfig({
     },
   },
   integrations: [
+    icon(),
     mdx({
       remarkPlugins: [
         remarkUnwrapImages,
