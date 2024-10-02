@@ -63,6 +63,7 @@ export default {
             code: {
               border: "1px dotted #666",
               borderRadius: "2px",
+              textWrap: "nowrap",
             },
             blockquote: {
               borderLeftWidth: "0",

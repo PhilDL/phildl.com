@@ -1,0 +1,78 @@
+---
+title: "SQlite from Prisma to Drizzle gotchas and tips"
+description: "Living Document containing personal notes, tips, discoveries when I was migrating from Prisma to Drizzle with a SQLite database"
+publishDate: "02 Oct 2024"
+tags: ["prisma", "drizzle", "typescript"]
+draft: true
+---
+
+## The Schema
+
+I tried two solutions here, one following the official documentation using `drizzle-kit introspect` to create a schema and the other one using the [<code>prisma-generator-drizzle</code>](https://github.com/fdarian/prisma-generator-drizzle) package.
+
+## Gotchas
+
+### Date fields
+
+In Prisma schema I had DateTime fields like this:
+
+```prisma
+model MyTable {
+  //... other fields
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+```
+
+In SQLite it was actually stored as integer timestamps with milliseconds.
+
+```sh
+sqlite> SELECT createdAt, updatedAt from MyTable;
+┌───────────────┬───────────────┐
+│   createdAt   │   updatedAt   │
+├───────────────┼───────────────┤
+│ 1711982816873 │ 1711982816873 │
+│ 1711982816875 │ 1711982816875 │
+└───────────────┴───────────────┘
+```
+
+This is an important info because the prisma to drizzle generators and other tools that could help you
+translate your Prisma schema to Drizzle schema may create a **schema with the wrong types**.
+
+#### Migration of `createdAt` or `updatedAt` fields with default values:
+
+```ts
+import { sql } from "drizzle-orm";
+import { integer, sqliteTable } from "drizzle-orm/sqlite-core";
+
+export const myTables = sqliteTable("MyTable", {
+  //...
+  createdAt: integer("createdAt", { mode: "timestamp_ms" })
+    .default(sql`(unixepoch() * 1000)`)
+    .notNull(),
+  updatedAt: integer("updatedAt", { mode: "timestamp_ms" })
+    .notNull()
+    .$onUpdate(() => new Date()),
+});
+```
+
+### Handling SQLite text/integer Datetime/Timestamp mess
+
+Sqlite can hold different type of values in the same column but generally the ORM keep it harmonious. If you messed around (like I did)
+with the different type of date from Drizzle then you may end up with a mix of `text` and `integer` in the same column.
+
+#### From Datetime (`text`) to Unix timestamp (integer) with milliseconds:
+
+```sql
+UPDATE `TableName`
+SET createdAt = CAST((JULIANDAY(createdAt) - 2440587.5) * 86400000 AS INTEGER)
+WHERE typeof(createdAt) = 'text' ;
+```
+
+#### From Unix timestamp (`integer`) with milliseconds to Datetime (text):
+
+```sql
+UPDATE `TableName`
+SET createdAt = datetime(createdAt / 1000, 'unixepoch')
+WHERE typeof(createdAt) = 'integer' ;
+```
