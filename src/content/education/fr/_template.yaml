@@ -1,0 +1,16 @@
+# Duplique ce fichier vers `src/content/education/fr/<slug>.yaml` pour chaque
+# diplôme, formation ou certification à afficher dans le CV.
+locale: fr
+translationKey: votre-diplome
+institution: Votre établissement
+institutionUrl: https://example.com
+degree: Master informatique
+field: Génie logiciel
+location: France
+startDate: 2018-09-01
+endDate: 2020-06-30
+summary: >-
+  Contexte optionnel sur le cursus, la spécialisation ou le mémoire.
+achievements:
+  - Mentionne une distinction, un projet marquant ou des cours pertinents.
+featured: false

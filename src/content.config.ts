@@ -1,32 +1,30 @@
 import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
-import { z } from "astro/zod";
-
-function removeDupsAndLowerCase(array: string[]) {
-  if (!array.length) return array;
-  const lowercaseItems = array.map((str) => str.toLowerCase());
-  const distinctItems = new Set(lowercaseItems);
-  return Array.from(distinctItems);
-}
+import { cvSchema, educationSchema, experienceSchema, postSchema, projectSchema } from "./src/content/schemas";
 
 const post = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/post" }),
-  schema: ({ image }) =>
-    z.object({
-      title: z.string().max(65),
-      description: z.string().min(50).max(160),
-      publishDate: z.coerce.date(),
-      updatedDate: z.coerce.date().optional(),
-      coverImage: z
-        .object({
-          src: image(),
-          alt: z.string(),
-        })
-        .optional(),
-      draft: z.boolean().default(false),
-      tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
-      ogImage: z.string().optional(),
-    }),
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/post" }),
+  schema: postSchema,
 });
 
-export const collections = { post };
+const cv = defineCollection({
+  loader: glob({ pattern: "[^_]*.{json,yaml,yml}", base: "./src/content/cv" }),
+  schema: cvSchema,
+});
+
+const experience = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.{json,yaml,yml}", base: "./src/content/experience" }),
+  schema: experienceSchema,
+});
+
+const education = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.{json,yaml,yml}", base: "./src/content/education" }),
+  schema: educationSchema,
+});
+
+const project = defineCollection({
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/project" }),
+  schema: projectSchema,
+});
+
+export const collections = { post, cv, experience, education, project };

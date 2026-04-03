@@ -1,0 +1,50 @@
+locale: en
+basics:
+  name: Philippe L'ATTENTION
+  headline: Senior Software Engineer
+  summary: >-
+    Senior software engineer with 12 years of web development experience. I enjoy
+    building reliable products, shaping content-driven websites, and creating
+    developer tooling with a strong focus on type safety and maintainability.
+  website: https://phildl.com
+  profiles:
+    - label: GitHub
+      href: https://github.com/PhilDL
+focusAreas:
+  - TypeScript architecture
+  - Astro and content-driven websites
+  - API design and integrations
+  - Developer tooling and DX
+availability:
+  status: selective
+  details: Open to selected product, freelance, and consulting opportunities.
+skillGroups:
+  - name: Languages
+    items:
+      - TypeScript
+      - JavaScript
+      - Python
+      - SQL
+  - name: Frontend
+    items:
+      - Astro
+      - React
+      - Tailwind CSS
+      - MDX
+  - name: Backend
+    items:
+      - Node.js
+      - REST APIs
+      - Content modeling
+      - Developer tooling
+languages:
+  - name: English
+    code: en
+  - name: French
+    code: fr
+featuredProjects:
+  - en/ts-ghost
+  - en/remix-gospel-stack
+  - en/coding-dodo
+experience: []
+education: []

@@ -1,0 +1,51 @@
+locale: fr
+basics:
+  name: Philippe L'ATTENTION
+  headline: Ingénieur logiciel senior
+  summary: >-
+    Ingénieur logiciel senior avec 12 années d'expérience en développement web.
+    J'aime construire des produits fiables, concevoir des sites orientés contenu
+    et créer des outils développeur avec une forte exigence de maintenabilité et
+    de sûreté de typage.
+  website: https://phildl.com
+  profiles:
+    - label: GitHub
+      href: https://github.com/PhilDL
+focusAreas:
+  - Architecture TypeScript
+  - Astro et sites orientés contenu
+  - Conception et intégration d'API
+  - Outils et expérience développeur
+availability:
+  status: selective
+  details: Disponible pour des missions et produits sélectionnés.
+skillGroups:
+  - name: Langages
+    items:
+      - TypeScript
+      - JavaScript
+      - Python
+      - SQL
+  - name: Frontend
+    items:
+      - Astro
+      - React
+      - Tailwind CSS
+      - MDX
+  - name: Backend
+    items:
+      - Node.js
+      - API REST
+      - Modélisation de contenu
+      - Outils développeur
+languages:
+  - name: Anglais
+    code: en
+  - name: Français
+    code: fr
+featuredProjects:
+  - fr/ts-ghost
+  - fr/remix-gospel-stack
+  - fr/coding-dodo
+experience: []
+education: []

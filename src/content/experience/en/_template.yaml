@@ -1,0 +1,22 @@
+# Duplicate this file to `src/content/experience/en/<slug>.yaml` and replace the
+# placeholder values with a real role.
+locale: en
+translationKey: your-role
+company: Your company
+companyUrl: https://example.com
+role: Senior Software Engineer
+employmentType: full-time
+location: Remote
+remote: true
+startDate: 2024-01-01
+endDate: 2025-01-01
+summary: >-
+  One paragraph describing the scope of the role, the product, and the business
+  context.
+achievements:
+  - Shipped an important feature or business outcome.
+  - Improved developer experience, performance, or reliability.
+technologies:
+  - TypeScript
+  - Astro
+featured: false

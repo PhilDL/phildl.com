@@ -1,0 +1,16 @@
+# Duplicate this file to `src/content/education/en/<slug>.yaml` for each diploma,
+# training, or certification you want to show in your CV.
+locale: en
+translationKey: your-degree
+institution: Your school
+institutionUrl: https://example.com
+degree: MSc Computer Science
+field: Software Engineering
+location: France
+startDate: 2018-09-01
+endDate: 2020-06-30
+summary: >-
+  Optional context about the program, specialization, or thesis.
+achievements:
+  - Mention a distinction, relevant coursework, or a capstone project.
+featured: false

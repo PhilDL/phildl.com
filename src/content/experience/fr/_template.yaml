@@ -1,0 +1,22 @@
+# Duplique ce fichier vers `src/content/experience/fr/<slug>.yaml` puis remplace
+# les valeurs d'exemple par un vrai poste.
+locale: fr
+translationKey: votre-poste
+company: Votre entreprise
+companyUrl: https://example.com
+role: Ingénieur logiciel senior
+employmentType: full-time
+location: Remote
+remote: true
+startDate: 2024-01-01
+endDate: 2025-01-01
+summary: >-
+  Un paragraphe décrivant le périmètre du poste, le produit et le contexte
+  métier.
+achievements:
+  - Livraison d'une fonctionnalité ou d'un résultat métier important.
+  - Amélioration de l'expérience développeur, des performances ou de la fiabilité.
+technologies:
+  - TypeScript
+  - Astro
+featured: false
