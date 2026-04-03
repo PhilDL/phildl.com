@@ -1,0 +1,81 @@
+---
+title: "Odoo 18 OWL JS/TS setup"
+description: "TODO: "
+publishDate: "11 Febr 2025"
+tags: ["odoo", "javascript"]
+draft: true
+---
+
+## From root project
+
+```bash
+pnpm init
+```
+
+```bash
+pnpm add -D @odoo/owl typescript
+```
+
+```bash
+pnpm add -D @types/jquery
+pnpm add -D @types/three@^0.146.0
+```
+
+```bash
+./odoo/odoo-bin tsconfig --addons-path=/Users/philippelattention/Code/Odoo-18/odoo/addons,/Users/philippelattention/Code/Odoo-18/odoo3d > tsconfig.json
+```
+
+Add this to the exclude array
+
+```json
+"build",
+"**/build/*",
+"dist",
+"**/dist/*",
+"lib",
+"**/lib/*",
+"node_modules",
+"**/node_modules/*",
+"tests",
+"**/tests/**",
+"**/*[!.js]",
+```
+
+Change some `compilerOptions`:
+
+```json
+"moduleResolution": "node",
+"types": [
+    "node"
+],
+"esModuleInterop": true,
+"resolveJsonModule": true,
+```
+
+To add some types into your module folder you must create a file:
+
+```bash
+touch <addons_folder_name>/web/tooling/types/main.d.ts
+```
+
+Here upu can declare global references:
+
+```ts
+/// <reference types="@types/jquery" />
+
+declare const THREE: typeof import("three/src/Three.Legacy") & {
+  GLTFLoader: typeof import("three/examples/jsm/loaders/GLTFLoader").GLTFLoader;
+  OrbitControls: typeof import("three/examples/jsm/controls/OrbitControls").OrbitControls;
+  ObjectLoader: typeof import("three/src/loaders/ObjectLoader").ObjectLoader;
+  Raycaster: typeof import("three/src/core/Raycaster").Raycaster;
+  // ...
+};
+```
+
+This will help us have `$` and `THREE` available in our modules as global variables.
+Note that you also need to install these packages at the root.
+
+```bash
+pnpm add -D @types/jquery
+pnpm add -D @types/three@^0.146.0
+```
