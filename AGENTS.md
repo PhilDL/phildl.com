@@ -34,6 +34,9 @@ Requires **Node 22+** for local development and builds.
 
 - **Path aliases**: `@/components/*`, `@/layouts/*`, `@/utils`, `@/types`, `@/site-config`, `@/assets/*` (defined in `tsconfig.json`)
 - **TypeScript**: Extends `astro/tsconfigs/strictest`
+- **i18n routing**: Astro i18n is configured with English as the default locale and French under the `/fr` prefix. Locale-aware URLs must be generated through the helpers in `src/i18n/utils.ts` and not by hard-coding `/fr/...` or unprefixed internal paths.
+- **Localized pages**: If a page should exist in both languages, the localized route must actually exist in `src/pages/fr/...`. The language switcher is expected to keep the visitor on the equivalent page when switching locale, not send them back to the homepage.
+- **Localized content**: User-facing copy is expected to exist in both English and French. Do not leave raw strings in pages or components unless they are intentionally language-neutral; move copy into localized content files or the i18n copy maps so `/` and `/fr` can diverge cleanly.
 - **Dark mode**: Class-based (`darkMode: "class"` in Tailwind). Theme colors use CSS variables (HSL) defined in Tailwind config
 - **Styling**: Tailwind 4 via `@tailwindcss/vite` and `@import "tailwindcss"` in `src/styles/global.css`. Tailwind config is loaded explicitly with `@config "../../tailwind.config.ts"`. Custom "cactus" prose theme and `.cactus-link` live in `tailwind.config.ts`
 - **Markdown pipeline**: `remarkShikiTwoslash` (vitesse-dark theme) → `remarkReadingTime`, plus `rehypeUnwrapImages`. Same plugins configured for both `.md` and `.mdx` in `astro.config.ts`

@@ -34,6 +34,7 @@ type AboutPageCopy = {
   metaTitle: string;
   headline: string;
   locationPrefix: string;
+  focusSentence: string;
   availabilityLabel: string;
   websiteLabel: string;
   emailLabel: string;
@@ -123,6 +124,7 @@ export const aboutPageCopy: Record<SiteLocale, AboutPageCopy> = {
     metaTitle: "About",
     headline: "About",
     locationPrefix: "Based in",
+    focusSentence: "I focus on product-heavy software work where architecture, delivery, and iteration all matter.",
     availabilityLabel: "Availability",
     websiteLabel: "Website",
     emailLabel: "Email",
@@ -139,6 +141,8 @@ export const aboutPageCopy: Record<SiteLocale, AboutPageCopy> = {
     metaTitle: "À propos",
     headline: "À propos",
     locationPrefix: "Basé à",
+    focusSentence:
+      "Je me concentre sur des produits logiciels où l'architecture, la livraison et l'itération comptent tout autant.",
     availabilityLabel: "Disponibilité",
     websiteLabel: "Site web",
     emailLabel: "Email",

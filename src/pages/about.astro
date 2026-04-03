@@ -28,9 +28,8 @@ const meta = {
         <p class="text-lg font-medium">{cv.data.basics.headline}</p>
         <p>{cv.data.basics.summary}</p>
         <p>
-          {copy.locationPrefix}
-          {cv.data.basics.location}. I focus on product-heavy software work where architecture, delivery, and iteration
-          all matter.
+          {cv.data.basics.location ? `${copy.locationPrefix} ${cv.data.basics.location}. ` : ""}
+          {copy.focusSentence}
         </p>
         <div class="space-y-2 text-sm">
           <p>
