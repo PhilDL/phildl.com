@@ -8,19 +8,30 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SkipLink from "@/components/SkipLink";
 import { siteConfig } from "@/site-config";
+import { localeInfo, resolveSiteLocale } from "@/i18n/utils";
 
 interface Props {
   meta: SiteMeta;
 }
 
 const {
-  meta: { title, description = siteConfig.description, ogImage, articleDate },
+  meta: { title, description = siteConfig.description, ogImage, articleDate, locale: metaLocale, routeKey },
 } = Astro.props;
+
+const locale = resolveSiteLocale(metaLocale ?? Astro.currentLocale);
+const htmlLang = localeInfo[locale].htmlLang;
 ---
 
-<html lang={siteConfig.lang}>
+<html lang={htmlLang}>
   <head>
-    <BaseHead title={title} description={description} ogImage={ogImage} articleDate={articleDate} />
+    <BaseHead
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      articleDate={articleDate}
+      locale={locale}
+      routeKey={routeKey}
+    />
     <ClientRouter />
   </head>
 

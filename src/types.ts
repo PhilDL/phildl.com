@@ -1,3 +1,5 @@
+import type { SiteLocale } from "@/content/locale";
+
 export type SiteConfig = {
   author: string;
   title: string;
@@ -21,4 +23,6 @@ export type SiteMeta = {
   description?: string;
   ogImage?: string | undefined;
   articleDate?: string | undefined;
+  locale?: SiteLocale;
+  routeKey?: "home";
 };

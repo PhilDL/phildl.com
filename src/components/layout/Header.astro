@@ -1,9 +1,14 @@
 ---
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import ThemeToggle from "../ThemeToggle.astro";
 import Search from "../Search.astro";
-import { menuLinks } from "@/site-config";
+import { getLocalizedHomeUrl, getNavigationLinks, normalizePathname, resolveSiteLocale } from "@/i18n/utils";
 
 const url = new URL(Astro.request.url);
+const locale = resolveSiteLocale(Astro.currentLocale);
+const menuLinks = getNavigationLinks(locale);
+const currentPathname = normalizePathname(url.pathname);
+const homeHref = getLocalizedHomeUrl(locale);
 ---
 
 <script>
@@ -29,12 +34,12 @@ const url = new URL(Astro.request.url);
   });
 </script>
 
-<header id="main-header" class="group relative mb-28 flex items-center sm:ps-[4.5rem]" transition:persist>
+<header id="main-header" class="group relative mb-28 flex items-center sm:ps-[4.5rem]">
   <div class="flex sm:flex-col">
     <a
-      href="/"
+      href={homeHref}
       class="group inline-flex items-center grayscale hover:filter-none sm:relative sm:inline-block"
-      aria-current={url.pathname === "/" ? "page" : false}
+      aria-current={currentPathname === normalizePathname(homeHref) ? "page" : false}
     >
       <svg
         class="group-hover:fill-accent -bottom-7 me-3 h-16 w-16 fill-current sm:absolute sm:start-[-4.5rem] sm:me-0 sm:h-16 sm:w-16"
@@ -93,7 +98,7 @@ const url = new URL(Astro.request.url);
           <a
             href={link.path}
             class="px-4 py-4 sm:py-0 sm:hover:underline"
-            aria-current={url.pathname === link.path ? "page" : false}
+            aria-current={currentPathname === normalizePathname(link.path) ? "page" : false}
             rel="prefetch"
           >
             {link.title}
@@ -102,6 +107,7 @@ const url = new URL(Astro.request.url);
       }
     </nav>
   </div>
+  <LanguageSwitcher />
   <Search />
   <ThemeToggle />
   <button

@@ -8,6 +8,7 @@
       "@/assets/*": ["src/assets/*"],
       "@/components/*": ["src/components/*.astro"],
       "@/content/*": ["src/content/*"],
+      "@/i18n/*": ["src/i18n/*"],
       "@/layouts/*": ["src/layouts/*.astro"],
       "@/utils": ["src/utils/index.ts"],
       "@/stores/*": ["src/stores/*"],

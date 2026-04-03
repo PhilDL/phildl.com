@@ -1,0 +1,74 @@
+---
+import type { SiteLocale } from "@/content/locale";
+
+import PostPreview from "@/components/blog/PostPreview";
+import SocialList from "@/components/SocialList";
+import { getCv, getFeaturedProjects, getProjectPrimaryLink } from "@/content/queries";
+import PageLayout from "@/layouts/Base";
+import { homePageCopy } from "@/i18n/utils";
+import { getAllPosts, sortMDByDate } from "@/utils";
+
+interface Props {
+  locale: SiteLocale;
+}
+
+const { locale } = Astro.props;
+
+const MAX_POSTS = 10;
+const copy = homePageCopy[locale];
+const cv = await getCv(locale);
+const featuredProjects = (await getFeaturedProjects(locale)).slice(0, 3);
+const allPosts = await getAllPosts();
+const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+
+const meta = {
+  title: copy.metaTitle,
+  description: copy.metaDescription,
+  locale,
+  routeKey: "home" as const,
+};
+---
+
+<PageLayout meta={meta}>
+  <section>
+    <h1 class="title mb-6 font-serif">{copy.heroTitle}</h1>
+    <p class="mb-2">{copy.heroIntro}</p>
+    <p class="mb-4">{cv.data.basics.summary}</p>
+    <SocialList />
+  </section>
+  <section class="mt-16">
+    <h2 class="title mb-4 font-serif text-xl">{copy.projectsTitle}</h2>
+    <ul class="space-y-4 sm:space-y-2">
+      {
+        featuredProjects.map((project) => {
+          const href = getProjectPrimaryLink(project);
+
+          return (
+            <li class="inline-block sm:mt-2">
+              {href ? (
+                <a href={href} target="_blank" rel="noopener noreferrer" class="cactus-link mr-1 inline-block">
+                  {project.data.title}
+                </a>
+              ) : (
+                <span class="mr-1 inline-block font-medium">{project.data.title}</span>
+              )}
+              <span class="mr-2">:</span> {project.data.description}
+            </li>
+          );
+        })
+      }
+    </ul>
+  </section>
+  <section aria-label={copy.postsTitle} class="mt-16">
+    <h2 class="title mb-4 font-serif text-xl">{copy.postsTitle}</h2>
+    <ul class="space-y-4 sm:space-y-2">
+      {
+        allPostsByDate.map((p) => (
+          <li class="flex flex-col gap-x-2 sm:flex-row">
+            <PostPreview post={p} />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</PageLayout>
