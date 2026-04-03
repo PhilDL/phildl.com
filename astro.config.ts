@@ -1,9 +1,9 @@
 import { defineConfig } from "astro/config";
 import fs from "fs";
+import tailwindcss from "@tailwindcss/vite";
 import mdx from "@astrojs/mdx";
-import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
-import remarkUnwrapImages from "remark-unwrap-images";
+import rehypeUnwrapImages from "rehype-unwrap-images";
 import remarkShikiTwoslash from "remark-shiki-twoslash";
 // @ts-expect-error:next-line
 import { remarkReadingTime } from "./src/utils/remark-reading-time.mjs";
@@ -15,11 +15,11 @@ export default defineConfig({
   site: "https://phildl.com",
   markdown: {
     remarkPlugins: [
-      remarkUnwrapImages,
       // @ts-expect-error:next-line
       [remarkShikiTwoslash.default, { theme: "vitesse-dark" }],
       remarkReadingTime,
     ],
+    rehypePlugins: [rehypeUnwrapImages],
     remarkRehype: {
       footnoteLabelProperties: {
         className: [""],
@@ -34,21 +34,18 @@ export default defineConfig({
     icon(),
     mdx({
       remarkPlugins: [
-        remarkUnwrapImages,
         // @ts-expect-error:next-line
         [remarkShikiTwoslash.default, { theme: "vitesse-dark" }],
         remarkReadingTime,
       ],
-    }),
-    tailwind({
-      applyBaseStyles: false,
+      rehypePlugins: [rehypeUnwrapImages],
     }),
     sitemap(),
     react(),
   ],
   prefetch: true,
   vite: {
-    plugins: [rawFonts([".ttf"])],
+    plugins: [tailwindcss(), rawFonts([".ttf"])],
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"],
     },

@@ -1,22 +1,10 @@
 import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
+import typography from "@tailwindcss/typography";
 import plugin from "tailwindcss/plugin";
 
 export default {
-  content: ["./src/**/*.{astro,html,js,jsx,md,svelte,ts,tsx,vue}"],
   darkMode: "class",
-  corePlugins: {
-    // disable aspect ratio as per docs -> @tailwindcss/aspect-ratio
-    aspectRatio: false,
-    // disable some core plugins as they are included in the css, even when unused
-    touchAction: false,
-    ringOffsetWidth: false,
-    ringOffsetColor: false,
-    scrollSnapType: false,
-    borderOpacity: false,
-    textOpacity: false,
-    fontVariantNumeric: false,
-  },
   theme: {
     extend: {
       colors: {
@@ -55,7 +43,16 @@ export default {
         DEFAULT: {
           css: {
             a: {
-              "@apply cactus-link no-underline": "",
+              textDecoration: "none",
+              backgroundSize: "100% 6px",
+              backgroundPosition: "bottom",
+              backgroundRepeat: "repeat-x",
+              backgroundImage:
+                "linear-gradient(transparent,transparent 5px,hsl(var(--theme-text)) 5px,hsl(var(--theme-text)))",
+              "&:hover": {
+                backgroundImage:
+                  "linear-gradient(transparent,transparent 4px,hsl(var(--theme-link)) 4px,hsl(var(--theme-link)))",
+              },
             },
             strong: {
               fontWeight: "700",
@@ -85,11 +82,13 @@ export default {
               borderTop: "1px dashed #666",
             },
             sup: {
-              "@apply ms-0.5": "",
+              marginInlineStart: "0.125rem",
               a: {
-                "@apply bg-none": "",
+                backgroundImage: "none",
                 "&:hover": {
-                  "@apply text-link no-underline bg-none": "",
+                  color: theme("colors.link / 1"),
+                  textDecoration: "none",
+                  backgroundImage: "none",
                 },
                 "&:before": {
                   content: "'['",
@@ -113,8 +112,7 @@ export default {
     },
   },
   plugins: [
-    require("@tailwindcss/typography"),
-    require("@tailwindcss/aspect-ratio"),
+    typography,
     plugin(function ({ addComponents }) {
       addComponents({
         ".cactus-link": {

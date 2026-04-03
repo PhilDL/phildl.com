@@ -1,8 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Alice&family=Space+Grotesk:wght@400;500;600&display=swap");
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@config "../../tailwind.config.ts";
+@import "tailwindcss";
 
 @layer base {
   :root {
@@ -31,7 +29,7 @@
   }
 
   html body {
-    @apply mx-auto flex min-h-screen max-w-4xl flex-col bg-bgColor px-8 pt-16 font-normal text-textColor antialiased;
+    @apply bg-bgColor text-textColor mx-auto flex min-h-screen max-w-4xl flex-col px-8 pt-16 font-normal antialiased;
   }
 
   body {
