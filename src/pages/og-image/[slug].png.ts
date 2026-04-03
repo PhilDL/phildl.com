@@ -1,5 +1,6 @@
 import type { APIContext, GetStaticPaths } from "astro";
 import { getEntry } from "astro:content";
+import type { ReactNode } from "react";
 import satori, { type SatoriOptions } from "satori";
 import { html } from "satori-html";
 import { Resvg } from "@resvg/resvg-js";
@@ -100,9 +101,9 @@ export async function GET({ params: { slug } }: APIContext) {
     weekday: "long",
     month: "long",
   });
-  const svg = await satori(markup(title, postDate), ogOptions);
+  const svg = await satori(markup(title, postDate) as unknown as ReactNode, ogOptions);
   const png = new Resvg(svg).render().asPng();
-  return new Response(png, {
+  return new Response(png as unknown as BodyInit, {
     headers: {
       "Content-Type": "image/png",
       "Cache-Control": "public, max-age=31536000, immutable",

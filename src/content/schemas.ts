@@ -14,7 +14,7 @@ function removeDupsAndLowerCase(array: string[]) {
   return Array.from(distinctItems);
 }
 
-function hasOrderedDates({ startDate, endDate }: { startDate: Date; endDate?: Date }) {
+function hasOrderedDates({ startDate, endDate }: { startDate: Date; endDate?: Date | undefined }) {
   return !endDate || endDate >= startDate;
 }
 

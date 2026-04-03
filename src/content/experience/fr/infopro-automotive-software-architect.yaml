@@ -1,0 +1,26 @@
+locale: fr
+translationKey: infopro-automotive-software-architect
+company: Infopro Digital Automotive
+role: Architecte logiciels
+employmentType: full-time
+location: La Réunion
+startDate: 2020-12-01
+endDate: 2023-11-30
+summary: >-
+  J'ai porté des sujets d'architecture sur un ERP vertical dédié au monde
+  automobile, avec un accent mis sur les intégrations, l'évolution de la
+  plateforme et la stratégie API.
+achievements:
+  - Conception et spécification de web services et d'APIs, avec authentification JWE et JWT et contrats OpenAPI 3.
+  - Développement d'intégrations avec l'écosystème de la pièce automobile et accompagnement de sites e-commerce connectés à l'ERP.
+  - Évolution d'une plateforme métier utilisée par des garagistes et des revendeurs de pièces auto.
+technologies:
+  - Python
+  - JavaScript
+  - Vue.js
+  - OpenAPI
+  - JWT
+  - JWE
+  - ERP
+  - Web services
+  - E-commerce

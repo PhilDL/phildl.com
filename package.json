@@ -8,9 +8,12 @@
     "build": "astro build",
     "postbuild": "pagefind --site dist",
     "preview": "astro preview",
-    "format": "prettier -w --cache . && prettier -w --cache **/*.astro"
+    "format": "prettier -w --cache . && prettier -w --cache **/*.astro",
+    "lint": "ESLINT_USE_FLAT_CONFIG=false eslint .",
+    "typecheck": "astro check"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.4",
     "@pagefind/default-ui": "^1.4.0",
     "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/typography": "^0.5.19",

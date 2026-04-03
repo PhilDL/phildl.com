@@ -24,5 +24,4 @@ export type SiteMeta = {
   ogImage?: string | undefined;
   articleDate?: string | undefined;
   locale?: SiteLocale;
-  routeKey?: "home";
 };

@@ -1,0 +1,25 @@
+locale: en
+translationKey: infopro-automotive-software-architect
+company: Infopro Digital Automotive
+role: Software architect
+employmentType: full-time
+location: Reunion Island
+startDate: 2020-12-01
+endDate: 2023-11-30
+summary: >-
+  Led architecture work on a vertical ERP for automotive businesses, with a
+  focus on integration design, platform evolution, and API strategy.
+achievements:
+  - Designed and specified web services and APIs, including JWE and JWT authentication and OpenAPI 3 contracts.
+  - Built integrations with automotive parts ecosystems and supported e-commerce setups connected directly to the ERP.
+  - Helped evolve a domain-specific platform used by garages and auto-parts resellers.
+technologies:
+  - Python
+  - JavaScript
+  - Vue.js
+  - OpenAPI
+  - JWT
+  - JWE
+  - ERP
+  - Web services
+  - E-commerce

@@ -15,7 +15,7 @@ interface Props {
 }
 
 const {
-  meta: { title, description = siteConfig.description, ogImage, articleDate, locale: metaLocale, routeKey },
+  meta: { title, description = siteConfig.description, ogImage, articleDate, locale: metaLocale },
 } = Astro.props;
 
 const locale = resolveSiteLocale(metaLocale ?? Astro.currentLocale);
@@ -24,14 +24,7 @@ const htmlLang = localeInfo[locale].htmlLang;
 
 <html lang={htmlLang}>
   <head>
-    <BaseHead
-      title={title}
-      description={description}
-      ogImage={ogImage}
-      articleDate={articleDate}
-      locale={locale}
-      routeKey={routeKey}
-    />
+    <BaseHead title={title} description={description} ogImage={ogImage} articleDate={articleDate} locale={locale} />
     <ClientRouter />
   </head>
 

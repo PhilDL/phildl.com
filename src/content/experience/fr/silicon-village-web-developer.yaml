@@ -1,0 +1,14 @@
+locale: fr
+translationKey: silicon-village-web-developer
+company: Silicon Village
+role: Développeur web
+employmentType: full-time
+startDate: 2013-07-01
+endDate: 2014-06-30
+summary: >-
+  Premier poste à temps plein en développement web, avec des missions orientées
+  client et une montée en expérience sur des projets en production.
+achievements:
+  - Contribution à des livraisons dans un environnement web proche d'une agence.
+  - Construction d'une première expérience de production sur l'implémentation et la maintenance.
+technologies: []

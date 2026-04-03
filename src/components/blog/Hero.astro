@@ -2,6 +2,7 @@
 import { render, type CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
 import FormattedDate from "../FormattedDate.astro";
+import { blogPostCopy, getTagUrl, resolveSiteLocale } from "@/i18n/utils";
 
 interface Props {
   content: CollectionEntry<"post">;
@@ -11,6 +12,8 @@ const { content } = Astro.props;
 const { data } = content;
 
 const { remarkPluginFrontmatter } = await render(content);
+const locale = resolveSiteLocale(Astro.currentLocale);
+const copy = blogPostCopy[locale];
 
 const dateTimeOptions: Intl.DateTimeFormatOptions = {
   month: "long",
@@ -39,7 +42,7 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
   {
     data.updatedDate && (
       <span class="bg-quote/10 text-quote rounded-lg p-1">
-        Last Updated:
+        {copy.lastUpdatedLabel}:
         <FormattedDate class="ms-1" date={data.updatedDate} dateTimeOptions={dateTimeOptions} />
       </span>
     )
@@ -65,12 +68,12 @@ const dateTimeOptions: Intl.DateTimeFormatOptions = {
         <path d="M17.573 18.407l2.834 -2.834a2.025 2.025 0 0 0 0 -2.864l-7.117 -7.116" />
         <path d="M6 9h-.01" />
       </svg>
-      {data.tags.map((tag, i) => (
+      {data.tags.map((tag: string, i: number) => (
         <>
           <a
             class="cactus-link inline-block before:content-['#']"
-            aria-label={`View more blogs with the tag ${tag}`}
-            href={`/tags/${tag}/`}
+            aria-label={copy.tagAriaLabel(tag)}
+            href={getTagUrl(locale, tag)}
             data-pagefind-filter="tag"
           >
             {tag}

@@ -1,0 +1,14 @@
+locale: en
+translationKey: freelance-web-developer
+company: freelance
+role: Freelance web developer
+employmentType: freelance
+startDate: 2014-07-01
+endDate: 2015-05-31
+summary: >-
+  Worked independently as a freelance web developer on client delivery before
+  moving back into product teams.
+achievements:
+  - Delivered client web work directly as an individual contributor.
+  - Covered implementation and delivery in short iterative engagements.
+technologies: []

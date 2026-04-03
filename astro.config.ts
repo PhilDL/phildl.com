@@ -5,7 +5,6 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import rehypeUnwrapImages from "rehype-unwrap-images";
 import remarkShikiTwoslash from "remark-shiki-twoslash";
-// @ts-expect-error:next-line
 import { remarkReadingTime } from "./src/utils/remark-reading-time.mjs";
 import react from "@astrojs/react";
 import icon from "astro-icon";
@@ -52,7 +51,7 @@ export default defineConfig({
   ],
   prefetch: true,
   vite: {
-    plugins: [tailwindcss(), rawFonts([".ttf"])],
+    plugins: [tailwindcss() as never, rawFonts([".ttf"])],
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"],
     },

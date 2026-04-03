@@ -1,51 +1,80 @@
 locale: fr
 basics:
   name: Philippe L'ATTENTION
-  headline: Ingénieur logiciel senior
+  headline: Directeur-fondateur chez Basaltbytes
   summary: >-
-    Ingénieur logiciel senior avec 12 années d'expérience en développement web.
-    J'aime construire des produits fiables, concevoir des sites orientés contenu
-    et créer des outils développeur avec une forte exigence de maintenabilité et
-    de sûreté de typage.
+    Je développe chez Basaltbytes des produits SaaS et mobiles de bout en bout.
+    Je conçois des plateformes multi-tenant, des applications React et React
+    Native, des flux de paiement et des backends modernes avec une attention
+    forte portée à l'observabilité, l'analytics et l'itération produit.
+  location: Saint-Denis, La Réunion
+  email: philippe.lattention@hotmail.fr
   website: https://phildl.com
   profiles:
     - label: GitHub
       href: https://github.com/PhilDL
+    - label: LinkedIn
+      href: https://www.linkedin.com/in/philippe-lattention/
 focusAreas:
-  - Architecture TypeScript
-  - Astro et sites orientés contenu
-  - Conception et intégration d'API
-  - Outils et expérience développeur
+  - Architecture SaaS multi-tenant
+  - Produits React, React Native et SSR
+  - Paiements, marketplaces et OAuth
+  - Backends serverless, edge et temps réel
+  - Observabilité, analytics et itération produit
 availability:
-  status: selective
-  details: Disponible pour des missions et produits sélectionnés.
+  status: open
+  details: Disponible pour des missions freelance sélectionnées de 3 à 6 mois.
 skillGroups:
-  - name: Langages
+  - name: Architecture
     items:
       - TypeScript
-      - JavaScript
-      - Python
-      - SQL
-  - name: Frontend
+      - DDD
+      - Monorepos
+      - SaaS multi-tenant
+      - RGPD
+  - name: Product engineering
     items:
-      - Astro
       - React
-      - Tailwind CSS
-      - MDX
-  - name: Backend
+      - React Native
+      - Expo
+      - React Router
+      - Hono
+  - name: Data et backend
     items:
-      - Node.js
-      - API REST
-      - Modélisation de contenu
-      - Outils développeur
+      - Turso
+      - Drizzle ORM
+      - Convex
+      - APIs
+      - OAuth
+  - name: Plateforme et croissance
+    items:
+      - Stripe
+      - Stripe Connect
+      - Docker
+      - Fly.io
+      - Cloudflare Workers
+      - Sentry
+      - PostHog
+      - GrowthBook
 languages:
-  - name: Anglais
-    code: en
   - name: Français
     code: fr
+    level: Natif
+  - name: Anglais
+    code: en
+    level: Natif ou bilingue
 featuredProjects:
+  - fr/atoly
+  - fr/manywalls
   - fr/ts-ghost
-  - fr/remix-gospel-stack
   - fr/coding-dodo
-experience: []
-education: []
+experience:
+  - fr/basaltbytes-founder
+  - fr/infopro-automotive-software-architect
+  - fr/infopro-automotive-full-stack-developer
+  - fr/bmd-diffusion-web-developer
+  - fr/freelance-web-developer
+  - fr/silicon-village-web-developer
+education:
+  - fr/ipi-concepteur-developpeur
+  - fr/afpar-developpeur-logiciel

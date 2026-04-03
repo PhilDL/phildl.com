@@ -1,0 +1,15 @@
+locale: en
+translationKey: bmd-diffusion-web-developer
+company: BMD Diffusion
+role: Web developer
+employmentType: full-time
+startDate: 2015-06-01
+endDate: 2015-09-30
+summary: >-
+  Worked on the e-commerce websites discountanoo.com and
+  magrandeavenue.com during a short-term web development role.
+achievements:
+  - Contributed to delivery and maintenance work on two production e-commerce websites.
+  - Shipped features in a short contract setting with direct impact on live storefronts.
+technologies:
+  - E-commerce

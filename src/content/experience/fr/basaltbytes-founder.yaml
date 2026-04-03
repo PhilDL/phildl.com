@@ -1,0 +1,33 @@
+locale: fr
+translationKey: basaltbytes-founder
+company: Basaltbytes
+role: Directeur-fondateur
+employmentType: founder
+location: Saint-Denis, La Réunion
+startDate: 2023-12-01
+summary: >-
+  Je développe Basaltbytes comme un studio produit et une activité de conseil
+  centrés sur des produits SaaS et mobiles construits de bout en bout avec des
+  architectures fortement orientées TypeScript.
+achievements:
+  - Conception et développement d'Atoly, une plateforme B2B de réservation multi-tenant avec isolation forte des données, facturation Stripe, flows marketplace via Stripe Connect et authentification OAuth complète.
+  - Livraison de Manywalls sur iOS, Android et web avec React Native, Expo, Skia, OpenCV, Reanimated et un backend temps réel sur Convex.
+  - Prise en charge de l'architecture, de la livraison, du déploiement, du monitoring, de l'analytics et de l'itération produit sur tout le cycle de vie.
+technologies:
+  - TypeScript
+  - React 19
+  - React Router
+  - Hono
+  - Turso
+  - Drizzle ORM
+  - React Native
+  - Expo
+  - Convex
+  - Stripe
+  - Sentry
+  - PostHog
+  - GrowthBook
+  - Docker
+  - Fly.io
+  - Cloudflare Workers
+featured: true

@@ -5,6 +5,7 @@ import PageLayout from "@/layouts/Base";
 import PostPreview from "@/components/blog/PostPreview";
 import Pagination from "@/components/Paginator";
 import { getAllPosts, getUniqueTags, sortMDByDate } from "@/utils";
+import { blogIndexPageCopy, getTagUrl, getTagsUrl, resolveSiteLocale } from "@/i18n/utils";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const allPosts = await getAllPosts();
@@ -19,30 +20,32 @@ interface Props {
 }
 
 const { page, uniqueTags } = Astro.props;
+const locale = resolveSiteLocale(Astro.currentLocale);
+const copy = blogIndexPageCopy[locale];
 
 const meta = {
-  title: "Posts",
-  description: "Ready my collection of posts and the things that interest me",
+  title: copy.metaTitle,
+  description: copy.metaDescription,
 };
 
 const paginationProps = {
   ...(page.url.prev && {
     prevUrl: {
       url: page.url.prev,
-      text: `← Previous Posts`,
+      text: copy.previousPostsLabel,
     },
   }),
   ...(page.url.next && {
     nextUrl: {
       url: page.url.next,
-      text: `Next Posts →`,
+      text: copy.nextPostsLabel,
     },
   }),
 };
 ---
 
 <PageLayout meta={meta}>
-  <h1 class="title mb-6">Posts</h1>
+  <h1 class="title mb-6">{copy.pageTitle}</h1>
   <div class="grid gap-y-16 sm:grid-cols-[3fr_1fr] sm:gap-x-8">
     <section aria-label="Blog post list">
       <ul class="space-y-8 text-start">
@@ -76,15 +79,15 @@ const paginationProps = {
               <path d="M17.573 18.407l2.834 -2.834a2.025 2.025 0 0 0 0 -2.864l-7.117 -7.116" />
               <path d="M6 9h-.01" />
             </svg>
-            Tags
+            {copy.tagsTitle}
           </h2>
-          <ul class="flex flex-wrap gap-2 text-bgColor">
+          <ul class="text-bgColor flex flex-wrap gap-2">
             {uniqueTags.map((tag) => (
               <li>
                 <a
-                  class="flex items-center justify-center rounded-lg border border-accent p-1 px-3 text-sm text-accent hover:border-white"
-                  href={`/tags/${tag}/`}
-                  aria-label={`View all posts with the tag: ${tag}`}
+                  class="border-accent text-accent flex items-center justify-center rounded-lg border p-1 px-3 text-sm hover:border-white"
+                  href={getTagUrl(locale, tag)}
+                  aria-label={copy.tagAriaLabel(tag)}
                 >
                   {tag}
                 </a>
@@ -92,8 +95,8 @@ const paginationProps = {
             ))}
           </ul>
           <span class="mt-4 block sm:text-end">
-            <a class="sm:hover:text-accent" href="/tags/" aria-label="View all blog categories">
-              View all →
+            <a class="sm:hover:text-accent" href={getTagsUrl(locale)} aria-label={copy.allTagsAriaLabel}>
+              {copy.allTagsLabel}
             </a>
           </span>
         </aside>

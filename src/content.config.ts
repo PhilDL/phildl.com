@@ -1,6 +1,6 @@
 import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
-import { cvSchema, educationSchema, experienceSchema, postSchema, projectSchema } from "./src/content/schemas";
+import { cvSchema, educationSchema, experienceSchema, postSchema, projectSchema } from "./content/schemas";
 
 const post = defineCollection({
   loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/post" }),

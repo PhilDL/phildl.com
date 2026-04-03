@@ -1,6 +1,7 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 import { getFormattedDate } from "@/utils";
+import { resolveSiteLocale } from "@/i18n/utils";
 
 type Props = HTMLAttributes<"time"> & {
   date: Date;
@@ -8,8 +9,9 @@ type Props = HTMLAttributes<"time"> & {
 };
 
 const { date, dateTimeOptions, ...attrs } = Astro.props;
+const locale = resolveSiteLocale(Astro.currentLocale);
 
-const postDate = getFormattedDate(date, dateTimeOptions);
+const postDate = getFormattedDate(date, dateTimeOptions, locale);
 ---
 
 <time datetime={date.toISOString()} {...attrs}>

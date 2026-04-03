@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
+import defaultTheme from "tailwindcss/defaultTheme";
 import typography from "@tailwindcss/typography";
 import plugin from "tailwindcss/plugin";
 
@@ -17,16 +17,13 @@ export default {
       },
       fontFamily: {
         // Add any custom fonts here
-        sans: ["Space Grotesk", ...fontFamily.sans],
-        serif: ["Alice", ...fontFamily.serif],
+        sans: ["Space Grotesk", ...defaultTheme.fontFamily.sans],
+        serif: ["Alice", ...defaultTheme.fontFamily.serif],
       },
       transitionProperty: {
         height: "height",
       },
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      // Remove above once tailwindcss exposes theme type
-      typography: (theme) => ({
+      typography: ({ theme }) => ({
         cactus: {
           css: {
             "--tw-prose-body": theme("colors.textColor / 1"),

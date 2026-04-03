@@ -13,6 +13,8 @@ pnpm dev        # Dev server at localhost:4321
 pnpm build      # Production build to /dist + Pagefind search indexing
 pnpm preview    # Preview production build
 pnpm format     # Prettier (119 char width, includes .astro files)
+pnpm lint       # ESLint
+pnpm typecheck  # Astro + TypeScript diagnostics
 ```
 
 No test framework is configured. No CI/CD pipeline. Package manager is **pnpm 8.6.1**.
@@ -41,18 +43,19 @@ Requires **Node 22+** for local development and builds.
 - **OG images**: Dynamically generated per post via satori at `/og-image/[slug].png`
 - **Search**: Pagefind — production-only (runs post-build). Keyboard shortcut `/` opens search
 - **Pagination**: 10 posts per page using Astro's `paginate()`
+- **Task completion**: Finish every coding task by running formatting, linting, and typechecking (`pnpm format`, `pnpm lint`, `pnpm typecheck`) and report any failures
 
 ## Blog Post Frontmatter
 
 ```yaml
-title: "Post Title"           # Required, max 65 chars
-description: "Description"    # Required, 50-160 chars
-publishDate: "02 Oct 2024"    # Required
-updatedDate: "03 Oct 2024"    # Optional
-tags: ["tag1", "tag2"]        # Auto-lowercased, deduplicated
-draft: true                   # Default false
-coverImage:                   # Optional
+title: "Post Title" # Required, max 65 chars
+description: "Description" # Required, 50-160 chars
+publishDate: "02 Oct 2024" # Required
+updatedDate: "03 Oct 2024" # Optional
+tags: ["tag1", "tag2"] # Auto-lowercased, deduplicated
+draft: true # Default false
+coverImage: # Optional
   src: "./image.png"
   alt: "Alt text"
-ogImage: "/custom-og.png"     # Optional, overrides generated OG
+ogImage: "/custom-og.png" # Optional, overrides generated OG
 ```

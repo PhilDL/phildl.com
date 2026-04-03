@@ -1,50 +1,80 @@
 locale: en
 basics:
   name: Philippe L'ATTENTION
-  headline: Senior Software Engineer
+  headline: Founder at Basaltbytes
   summary: >-
-    Senior software engineer with 12 years of web development experience. I enjoy
-    building reliable products, shaping content-driven websites, and creating
-    developer tooling with a strong focus on type safety and maintainability.
+    Founder at Basaltbytes and senior product engineer building SaaS and mobile
+    products end to end. I design multi-tenant platforms, React and React
+    Native apps, payment flows, and modern backends with a strong focus on
+    observability, analytics, and iterative product delivery.
+  location: Saint-Denis, Reunion Island
+  email: philippe.lattention@hotmail.fr
   website: https://phildl.com
   profiles:
     - label: GitHub
       href: https://github.com/PhilDL
+    - label: LinkedIn
+      href: https://www.linkedin.com/in/philippe-lattention/
 focusAreas:
-  - TypeScript architecture
-  - Astro and content-driven websites
-  - API design and integrations
-  - Developer tooling and DX
+  - Multi-tenant SaaS architecture
+  - React, React Native, and SSR products
+  - Payments, marketplaces, and OAuth flows
+  - Serverless, edge, and real-time backends
+  - Observability, analytics, and product iteration
 availability:
-  status: selective
-  details: Open to selected product, freelance, and consulting opportunities.
+  status: open
+  details: Open to selected freelance engagements of 3 to 6 months.
 skillGroups:
-  - name: Languages
+  - name: Architecture
     items:
       - TypeScript
-      - JavaScript
-      - Python
-      - SQL
-  - name: Frontend
+      - DDD
+      - Monorepos
+      - SaaS multi-tenant
+      - GDPR
+  - name: Product engineering
     items:
-      - Astro
       - React
-      - Tailwind CSS
-      - MDX
-  - name: Backend
+      - React Native
+      - Expo
+      - React Router
+      - Hono
+  - name: Data and backend
     items:
-      - Node.js
-      - REST APIs
-      - Content modeling
-      - Developer tooling
+      - Turso
+      - Drizzle ORM
+      - Convex
+      - APIs
+      - OAuth
+  - name: Platform and growth
+    items:
+      - Stripe
+      - Stripe Connect
+      - Docker
+      - Fly.io
+      - Cloudflare Workers
+      - Sentry
+      - PostHog
+      - GrowthBook
 languages:
-  - name: English
-    code: en
   - name: French
     code: fr
+    level: Native
+  - name: English
+    code: en
+    level: Native or bilingual
 featuredProjects:
+  - en/atoly
+  - en/manywalls
   - en/ts-ghost
-  - en/remix-gospel-stack
   - en/coding-dodo
-experience: []
-education: []
+experience:
+  - en/basaltbytes-founder
+  - en/infopro-automotive-software-architect
+  - en/infopro-automotive-full-stack-developer
+  - en/bmd-diffusion-web-developer
+  - en/freelance-web-developer
+  - en/silicon-village-web-developer
+education:
+  - en/ipi-concepteur-developpeur
+  - en/afpar-developpeur-logiciel

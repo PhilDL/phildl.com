@@ -1,0 +1,22 @@
+locale: fr
+translationKey: infopro-automotive-full-stack-developer
+company: Infopro Digital Automotive
+role: Développeur Full Stack
+employmentType: full-time
+location: Sainte-Clotilde, La Réunion
+startDate: 2016-01-01
+endDate: 2020-11-30
+summary: >-
+  Développeur full stack sur le même ERP automobile, avec des livraisons côté
+  backend, frontend, intégrations et parcours e-commerce.
+achievements:
+  - Développement de fonctionnalités ERP en Python pour le backend et en JavaScript et Vue.js pour le frontend.
+  - Livraison de workflows métier spécifiques pour les garagistes et les revendeurs de pièces auto.
+  - Contribution aux web services, aux intégrations et aux sites e-commerce synchronisés avec l'ERP.
+technologies:
+  - Python
+  - JavaScript
+  - Vue.js
+  - ERP
+  - APIs REST
+  - E-commerce

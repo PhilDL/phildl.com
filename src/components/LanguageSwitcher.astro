@@ -1,31 +1,26 @@
 ---
-import { resolveSiteLocale } from "@/i18n/utils";
-import { getLanguageSwitcherLinks } from "@/i18n/utils";
+import { getLanguageSwitcherLinks, localeInfo, resolveSiteLocale } from "@/i18n/utils";
 
 const url = new URL(Astro.request.url);
 const locale = resolveSiteLocale(Astro.currentLocale);
-const links = getLanguageSwitcherLinks(url.pathname, locale);
+const links = getLanguageSwitcherLinks(url, locale);
 ---
 
-<nav
-  aria-label={locale === "fr" ? "Changer de langue" : "Switch language"}
-  class="border-accent/30 ms-4 flex items-center rounded-full border px-1 py-1 text-xs"
->
+<nav aria-label={locale === "fr" ? "Changer de langue" : "Switch language"} class="ms-4 flex items-center text-sm">
   {
-    links.map((link) =>
-      link.isCurrent ? (
-        <span
-          class="bg-accent text-bgColor rounded-full px-2 py-1 font-semibold"
-          aria-current="true"
-          title={link.title}
-        >
-          {link.label}
-        </span>
-      ) : (
-        <a href={link.href} class="text-accent px-2 py-1 sm:hover:underline" hreflang={link.locale} title={link.title}>
-          {link.label}
-        </a>
-      ),
-    )
+    links.map((link, i) => (
+      <>
+        {i > 0 && <span class="text-textColor/40 mx-1">/</span>}
+        {link.isCurrent ? (
+          <span class="text-accent-2 font-semibold" aria-current="true" title={link.title}>
+            {link.label}
+          </span>
+        ) : (
+          <a href={link.href} class="cactus-link" hreflang={localeInfo[link.locale].htmlLang} title={link.title}>
+            {link.label}
+          </a>
+        )}
+      </>
+    ))
   }
 </nav>

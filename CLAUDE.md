@@ -42,14 +42,14 @@ No test framework is configured. No CI/CD pipeline. Package manager is **pnpm 8.
 ## Blog Post Frontmatter
 
 ```yaml
-title: "Post Title"           # Required, max 65 chars
-description: "Description"    # Required, 50-160 chars
-publishDate: "02 Oct 2024"    # Required
-updatedDate: "03 Oct 2024"    # Optional
-tags: ["tag1", "tag2"]        # Auto-lowercased, deduplicated
-draft: true                   # Default false
-coverImage:                   # Optional
+title: "Post Title" # Required, max 65 chars
+description: "Description" # Required, 50-160 chars
+publishDate: "02 Oct 2024" # Required
+updatedDate: "03 Oct 2024" # Optional
+tags: ["tag1", "tag2"] # Auto-lowercased, deduplicated
+draft: true # Default false
+coverImage: # Optional
   src: "./image.png"
   alt: "Alt text"
-ogImage: "/custom-og.png"     # Optional, overrides generated OG
+ogImage: "/custom-og.png" # Optional, overrides generated OG
 ```
