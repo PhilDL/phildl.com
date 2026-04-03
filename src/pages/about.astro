@@ -23,7 +23,7 @@ const meta = {
 <PageLayout meta={meta}>
   <div class="space-y-16">
     <section class="grid gap-8 md:grid-cols-[minmax(0,1fr)_16rem] md:items-start">
-      <div class="space-y-5">
+      <div class="max-w-prose space-y-5">
         <h1 class="title">{copy.headline}</h1>
         <p class="text-lg font-medium">{cv.data.basics.headline}</p>
         <p>{cv.data.basics.summary}</p>
@@ -31,7 +31,7 @@ const meta = {
           {cv.data.basics.location ? `${copy.locationPrefix} ${cv.data.basics.location}. ` : ""}
           {copy.focusSentence}
         </p>
-        <div class="space-y-2 text-sm">
+        <div class="space-y-1 text-sm">
           <p>
             <span class="font-medium">{copy.availabilityLabel}:</span>
             {cv.data.availability.details}
@@ -58,50 +58,50 @@ const meta = {
           alt={copy.profileImageAlt}
           loading="eager"
           fetchpriority="high"
-          class="h-56 w-56 rounded-3xl object-cover"
+          class="h-56 w-56 object-cover"
         />
       </div>
     </section>
 
-    <section class="space-y-4">
+    <section class="max-w-prose space-y-4">
       <h2 class="title text-xl">{copy.focusAreasTitle}</h2>
-      <ul class="grid gap-3 sm:grid-cols-2">
+      <ul class="space-y-2">
         {
           cv.data.focusAreas.map((item: string) => (
-            <li class="rounded-2xl border border-black/10 px-4 py-3 dark:border-white/10">{item}</li>
+            <li class="before:text-accent relative pl-5 before:absolute before:left-0 before:content-['#']">{item}</li>
           ))
         }
       </ul>
     </section>
 
-    <section class="space-y-4">
+    <section class="max-w-prose space-y-4">
       <h2 class="title text-xl">{copy.coreStackTitle}</h2>
-      <div class="grid gap-4 md:grid-cols-2">
+      <div class="space-y-4">
         {
           cv.data.skillGroups.map((group: (typeof cv.data.skillGroups)[number]) => (
-            <article class="rounded-2xl border border-black/10 px-5 py-4 dark:border-white/10">
-              <h3 class="font-medium">{group.name}</h3>
-              <p class="mt-2 text-sm leading-7">{group.items.join(" • ")}</p>
-            </article>
+            <div>
+              <h3 class="text-accent font-medium">{group.name}</h3>
+              <p class="mt-1 text-sm leading-7">{group.items.join(" · ")}</p>
+            </div>
           ))
         }
       </div>
     </section>
 
-    <section class="space-y-6">
+    <section class="max-w-prose space-y-6">
       <h2 class="title text-xl">{copy.experienceTitle}</h2>
-      <div class="space-y-6">
+      <div class="divide-textColor/20 divide-y divide-dashed">
         {
-          experiences.map((entry) => (
-            <article class="rounded-2xl border border-black/10 px-5 py-5 dark:border-white/10">
+          experiences.map((entry, i) => (
+            <article class:list={[i === 0 ? "pb-6" : "py-6"]}>
               <div class="flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between">
                 <div>
                   <h3 class="font-medium">{entry.data.role}</h3>
-                  <p class="text-sm opacity-80">{entry.data.company}</p>
+                  <p class="text-accent text-sm">{entry.data.company}</p>
                 </div>
                 <p class="text-sm opacity-70">
                   <FormattedDate date={entry.data.startDate} dateTimeOptions={{ month: "short", year: "numeric" }} />
-                  {" - "}
+                  {" — "}
                   {entry.data.endDate ? (
                     <FormattedDate date={entry.data.endDate} dateTimeOptions={{ month: "short", year: "numeric" }} />
                   ) : (
@@ -111,16 +111,14 @@ const meta = {
               </div>
               <p class="mt-3">{entry.data.summary}</p>
               {entry.data.achievements.length > 0 && (
-                <ul class="mt-4 list-inside list-disc space-y-2 text-sm">
+                <ul class="mt-3 list-inside list-disc space-y-1 text-sm">
                   {entry.data.achievements.map((achievement: string) => (
                     <li>{achievement}</li>
                   ))}
                 </ul>
               )}
               {entry.data.technologies.length > 0 && (
-                <p class="mt-4 text-sm opacity-80">
-                  <span class="font-medium">{copy.technologiesLabel}:</span> {entry.data.technologies.join(", ")}
-                </p>
+                <p class="mt-3 text-sm opacity-70">{entry.data.technologies.join(" · ")}</p>
               )}
             </article>
           ))
@@ -128,15 +126,15 @@ const meta = {
       </div>
     </section>
 
-    <section class="space-y-6">
+    <section class="max-w-prose space-y-6">
       <h2 class="title text-xl">{copy.selectedProjectsTitle}</h2>
-      <div class="grid gap-4 md:grid-cols-2">
+      <ul class="space-y-4">
         {
           featuredProjects.map((project) => {
             const href = getProjectPrimaryLink(project);
 
             return (
-              <article class="rounded-2xl border border-black/10 px-5 py-4 dark:border-white/10">
+              <li>
                 <h3 class="font-medium">
                   {href ? (
                     <a class="cactus-link" href={href} target="_blank" rel="noopener noreferrer">
@@ -146,32 +144,32 @@ const meta = {
                     project.data.title
                   )}
                 </h3>
-                <p class="mt-2 text-sm">{project.data.description}</p>
-                <p class="mt-3 text-sm opacity-80">{project.data.technologies.join(", ")}</p>
-              </article>
+                <p class="mt-1 text-sm">{project.data.description}</p>
+                <p class="mt-1 text-sm opacity-70">{project.data.technologies.join(" · ")}</p>
+              </li>
             );
           })
         }
-      </div>
+      </ul>
     </section>
 
-    <section class="space-y-6">
+    <section class="max-w-prose space-y-6">
       <h2 class="title text-xl">{copy.educationTitle}</h2>
-      <div class="space-y-4">
+      <div class="divide-textColor/20 divide-y divide-dashed">
         {
-          education.map((entry) => (
-            <article class="rounded-2xl border border-black/10 px-5 py-4 dark:border-white/10">
+          education.map((entry, i) => (
+            <article class:list={[i === 0 ? "pb-6" : "py-6"]}>
               <div class="flex flex-col gap-1 md:flex-row md:items-baseline md:justify-between">
                 <div>
                   <h3 class="font-medium">{entry.data.degree}</h3>
-                  <p class="text-sm opacity-80">
+                  <p class="text-accent text-sm">
                     {entry.data.institution}
                     {entry.data.field && ` · ${entry.data.field}`}
                   </p>
                 </div>
                 <p class="text-sm opacity-70">
                   <FormattedDate date={entry.data.startDate} dateTimeOptions={{ year: "numeric" }} />
-                  {" - "}
+                  {" — "}
                   {entry.data.endDate ? (
                     <FormattedDate date={entry.data.endDate} dateTimeOptions={{ year: "numeric" }} />
                   ) : (
