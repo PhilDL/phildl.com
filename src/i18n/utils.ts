@@ -43,9 +43,11 @@ type AboutPageCopy = {
   experienceTitle: string;
   selectedProjectsTitle: string;
   educationTitle: string;
+  languagesTitle: string;
   presentLabel: string;
   technologiesLabel: string;
   profileImageAlt: string;
+  downloadPdfLabel: string;
 };
 
 type BlogIndexPageCopy = {
@@ -133,9 +135,11 @@ export const aboutPageCopy: Record<SiteLocale, AboutPageCopy> = {
     experienceTitle: "Experience",
     selectedProjectsTitle: "Selected projects",
     educationTitle: "Education",
+    languagesTitle: "Languages",
     presentLabel: "Present",
     technologiesLabel: "Technologies",
     profileImageAlt: "Profile image for Philippe L'ATTENTION",
+    downloadPdfLabel: "Download PDF CV",
   },
   fr: {
     metaTitle: "À propos",
@@ -151,9 +155,11 @@ export const aboutPageCopy: Record<SiteLocale, AboutPageCopy> = {
     experienceTitle: "Expérience",
     selectedProjectsTitle: "Projets sélectionnés",
     educationTitle: "Formation",
+    languagesTitle: "Langues",
     presentLabel: "Aujourd'hui",
     technologiesLabel: "Technologies",
     profileImageAlt: "Photo de profil de Philippe L'ATTENTION",
+    downloadPdfLabel: "Télécharger le CV en PDF",
   },
 };
 

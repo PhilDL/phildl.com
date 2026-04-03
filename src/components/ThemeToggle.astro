@@ -1,33 +1,49 @@
 <script>
   class ThemeToggle extends HTMLElement {
-    constructor() {
-      super();
-      const button = this.querySelector("button") as HTMLButtonElement;
+    button: HTMLButtonElement | null = null;
 
-      if (button) {
-        // button clicked, fire event
-        button.addEventListener("click", (e) => {
-          if (e.currentTarget instanceof HTMLButtonElement) {
-            // isPressed === dark mode current on
-            let isPressed = e.currentTarget.getAttribute("aria-pressed") === "true";
+    syncPressedState = () => {
+      this.button?.setAttribute("aria-pressed", String(document.documentElement.classList.contains("dark")));
+    };
 
-            // invert isPressed
-            let themeChangeEvent = new CustomEvent("theme-change", {
-              detail: {
-                theme: isPressed ? "light" : "dark",
-              },
-            });
-            // dispatch event -> ThemeProvider.astro
-            document.dispatchEvent(themeChangeEvent);
-            // toggle the aria-pressed attribute
-            button.setAttribute("aria-pressed", String(!isPressed));
-          }
-        });
-      }
+    handleClick = (e: Event) => {
+      if (!(e.currentTarget instanceof HTMLButtonElement)) return;
+
+      // isPressed === dark mode current on
+      const isPressed = e.currentTarget.getAttribute("aria-pressed") === "true";
+
+      // invert isPressed
+      const themeChangeEvent = new CustomEvent("theme-change", {
+        detail: {
+          theme: isPressed ? "light" : "dark",
+        },
+      });
+
+      // dispatch event -> ThemeProvider.astro
+      document.dispatchEvent(themeChangeEvent);
+      // toggle the aria-pressed attribute
+      e.currentTarget.setAttribute("aria-pressed", String(!isPressed));
+    };
+
+    connectedCallback() {
+      this.button = this.querySelector("button");
+
+      if (!this.button) return;
+
+      this.button.addEventListener("click", this.handleClick);
+      document.addEventListener("astro:after-swap", this.syncPressedState);
+      this.syncPressedState();
+    }
+
+    disconnectedCallback() {
+      this.button?.removeEventListener("click", this.handleClick);
+      document.removeEventListener("astro:after-swap", this.syncPressedState);
     }
   }
 
-  customElements.define("theme-toggle", ThemeToggle);
+  if (!customElements.get("theme-toggle")) {
+    customElements.define("theme-toggle", ThemeToggle);
+  }
 </script>
 
 <theme-toggle class="ms-2 sm:ms-4">
