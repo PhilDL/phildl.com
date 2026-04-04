@@ -150,8 +150,7 @@ export const aboutPageCopy: Record<SiteLocale, AboutPageCopy> = {
     metaTitle: "À propos",
     headline: "À propos",
     locationPrefix: "Actuellement en",
-    focusSentence:
-      "Je travaille à distance via Basaltbytes sur des produits SaaS et mobiles, ainsi que sur des missions logicielles où l'architecture, l'exécution et l'itération comptent tout autant.",
+    focusSentence: "",
     availabilityLabel: "Disponibilité",
     websiteLabel: "Site web",
     emailLabel: "Email",

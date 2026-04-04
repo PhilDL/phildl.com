@@ -52,6 +52,7 @@ detailGroups:
       - OpenCV
       - Reanimated
       - Convex
+      - RevenueCat
   - title: Exemples de missions clients
     achievements: []
     items:
@@ -76,27 +77,5 @@ detailGroups:
           - Three.js
           - JavaScript / OWL
     technologies: []
-technologies:
-  - TypeScript
-  - React 19
-  - React Router
-  - Hono
-  - Turso
-  - Drizzle ORM
-  - React Native
-  - Expo
-  - Convex
-  - OpenCV
-  - Reanimated
-  - Stripe
-  - Stripe Connect
-  - OAuth
-  - Sentry
-  - PostHog
-  - GrowthBook
-  - Docker
-  - Fly.io
-  - Cloudflare Workers
-  - Three.js
-  - Odoo
+technologies: []
 featured: true

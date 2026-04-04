@@ -41,7 +41,7 @@ const stripProtocol = (value: string) => value.replace(/^https?:\/\//, "").repla
         <p class="text-lg font-medium">{cv.data.basics.headline}</p>
         <p>{cv.data.basics.summary}</p>
         <p>
-          {cv.data.basics.location ? `${copy.locationPrefix} ${cv.data.basics.location}. ` : ""}
+          {cv.data.basics.location ? `📍 ${copy.locationPrefix} ${cv.data.basics.location}. ` : ""}
           {copy.focusSentence}
         </p>
         <div class="space-y-1 text-sm">

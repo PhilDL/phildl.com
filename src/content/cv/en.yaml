@@ -37,31 +37,31 @@ skillGroups:
       - Astro
   - name: Backend and APIs
     items:
-      - Python
-      - Hono
-      - REST APIs
-      - OpenAPI
-      - OAuth
-      - JWT
-      - JWE
+      - Python (Odoo / Werkzeug / FastAPI)
+      - NodeJS (Fullstack RR / Hono)
+      - REST APIs (OpenAPI)
+      - Workflows, durable functions (Inngest)
+      - ORM (Drizzle, Prisma, Odoo)
+      - Convex
   - name: Data and persistence
     items:
-      - Turso
-      - Drizzle ORM
+      - Turso + embedded replicas
       - Convex
-  - name: Architecture and platform
+      - PostgreSQL
+      - Cloudflare D1
+      - File storage (Cloudflare R2 / Tigris / S3)
+  - name: Delivery techniques and deployment targets
     items:
-      - System design
-      - Domain-driven design (DDD)
-      - Multi-tenant SaaS
-      - Monorepos
+      - CI/CD (GitHub actions, GitLab)
+      - IaC (sst, ansible)
       - Docker
       - Fly.io
       - Cloudflare Workers
-  - name: Payments, product analytics, and observability
+  - name: 3rd party integrations (Payments, product analytics, and observability)
     items:
       - Stripe
       - Stripe Connect
+      - RevenueCat
       - Sentry
       - PostHog
       - Product analytics

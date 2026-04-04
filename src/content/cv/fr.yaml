@@ -3,12 +3,11 @@ basics:
   name: Philippe L'ATTENTION
   headline: Fondateur & ingénieur logiciel full stack senior
   summary: >-
-    Freelance et ingénieur logiciel depuis 2013 et maintant full stack senior avec plus
-    d'expérience dans la création de plateformes SaaS, d'applications mobiles,
+    Freelance et ingénieur logiciel depuis 2013, je suis à présent à mon compte et me focalise
+    dans la création de plateformes SaaS, d'applications mobiles,
     d'ERP et de produits e-commerce. Spécialisé en architecture TypeScript,
-    React et React Native, conception d'API, paiements, OAuth, observabilité
-    et livraison itérative.
-  location: Remote (en ce moment Pologne)
+    React et React Native, conception d'API, paiements, Odoo & ERP, systèmes de réservation.
+  location: Remote (Pologne)
   email: philippe.lattention@hotmail.fr
   website: https://phildl.com
   profiles:
@@ -39,31 +38,30 @@ skillGroups:
       - Astro
   - name: Backend et APIs
     items:
-      - Python
-      - Hono
-      - APIs REST
-      - OpenAPI
-      - OAuth
-      - JWT
-      - JWE
+      - Python (Odoo / Werkzeug / FastAPI)
+      - NodeJS (Fullstack RR / Hono)
+      - REST APIs (OpenAPI)
+      - Workflows, durable functions (Inngest)
+      - ORM (Dr
   - name: Données et persistance
     items:
-      - Turso
-      - Drizzle ORM
+      - Turso + embedded replicas
       - Convex
-  - name: Architecture et plateforme
+      - PostgreSQL
+      - Cloudflare D1
+      - File storage (Cloudflare R2 / Tigris / S3)
+  - name: Déploiement et plateformes
     items:
-      - Conception de systèmes
-      - Domain-driven design (DDD)
-      - SaaS multi-tenant
-      - Monorepos
+      - CI/CD (GitHub actions, GitLab)
+      - IaC (sst, ansible)
       - Docker
       - Fly.io
       - Cloudflare Workers
-  - name: Paiements, analytics produit et observabilité
+  - name: 3rd party integrations (Paiements, analytics produit et observabilité)
     items:
       - Stripe
       - Stripe Connect
+      - RevenueCat
       - Sentry
       - PostHog
       - Product analytics
