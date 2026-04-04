@@ -3,12 +3,19 @@ translationKey: silicon-village-web-developer
 company: Silicon Village
 role: Développeur web
 employmentType: full-time
-startDate: 2013-07-01
+startDate: 2013-08-01
 endDate: 2014-06-30
 summary: >-
-  Premier poste à temps plein en développement web, avec des missions orientées
-  client et une montée en expérience sur des projets en production.
+  Développement de la plateforme Avahis.com, une marketplace e-commerce
+  multi-commerçants pensée comme un modèle proche d'Amazon.
 achievements:
-  - Contribution à des livraisons dans un environnement web proche d'une agence.
-  - Construction d'une première expérience de production sur l'implémentation et la maintenance.
-technologies: []
+  - Développement d'une application backend d'agrégation des produits de différents commerçants.
+  - Développement de modules d'import Prestashop vers Magento pour alimenter la plateforme.
+  - Développement du frontend Avahis.com.
+technologies:
+  - Magento
+  - Prestashop
+  - E-commerce
+  - Développement backend
+  - Développement frontend
+  - Marketplace

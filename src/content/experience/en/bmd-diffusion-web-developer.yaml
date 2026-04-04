@@ -6,10 +6,14 @@ employmentType: full-time
 startDate: 2015-06-01
 endDate: 2015-09-30
 summary: >-
-  Worked on the e-commerce websites discountanoo.com and
-  magrandeavenue.com during a short-term web development role.
+  Worked on the redesign of two e-commerce websites, Discountanoo.com and
+  Magrandeavenue.com, covering frontend integration, visual redesign, and
+  Prestashop backend customization.
 achievements:
-  - Contributed to delivery and maintenance work on two production e-commerce websites.
-  - Shipped features in a short contract setting with direct impact on live storefronts.
+  - Redesigned Discountanoo.com by integrating the visual mockups and adapting the Prestashop backend to match business rules.
+  - Redesigned Magrandeavenue.com by creating and integrating the new visual design.
 technologies:
+  - Prestashop
   - E-commerce
+  - Frontend integration
+  - Web design

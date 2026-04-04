@@ -46,7 +46,7 @@ Requires **Node 22+** for local development and builds.
 - **OG images**: Dynamically generated per post via satori at `/og-image/[slug].png`
 - **Search**: Pagefind — production-only (runs post-build). Keyboard shortcut `/` opens search
 - **Pagination**: 10 posts per page using Astro's `paginate()`
-- **Task completion**: Finish every coding task by running formatting, linting, and typechecking (`pnpm format`, `pnpm lint`, `pnpm typecheck`) and report any failures
+- **Task completion**: Finish every coding task by running formatting, linting, typechecking, and a production build (`pnpm format`, `pnpm lint`, `pnpm typecheck`, `pnpm build`) and report any failures
 
 ## Blog Post Frontmatter
 

@@ -16,6 +16,7 @@ summary: >-
 achievements:
   - Livraison d'une fonctionnalité ou d'un résultat métier important.
   - Amélioration de l'expérience développeur, des performances ou de la fiabilité.
+detailGroups: []
 technologies:
   - TypeScript
   - Astro

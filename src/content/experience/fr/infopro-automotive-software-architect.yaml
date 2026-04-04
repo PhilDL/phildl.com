@@ -7,13 +7,14 @@ location: La Réunion
 startDate: 2020-12-01
 endDate: 2023-11-30
 summary: >-
-  J'ai porté des sujets d'architecture sur un ERP vertical dédié au monde
-  automobile, avec un accent mis sur les intégrations, l'évolution de la
-  plateforme et la stratégie API.
+  Architecte logiciel sur une plateforme ERP verticale utilisée par des
+  entreprises de l'automobile, responsable de la stratégie API, de
+  l'architecture d'intégration, de l'évolution de la plateforme et de la
+  sécurisation des connexions externes.
 achievements:
-  - Conception et spécification de web services et d'APIs, avec authentification JWE et JWT et contrats OpenAPI 3.
-  - Développement d'intégrations avec l'écosystème de la pièce automobile et accompagnement de sites e-commerce connectés à l'ERP.
-  - Évolution d'une plateforme métier utilisée par des garagistes et des revendeurs de pièces auto.
+  - Conception de web services et d'APIs avec contrats OpenAPI 3 et authentification JWT ou JWE pour des intégrations internes et partenaires.
+  - Définition de patterns d'intégration entre l'ERP, l'écosystème de la pièce automobile, des sites e-commerce et des systèmes métiers externes.
+  - Contribution à l'évolution d'un ERP métier utilisé par des garages et des distributeurs de pièces automobiles.
 technologies:
   - Python
   - JavaScript
@@ -22,5 +23,6 @@ technologies:
   - JWT
   - JWE
   - ERP
-  - Web services
+  - APIs REST
+  - Intégrations
   - E-commerce

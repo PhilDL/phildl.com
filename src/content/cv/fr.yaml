@@ -1,13 +1,14 @@
 locale: fr
 basics:
   name: Philippe L'ATTENTION
-  headline: Directeur-fondateur chez Basaltbytes
+  headline: Fondateur & ingénieur logiciel full stack senior
   summary: >-
-    Je développe chez Basaltbytes des produits SaaS et mobiles de bout en bout.
-    Je conçois des plateformes multi-tenant, des applications React et React
-    Native, des flux de paiement et des backends modernes avec une attention
-    forte portée à l'observabilité, l'analytics et l'itération produit.
-  location: Saint-Denis, La Réunion
+    Freelance et ingénieur logiciel depuis 2013 et maintant full stack senior avec plus
+    d'expérience dans la création de plateformes SaaS, d'applications mobiles,
+    d'ERP et de produits e-commerce. Spécialisé en architecture TypeScript,
+    React et React Native, conception d'API, paiements, OAuth, observabilité
+    et livraison itérative.
+  location: Remote (en ce moment Pologne)
   email: philippe.lattention@hotmail.fr
   website: https://phildl.com
   profiles:
@@ -16,46 +17,57 @@ basics:
     - label: LinkedIn
       href: https://www.linkedin.com/in/philippe-lattention/
 focusAreas:
-  - Architecture SaaS multi-tenant
-  - Produits React, React Native et SSR
-  - Paiements, marketplaces et OAuth
-  - Backends serverless, edge et temps réel
-  - Observabilité, analytics et itération produit
+  - Architecture SaaS et systèmes multi-tenant
+  - Product engineering full stack avec React, React Native et TypeScript
+  - Conception d'API, authentification OAuth et intégrations tierces
+  - Paiements, abonnements et flux marketplace avec Stripe et Stripe Connect
+  - Forte expérience sur la réservation en ligne (Atoly), slots, timezone, synchronization calendrier tiers.
+  - Livraison d'applications sur iOS, Android et web
+  - Observabilité, analytics, expérimentation et itération produit
 availability:
   status: open
-  details: Disponible pour des missions freelance sélectionnées de 3 à 6 mois.
+  details: Disponible pour des missions freelance à distance, de 3 à 6 mois sur le reste de l'année 2026.
 skillGroups:
-  - name: Architecture
+  - name: Langages et frameworks
     items:
       - TypeScript
-      - DDD
-      - Monorepos
-      - SaaS multi-tenant
-      - RGPD
-  - name: Product engineering
-    items:
+      - JavaScript
+      - Python
       - React
       - React Native
       - Expo
-      - React Router
-      - Hono
-  - name: Data et backend
+      - Vue.js
+      - Astro
+  - name: Backend et APIs
     items:
+      - Hono
+      - APIs REST
+      - OpenAPI
+      - OAuth
+      - JWT
+      - JWE
       - Turso
       - Drizzle ORM
       - Convex
-      - APIs
-      - OAuth
-  - name: Plateforme et croissance
+  - name: Architecture et plateforme
     items:
-      - Stripe
-      - Stripe Connect
+      - Conception de systèmes
+      - Domain-driven design (DDD)
+      - SaaS multi-tenant
+      - Monorepos
       - Docker
       - Fly.io
       - Cloudflare Workers
+      - RGPD
+  - name: Paiements et observabilité
+    items:
+      - Stripe
+      - Stripe Connect
       - Sentry
       - PostHog
       - GrowthBook
+      - Product analytics
+      - Feature flags
 languages:
   - name: Français
     code: fr
@@ -66,8 +78,8 @@ languages:
 featuredProjects:
   - fr/atoly
   - fr/manywalls
+  - fr/paintinglens
   - fr/ts-ghost
-  - fr/coding-dodo
 experience:
   - fr/basaltbytes-founder
   - fr/infopro-automotive-software-architect

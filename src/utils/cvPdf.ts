@@ -1,8 +1,6 @@
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
 import type { CollectionEntry } from "astro:content";
 import fontkit from "@pdf-lib/fontkit";
-import { PDFDocument, type PDFFont, type PDFImage, type PDFPage, rgb } from "pdf-lib";
+import { PDFDocument, type PDFFont, type PDFPage, rgb } from "pdf-lib";
 
 import SpaceGroteskBold from "@/assets/SpaceGrotesk-Bold.ttf";
 import SpaceGroteskRegular from "@/assets/SpaceGrotesk-Regular.ttf";
@@ -34,7 +32,6 @@ type PdfAssets = {
   regular: PDFFont;
   semiBold: PDFFont;
   bold: PDFFont;
-  profileImage: PDFImage;
 };
 
 type DrawContext = {
@@ -254,7 +251,7 @@ function getHeaderLines(input: CvPdfInput, copy: (typeof aboutPageCopy)[SiteLoca
 }
 
 function estimateHeaderHeight(input: CvPdfInput, assets: PdfAssets, copy: (typeof aboutPageCopy)[SiteLocale]) {
-  const summaryLines = wrapText(input.cv.data.basics.summary, assets.regular, 10.5, CONTENT_WIDTH - 140);
+  const summaryLines = wrapText(input.cv.data.basics.summary, assets.regular, 10.5, CONTENT_WIDTH);
   const headerLines = getHeaderLines(input, copy);
   const headerBlocks: Array<TextBlock> = [
     {
@@ -276,7 +273,7 @@ function estimateHeaderHeight(input: CvPdfInput, assets: PdfAssets, copy: (typeo
       lineHeight: 15,
     },
     ...headerLines.map(({ label, value }) => ({
-      lines: wrapText(`${label}: ${value}`, assets.regular, 9.5, CONTENT_WIDTH - 140),
+      lines: wrapText(`${label}: ${value}`, assets.regular, 9.5, CONTENT_WIDTH),
       font: assets.regular,
       size: 9.5,
       color: MUTED,
@@ -284,32 +281,11 @@ function estimateHeaderHeight(input: CvPdfInput, assets: PdfAssets, copy: (typeo
     })),
   ];
 
-  return Math.max(118, estimateBlockHeight(headerBlocks)) + 12;
+  return Math.max(84, estimateBlockHeight(headerBlocks)) + 12;
 }
 
 function drawHeader(ctx: DrawContext, doc: PDFDocument, input: CvPdfInput) {
   ensureSpace(ctx, doc, estimateHeaderHeight(input, ctx.assets, ctx.copy));
-
-  const imageSize = 104;
-  const imageX = PAGE_WIDTH - MARGIN_X - imageSize;
-  const imageY = ctx.cursorY - imageSize + 8;
-  const textWidth = CONTENT_WIDTH - imageSize - 26;
-
-  ctx.page.drawImage(ctx.assets.profileImage, {
-    x: imageX,
-    y: imageY,
-    width: imageSize,
-    height: imageSize,
-  });
-
-  ctx.page.drawRectangle({
-    x: imageX - 6,
-    y: imageY - 6,
-    width: imageSize + 12,
-    height: imageSize + 12,
-    borderColor: BORDER,
-    borderWidth: 1,
-  });
 
   let y = ctx.cursorY;
 
@@ -332,7 +308,7 @@ function drawHeader(ctx: DrawContext, doc: PDFDocument, input: CvPdfInput) {
   y -= 20;
 
   y = drawTextBlock(ctx.page, MARGIN_X, y, {
-    lines: wrapText(input.cv.data.basics.summary, ctx.assets.regular, 10.5, textWidth),
+    lines: wrapText(input.cv.data.basics.summary, ctx.assets.regular, 10.5, CONTENT_WIDTH),
     font: ctx.assets.regular,
     size: 10.5,
     lineHeight: 15,
@@ -341,7 +317,7 @@ function drawHeader(ctx: DrawContext, doc: PDFDocument, input: CvPdfInput) {
 
   for (const line of getHeaderLines(input, ctx.copy)) {
     y = drawTextBlock(ctx.page, MARGIN_X, y, {
-      lines: wrapText(`${line.label}: ${line.value}`, ctx.assets.regular, 9.5, textWidth),
+      lines: wrapText(`${line.label}: ${line.value}`, ctx.assets.regular, 9.5, CONTENT_WIDTH),
       font: ctx.assets.regular,
       size: 9.5,
       color: MUTED,
@@ -349,7 +325,7 @@ function drawHeader(ctx: DrawContext, doc: PDFDocument, input: CvPdfInput) {
     });
   }
 
-  ctx.cursorY = Math.min(y, imageY - 14);
+  ctx.cursorY = y - 4;
 }
 
 function estimateBulletSection(items: string[], font: PDFFont, size: number, width: number) {
@@ -440,25 +416,227 @@ function drawLanguagesSection(ctx: DrawContext, doc: PDFDocument, items: CvPdfIn
   ctx.cursorY -= 4;
 }
 
+function estimateExperienceDetailItemHeight(
+  item: CollectionEntry<"experience">["data"]["detailGroups"][number]["items"][number],
+  ctx: DrawContext,
+  width: number,
+) {
+  const achievements = item.achievements ?? [];
+  const technologies = item.technologies ?? [];
+  const blocks: Array<TextBlock> = [
+    {
+      lines: wrapBullet(item.title, ctx.assets.semiBold, 9.4, width, 10),
+      font: ctx.assets.semiBold,
+      size: 9.4,
+      lineHeight: getLineHeight(9.4, 1.34),
+    },
+    {
+      lines: item.summary ? wrapText(item.summary, ctx.assets.regular, 9.1, width - 12) : [],
+      font: ctx.assets.regular,
+      size: 9.1,
+      lineHeight: getLineHeight(9.1, 1.34),
+    },
+    {
+      lines:
+        technologies.length > 0
+          ? wrapText(`${ctx.copy.technologiesLabel}: ${technologies.join(" · ")}`, ctx.assets.regular, 8.6, width - 12)
+          : [],
+      font: ctx.assets.regular,
+      size: 8.6,
+      color: MUTED,
+      lineHeight: 12,
+    },
+  ];
+
+  const achievementHeight = sum(
+    achievements.map(
+      (achievement) =>
+        wrapBullet(achievement, ctx.assets.regular, 9, width - 12, 10).length * getLineHeight(9, 1.34) + 3,
+    ),
+  );
+
+  return estimateBlockHeight(blocks) + achievementHeight + 4;
+}
+
+function estimateExperienceDetailGroupHeight(
+  group: CollectionEntry<"experience">["data"]["detailGroups"][number],
+  ctx: DrawContext,
+  width: number,
+) {
+  const achievements = group.achievements ?? [];
+  const items = group.items ?? [];
+  const technologies = group.technologies ?? [];
+  const blocks: Array<TextBlock> = [
+    {
+      lines: wrapBullet(group.title, ctx.assets.semiBold, 9.6, width, 10),
+      font: ctx.assets.semiBold,
+      size: 9.6,
+      lineHeight: getLineHeight(9.6, 1.34),
+    },
+    {
+      lines: group.summary ? wrapText(group.summary, ctx.assets.regular, 9.2, width - 12) : [],
+      font: ctx.assets.regular,
+      size: 9.2,
+      lineHeight: getLineHeight(9.2, 1.34),
+    },
+    {
+      lines:
+        technologies.length > 0
+          ? wrapText(`${ctx.copy.technologiesLabel}: ${technologies.join(" · ")}`, ctx.assets.regular, 8.6, width - 12)
+          : [],
+      font: ctx.assets.regular,
+      size: 8.6,
+      color: MUTED,
+      lineHeight: 12,
+    },
+  ];
+
+  const achievementHeight = sum(
+    achievements.map(
+      (achievement) =>
+        wrapBullet(achievement, ctx.assets.regular, 9, width - 12, 10).length * getLineHeight(9, 1.34) + 3,
+    ),
+  );
+  const itemHeight = sum(items.map((item) => estimateExperienceDetailItemHeight(item, ctx, width - 12) + 4));
+
+  return estimateBlockHeight(blocks) + achievementHeight + itemHeight + 6;
+}
+
+function drawExperienceDetailItem(
+  ctx: DrawContext,
+  doc: PDFDocument,
+  item: CollectionEntry<"experience">["data"]["detailGroups"][number]["items"][number],
+  x: number,
+  width: number,
+) {
+  const achievements = item.achievements ?? [];
+  const technologies = item.technologies ?? [];
+  ensureSpace(ctx, doc, estimateExperienceDetailItemHeight(item, ctx, width));
+
+  ctx.cursorY = drawTextBlock(ctx.page, x, ctx.cursorY, {
+    lines: wrapBullet(item.title, ctx.assets.semiBold, 9.4, width, 10),
+    font: ctx.assets.semiBold,
+    size: 9.4,
+    lineHeight: getLineHeight(9.4, 1.34),
+  });
+
+  if (item.summary) {
+    ctx.cursorY = drawTextBlock(ctx.page, x + 12, ctx.cursorY - 1, {
+      lines: wrapText(item.summary, ctx.assets.regular, 9.1, width - 12),
+      font: ctx.assets.regular,
+      size: 9.1,
+      lineHeight: getLineHeight(9.1, 1.34),
+    });
+  }
+
+  for (const achievement of achievements) {
+    ctx.cursorY = drawTextBlock(ctx.page, x + 12, ctx.cursorY - 1, {
+      lines: wrapBullet(achievement, ctx.assets.regular, 9, width - 12, 10),
+      font: ctx.assets.regular,
+      size: 9,
+      lineHeight: getLineHeight(9, 1.34),
+    });
+    ctx.cursorY -= 3;
+  }
+
+  if (technologies.length > 0) {
+    ctx.cursorY = drawTextBlock(ctx.page, x + 12, ctx.cursorY - 1, {
+      lines: wrapText(
+        `${ctx.copy.technologiesLabel}: ${technologies.join(" · ")}`,
+        ctx.assets.regular,
+        8.6,
+        width - 12,
+      ),
+      font: ctx.assets.regular,
+      size: 8.6,
+      color: MUTED,
+      lineHeight: 12,
+    });
+  }
+
+  ctx.cursorY -= 4;
+}
+
+function drawExperienceDetailGroup(
+  ctx: DrawContext,
+  doc: PDFDocument,
+  group: CollectionEntry<"experience">["data"]["detailGroups"][number],
+  x: number,
+  width: number,
+) {
+  const achievements = group.achievements ?? [];
+  const items = group.items ?? [];
+  const technologies = group.technologies ?? [];
+  ensureSpace(ctx, doc, estimateExperienceDetailGroupHeight(group, ctx, width));
+
+  ctx.cursorY = drawTextBlock(ctx.page, x, ctx.cursorY, {
+    lines: wrapBullet(group.title, ctx.assets.semiBold, 9.6, width, 10),
+    font: ctx.assets.semiBold,
+    size: 9.6,
+    lineHeight: getLineHeight(9.6, 1.34),
+  });
+
+  if (group.summary) {
+    ctx.cursorY = drawTextBlock(ctx.page, x + 12, ctx.cursorY - 1, {
+      lines: wrapText(group.summary, ctx.assets.regular, 9.2, width - 12),
+      font: ctx.assets.regular,
+      size: 9.2,
+      lineHeight: getLineHeight(9.2, 1.34),
+    });
+  }
+
+  for (const achievement of achievements) {
+    ctx.cursorY = drawTextBlock(ctx.page, x + 12, ctx.cursorY - 1, {
+      lines: wrapBullet(achievement, ctx.assets.regular, 9, width - 12, 10),
+      font: ctx.assets.regular,
+      size: 9,
+      lineHeight: getLineHeight(9, 1.34),
+    });
+    ctx.cursorY -= 3;
+  }
+
+  for (const item of items) {
+    drawExperienceDetailItem(ctx, doc, item, x + 12, width - 12);
+  }
+
+  if (technologies.length > 0) {
+    ctx.cursorY = drawTextBlock(ctx.page, x + 12, ctx.cursorY - 1, {
+      lines: wrapText(
+        `${ctx.copy.technologiesLabel}: ${technologies.join(" · ")}`,
+        ctx.assets.regular,
+        8.6,
+        width - 12,
+      ),
+      font: ctx.assets.regular,
+      size: 8.6,
+      color: MUTED,
+      lineHeight: 12,
+    });
+  }
+
+  ctx.cursorY -= 6;
+}
+
 function estimateExperienceHeight(entry: CollectionEntry<"experience">, ctx: DrawContext, width: number) {
+  const achievements = entry.data.achievements ?? [];
+  const detailGroups = entry.data.detailGroups ?? [];
+  const technologies = entry.data.technologies ?? [];
   const dateText = formatDateRange(ctx.locale, entry.data.startDate, entry.data.endDate, ctx.copy.presentLabel);
   const dateWidth = ctx.assets.regular.widthOfTextAtSize(dateText, 9);
   const roleWidth = CONTENT_WIDTH - Math.min(dateWidth + 18, 150);
   const summaryLines = wrapText(entry.data.summary, ctx.assets.regular, 9.8, width);
   const achievementHeight = sum(
-    entry.data.achievements.map(
+    achievements.map(
       (achievement) =>
         wrapBullet(achievement, ctx.assets.regular, 9.3, width, 10).length * getLineHeight(9.3, 1.35) + 3,
     ),
   );
+  const detailGroupHeight = sum(
+    detailGroups.map((group) => estimateExperienceDetailGroupHeight(group, ctx, width) + 4),
+  );
   const technologiesLines =
-    entry.data.technologies.length > 0
-      ? wrapText(
-          `${ctx.copy.technologiesLabel}: ${entry.data.technologies.join(" · ")}`,
-          ctx.assets.regular,
-          8.8,
-          width,
-        )
+    technologies.length > 0
+      ? wrapText(`${ctx.copy.technologiesLabel}: ${technologies.join(" · ")}`, ctx.assets.regular, 8.8, width)
       : [];
 
   const blocks: Array<TextBlock> = [
@@ -497,13 +675,16 @@ function estimateExperienceHeight(entry: CollectionEntry<"experience">, ctx: Dra
     },
   ];
 
-  return estimateBlockHeight(blocks) + achievementHeight + 10;
+  return estimateBlockHeight(blocks) + achievementHeight + detailGroupHeight + 10;
 }
 
 function drawExperienceSection(ctx: DrawContext, doc: PDFDocument, experiences: CvPdfInput["experiences"]) {
   drawSectionTitle(ctx, doc, ctx.copy.experienceTitle);
 
   for (const entry of experiences) {
+    const achievements = entry.data.achievements ?? [];
+    const detailGroups = entry.data.detailGroups ?? [];
+    const technologies = entry.data.technologies ?? [];
     ensureSpace(ctx, doc, estimateExperienceHeight(entry, ctx, CONTENT_WIDTH));
 
     const dateText = formatDateRange(ctx.locale, entry.data.startDate, entry.data.endDate, ctx.copy.presentLabel);
@@ -544,7 +725,7 @@ function drawExperienceSection(ctx: DrawContext, doc: PDFDocument, experiences: 
     });
     ctx.cursorY -= 4;
 
-    for (const achievement of entry.data.achievements) {
+    for (const achievement of achievements) {
       ctx.cursorY = drawTextBlock(ctx.page, MARGIN_X, ctx.cursorY, {
         lines: wrapBullet(achievement, ctx.assets.regular, 9.3, CONTENT_WIDTH, 10),
         font: ctx.assets.regular,
@@ -554,10 +735,15 @@ function drawExperienceSection(ctx: DrawContext, doc: PDFDocument, experiences: 
       ctx.cursorY -= 3;
     }
 
-    if (entry.data.technologies.length > 0) {
+    for (const group of detailGroups) {
+      drawExperienceDetailGroup(ctx, doc, group, MARGIN_X, CONTENT_WIDTH);
+    }
+
+    if (technologies.length > 0) {
+      ensureSpace(ctx, doc, 24);
       ctx.cursorY = drawTextBlock(ctx.page, MARGIN_X, ctx.cursorY, {
         lines: wrapText(
-          `${ctx.copy.technologiesLabel}: ${entry.data.technologies.join(" · ")}`,
+          `${ctx.copy.technologiesLabel}: ${technologies.join(" · ")}`,
           ctx.assets.regular,
           8.8,
           CONTENT_WIDTH,
@@ -756,14 +942,10 @@ function drawFooter(ctx: DrawContext) {
 }
 
 async function loadAssets(doc: PDFDocument): Promise<PdfAssets> {
-  const profileImagePath = join(process.cwd(), "src/assets/about.jpg");
-  const profileImageBytes = await readFile(profileImagePath);
-
   return {
     regular: await doc.embedFont(Buffer.from(SpaceGroteskRegular), { subset: true }),
     semiBold: await doc.embedFont(Buffer.from(SpaceGroteskSemiBold), { subset: true }),
     bold: await doc.embedFont(Buffer.from(SpaceGroteskBold), { subset: true }),
-    profileImage: await doc.embedJpg(profileImageBytes),
   };
 }
 

@@ -3,12 +3,20 @@ translationKey: silicon-village-web-developer
 company: Silicon Village
 role: Web developer
 employmentType: full-time
-startDate: 2013-07-01
+startDate: 2013-08-01
 endDate: 2014-06-30
 summary: >-
-  First full-time web development role, building early professional experience
-  through client-facing web work.
+  Worked on Avahis.com, a multi-vendor e-commerce marketplace designed in the
+  spirit of Amazon, with responsibilities across backend aggregation and
+  frontend development.
 achievements:
-  - Contributed to delivery work in an agency-style web environment.
-  - Built production experience across implementation and maintenance.
-technologies: []
+  - Built a backend application to aggregate product catalogs from multiple merchants.
+  - Developed Prestashop-to-Magento import modules to feed the marketplace.
+  - Developed the Avahis.com frontend.
+technologies:
+  - Magento
+  - Prestashop
+  - E-commerce
+  - Backend development
+  - Frontend development
+  - Marketplace

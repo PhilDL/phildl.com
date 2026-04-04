@@ -7,12 +7,13 @@ location: Reunion Island
 startDate: 2020-12-01
 endDate: 2023-11-30
 summary: >-
-  Led architecture work on a vertical ERP for automotive businesses, with a
-  focus on integration design, platform evolution, and API strategy.
+  Software architect for a vertical ERP platform used by automotive
+  businesses, responsible for API strategy, integration architecture, platform
+  evolution, and secure external connectivity.
 achievements:
-  - Designed and specified web services and APIs, including JWE and JWT authentication and OpenAPI 3 contracts.
-  - Built integrations with automotive parts ecosystems and supported e-commerce setups connected directly to the ERP.
-  - Helped evolve a domain-specific platform used by garages and auto-parts resellers.
+  - Designed web services and APIs with OpenAPI 3 contracts and JWT or JWE-based authentication for internal and partner-facing integrations.
+  - Defined integration patterns between the ERP, automotive parts ecosystems, e-commerce sites, and external business systems.
+  - Supported platform evolution for a domain-specific ERP used by garages and automotive parts distributors.
 technologies:
   - Python
   - JavaScript
@@ -21,5 +22,6 @@ technologies:
   - JWT
   - JWE
   - ERP
-  - Web services
+  - REST APIs
+  - Integrations
   - E-commerce

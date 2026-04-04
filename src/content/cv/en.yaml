@@ -1,13 +1,13 @@
 locale: en
 basics:
   name: Philippe L'ATTENTION
-  headline: Founder at Basaltbytes
+  headline: Founder & Senior Full-Stack Product Engineer
   summary: >-
-    Founder at Basaltbytes and senior product engineer building SaaS and mobile
-    products end to end. I design multi-tenant platforms, React and React
-    Native apps, payment flows, and modern backends with a strong focus on
-    observability, analytics, and iterative product delivery.
-  location: Saint-Denis, Reunion Island
+    Founder and senior full-stack product engineer with 10+ years of experience
+    building SaaS platforms, mobile apps, ERP systems, and e-commerce
+    products. Specializes in TypeScript architecture, React and React Native,
+    API design, payments, OAuth, observability, and iterative delivery.
+  location: Poland
   email: philippe.lattention@hotmail.fr
   website: https://phildl.com
   profiles:
@@ -16,58 +16,68 @@ basics:
     - label: LinkedIn
       href: https://www.linkedin.com/in/philippe-lattention/
 focusAreas:
-  - Multi-tenant SaaS architecture
-  - React, React Native, and SSR products
-  - Payments, marketplaces, and OAuth flows
-  - Serverless, edge, and real-time backends
-  - Observability, analytics, and product iteration
+  - SaaS architecture and multi-tenant systems
+  - Full-stack product engineering with React, React Native, and TypeScript
+  - API design, OAuth authentication, and third-party integrations
+  - Payments, subscriptions, and marketplace flows with Stripe and Stripe Connect
+  - Mobile app delivery across iOS, Android, and web
+  - Observability, analytics, experimentation, and iterative product delivery
 availability:
   status: open
-  details: Open to selected freelance engagements of 3 to 6 months.
+  details: Open to selected remote freelance and contract engagements of 3 to 6 months.
 skillGroups:
-  - name: Architecture
+  - name: Languages and frameworks
     items:
       - TypeScript
-      - DDD
-      - Monorepos
-      - SaaS multi-tenant
-      - GDPR
-  - name: Product engineering
-    items:
+      - JavaScript
+      - Python
       - React
       - React Native
       - Expo
-      - React Router
-      - Hono
-  - name: Data and backend
+      - Vue.js
+      - Astro
+  - name: Backend and APIs
     items:
+      - Hono
+      - REST APIs
+      - OpenAPI
+      - OAuth
+      - JWT
+      - JWE
       - Turso
       - Drizzle ORM
       - Convex
-      - APIs
-      - OAuth
-  - name: Platform and growth
+  - name: Architecture and platform
     items:
-      - Stripe
-      - Stripe Connect
+      - System design
+      - Domain-driven design (DDD)
+      - Multi-tenant SaaS
+      - Monorepos
       - Docker
       - Fly.io
       - Cloudflare Workers
+      - GDPR
+  - name: Payments and observability
+    items:
+      - Stripe
+      - Stripe Connect
       - Sentry
       - PostHog
       - GrowthBook
+      - Product analytics
+      - Feature flags
 languages:
   - name: French
     code: fr
     level: Native
   - name: English
     code: en
-    level: Native or bilingual
+    level: Native or bilingual proficiency
 featuredProjects:
   - en/atoly
   - en/manywalls
+  - en/paintinglens
   - en/ts-ghost
-  - en/coding-dodo
 experience:
   - en/basaltbytes-founder
   - en/infopro-automotive-software-architect

@@ -1,0 +1,24 @@
+locale: en
+translationKey: infopro-automotive-full-stack-developer
+company: SOGEXIS / Carooline
+role: Full-stack developer
+employmentType: full-time
+location: Sainte-Clotilde, Reunion Island
+startDate: 2016-01-01
+endDate: 2020-11-30
+summary: >-
+  Full-stack engineer on the same automotive ERP platform, delivering backend,
+  frontend, integration, and e-commerce workflows for garages and automotive
+  parts distributors.
+achievements:
+  - Built business features in Python on the backend and JavaScript and Vue.js on the frontend for a live ERP product.
+  - Delivered domain workflows, web services, and integrations connecting the ERP to e-commerce storefronts and partner systems.
+  - Maintained and extended production software used by garages and automotive parts resellers.
+technologies:
+  - Python
+  - JavaScript
+  - Vue.js
+  - ERP
+  - REST APIs
+  - E-commerce
+  - Integrations

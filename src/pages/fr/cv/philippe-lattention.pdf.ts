@@ -1,14 +1,14 @@
-import { getCv, getEducation, getExperiences, getFeaturedProjects } from "@/content/queries";
+import { getCv, getCvFeaturedProjectsFromEntry, getEducation, getExperiences } from "@/content/queries";
 import { renderCvPdf } from "@/utils/cvPdf";
 
 export async function GET() {
   const locale = "fr";
-  const [cv, experiences, education, featuredProjects] = await Promise.all([
+  const [cv, experiences, education] = await Promise.all([
     getCv(locale),
     getExperiences(locale),
     getEducation(locale),
-    getFeaturedProjects(locale),
   ]);
+  const featuredProjects = await getCvFeaturedProjectsFromEntry(cv);
 
   const pdf = await renderCvPdf({
     locale,

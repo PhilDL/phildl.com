@@ -3,7 +3,7 @@ import type { SiteLocale } from "@/content/locale";
 
 import PostPreview from "@/components/blog/PostPreview";
 import SocialList from "@/components/SocialList";
-import { getCv, getFeaturedProjects, getProjectPrimaryLink } from "@/content/queries";
+import { getCv, getCvFeaturedProjectsFromEntry, getProjectPrimaryLink } from "@/content/queries";
 import PageLayout from "@/layouts/Base";
 import { homePageCopy } from "@/i18n/utils";
 import { getAllPosts, sortMDByDate } from "@/utils";
@@ -17,7 +17,7 @@ const { locale } = Astro.props;
 const MAX_POSTS = 10;
 const copy = homePageCopy[locale];
 const cv = await getCv(locale);
-const featuredProjects = (await getFeaturedProjects(locale)).slice(0, 3);
+const featuredProjects = (await getCvFeaturedProjectsFromEntry(cv)).slice(0, 3);
 const allPosts = await getAllPosts();
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
 

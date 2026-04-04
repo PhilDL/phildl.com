@@ -1,10 +1,11 @@
 locale: en
 translationKey: ipi-concepteur-developpeur
 institution: IPI Institut Poly Informatique
-degree: Concepteur Développeur Informatique
-field: Programming and software development
+degree: Application Design and Development Diploma
+field: Software engineering
 startDate: 2016-01-01
 endDate: 2017-12-31
 summary: >-
-  Professional training focused on software conception and development.
+  Professional training focused on software design, application development,
+  and delivery practices.
 achievements: []

@@ -1,17 +1,78 @@
 locale: en
 translationKey: basaltbytes-founder
 company: Basaltbytes
-role: Founder and director
+role: Founder & Senior Full-Stack Product Engineer
 employmentType: founder
-location: Saint-Denis, Reunion Island
+location: Poland
+remote: true
 startDate: 2023-12-01
 summary: >-
-  I run Basaltbytes as a product studio and consulting practice focused on SaaS
-  and mobile products built end to end in TypeScript-centric architectures.
+  Founder of a solo software company where I build and operate first-party SaaS
+  and mobile products while taking on selected client work.
 achievements:
-  - Built Atoly, a multi-tenant B2B booking platform with strong tenant isolation, Stripe billing, Stripe Connect marketplace flows, and full OAuth sign-in.
-  - Shipped Manywalls across iOS, Android, and web with React Native, Expo, Skia, OpenCV, Reanimated, and a real-time backend on Convex.
-  - Own architecture, delivery, deployment, monitoring, analytics, and feature iteration across the full product lifecycle.
+  - Run Basaltbytes end to end across product strategy, software architecture, implementation, deployment, analytics, marketing, and customer support.
+  - Balance self-initiated products with selected external delivery work, depending on fit and complexity.
+detailGroups:
+  - title: Atoly - Booking pages your customers will love to use
+    summary: >-
+      My own booking SaaS for independents and small businesses, designed to
+      make scheduling and payments feel simple for both operators and their
+      customers.
+    achievements:
+      - Came up with the product idea, positioning, and go-to-market direction.
+      - Architected a multi-tenant platform with Stripe subscriptions, Stripe Connect payouts, and OAuth authentication.
+      - Own full-stack product delivery, deployment, observability, analytics, and customer support.
+    items: []
+    technologies:
+      - TypeScript
+      - React 19
+      - React Router
+      - Hono
+      - Turso
+      - Drizzle ORM
+      - Stripe
+      - Stripe Connect
+      - OAuth
+  - title: Manywalls - A more immersive digital exhibition product for artists
+    summary: >-
+      My own cross-platform product for artists who want something richer than
+      a static portfolio site.
+    achievements:
+      - Defined the product concept and experience direction, then handled marketing and support myself.
+      - Delivered iOS, Android, and web apps with graphics-heavy rendering, animation, image workflows, and real-time sync.
+      - Built reusable product foundations including a design system and editing primitives.
+    items: []
+    technologies:
+      - TypeScript
+      - React Native
+      - Expo
+      - Skia
+      - OpenCV
+      - Reanimated
+      - Convex
+  - title: Example client work
+    achievements: []
+    items:
+      - title: Art for Life
+        summary: >-
+          Client website delivery for artforlife.fr, shipped as external work
+          alongside my own products.
+        achievements:
+          - Handled delivery as a client-facing engagement with direct ownership of implementation and launch.
+        technologies:
+          - Web design
+          - Frontend development
+      - title: Odoo modules
+        summary: >-
+          Large Three.js work inside Odoo, including modules that visualize
+          stock locations and manufacturing machines on 3D plant layouts.
+        achievements:
+          - Built advanced 3D business interfaces for real operational use cases inside Odoo.
+        technologies:
+          - Odoo
+          - Three.js
+          - JavaScript
+    technologies: []
 technologies:
   - TypeScript
   - React 19
@@ -22,11 +83,17 @@ technologies:
   - React Native
   - Expo
   - Convex
+  - OpenCV
+  - Reanimated
   - Stripe
+  - Stripe Connect
+  - OAuth
   - Sentry
   - PostHog
   - GrowthBook
   - Docker
   - Fly.io
   - Cloudflare Workers
+  - Three.js
+  - Odoo
 featured: true

@@ -42,6 +42,7 @@ type AboutPageCopy = {
   coreStackTitle: string;
   experienceTitle: string;
   selectedProjectsTitle: string;
+  clientWorkTitle: string;
   educationTitle: string;
   languagesTitle: string;
   presentLabel: string;
@@ -125,41 +126,44 @@ export const aboutPageCopy: Record<SiteLocale, AboutPageCopy> = {
   en: {
     metaTitle: "About",
     headline: "About",
-    locationPrefix: "Based in",
-    focusSentence: "I focus on product-heavy software work where architecture, delivery, and iteration all matter.",
+    locationPrefix: "Currently in",
+    focusSentence:
+      "I work remotely through Basaltbytes on SaaS, mobile, and product engineering engagements where architecture, delivery, and iteration all matter.",
     availabilityLabel: "Availability",
     websiteLabel: "Website",
     emailLabel: "Email",
-    focusAreasTitle: "Focus areas",
-    coreStackTitle: "Core stack",
+    focusAreasTitle: "Core competencies",
+    coreStackTitle: "Technical skills",
     experienceTitle: "Experience",
-    selectedProjectsTitle: "Selected projects",
+    selectedProjectsTitle: "Projects",
+    clientWorkTitle: "Client work",
     educationTitle: "Education",
     languagesTitle: "Languages",
     presentLabel: "Present",
     technologiesLabel: "Technologies",
     profileImageAlt: "Profile image for Philippe L'ATTENTION",
-    downloadPdfLabel: "Download PDF CV",
+    downloadPdfLabel: "Download PDF resume",
   },
   fr: {
     metaTitle: "À propos",
     headline: "À propos",
-    locationPrefix: "Basé à",
+    locationPrefix: "Actuellement en",
     focusSentence:
-      "Je me concentre sur des produits logiciels où l'architecture, la livraison et l'itération comptent tout autant.",
+      "Je travaille à distance via Basaltbytes sur des produits SaaS et mobiles, ainsi que sur des missions logicielles où l'architecture, l'exécution et l'itération comptent tout autant.",
     availabilityLabel: "Disponibilité",
     websiteLabel: "Site web",
     emailLabel: "Email",
-    focusAreasTitle: "Domaines de focus",
-    coreStackTitle: "Stack principale",
+    focusAreasTitle: "Compétences clés",
+    coreStackTitle: "Compétences techniques",
     experienceTitle: "Expérience",
-    selectedProjectsTitle: "Projets sélectionnés",
+    selectedProjectsTitle: "Projets",
+    clientWorkTitle: "Quelques missions clients",
     educationTitle: "Formation",
     languagesTitle: "Langues",
     presentLabel: "Aujourd'hui",
     technologiesLabel: "Technologies",
     profileImageAlt: "Photo de profil de Philippe L'ATTENTION",
-    downloadPdfLabel: "Télécharger le CV en PDF",
+    downloadPdfLabel: "Télécharger le CV PDF",
   },
 };
 

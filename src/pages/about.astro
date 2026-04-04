@@ -2,7 +2,14 @@
 import { Image } from "astro:assets";
 
 import FormattedDate from "@/components/FormattedDate";
-import { getCv, getEducation, getExperiences, getFeaturedProjects, getProjectPrimaryLink } from "@/content/queries";
+import {
+  getClientProjects,
+  getCv,
+  getCvFeaturedProjectsFromEntry,
+  getEducation,
+  getExperiences,
+  getProjectPrimaryLink,
+} from "@/content/queries";
 import PageLayout from "@/layouts/Base";
 import { aboutPageCopy, getLocalizedUrl, resolveSiteLocale } from "@/i18n/utils";
 import aboutImg from "@/assets/about.jpg";
@@ -10,9 +17,10 @@ import aboutImg from "@/assets/about.jpg";
 const locale = resolveSiteLocale(Astro.currentLocale);
 const copy = aboutPageCopy[locale];
 const cv = await getCv(locale);
+const featuredProjects = (await getCvFeaturedProjectsFromEntry(cv)).slice(0, 4);
 const experiences = await getExperiences(locale);
 const education = await getEducation(locale);
-const featuredProjects = (await getFeaturedProjects(locale)).slice(0, 4);
+const clientProjects = (await getClientProjects(locale)).slice(0, 4);
 
 const meta = {
   title: copy.metaTitle,
@@ -20,6 +28,7 @@ const meta = {
 };
 
 const cvPdfHref = getLocalizedUrl(locale, "cv/philippe-lattention.pdf");
+const stripProtocol = (value: string) => value.replace(/^https?:\/\//, "").replace(/\/$/, "");
 ---
 
 <PageLayout meta={meta}>
@@ -43,10 +52,16 @@ const cvPdfHref = getLocalizedUrl(locale, "cv/philippe-lattention.pdf");
               {copy.downloadPdfLabel}
             </a>
           </p>
-          <p>
-            <span class="font-medium">{copy.websiteLabel}:</span>
-            <a class="cactus-link" href={cv.data.basics.website}>phildl.com</a>
-          </p>
+          {
+            cv.data.basics.website && (
+              <p>
+                <span class="font-medium">{copy.websiteLabel}:</span>{" "}
+                <a class="cactus-link" href={cv.data.basics.website}>
+                  {stripProtocol(cv.data.basics.website)}
+                </a>
+              </p>
+            )
+          }
           {
             cv.data.basics.email && (
               <p>
@@ -56,6 +71,16 @@ const cvPdfHref = getLocalizedUrl(locale, "cv/philippe-lattention.pdf");
                 </a>
               </p>
             )
+          }
+          {
+            cv.data.basics.profiles.map((profile) => (
+              <p>
+                <span class="font-medium">{profile.label}:</span>{" "}
+                <a class="cactus-link" href={profile.href} target="_blank" rel="noopener noreferrer">
+                  {stripProtocol(profile.href)}
+                </a>
+              </p>
+            ))
           }
         </div>
       </div>
@@ -95,6 +120,17 @@ const cvPdfHref = getLocalizedUrl(locale, "cv/philippe-lattention.pdf");
       </div>
     </section>
 
+    {
+      cv.data.languages.length > 0 && (
+        <section class="max-w-prose space-y-4">
+          <h2 class="title text-xl">{copy.languagesTitle}</h2>
+          <p class="text-sm leading-7">
+            {cv.data.languages.map((item) => `${item.name}${item.level ? ` · ${item.level}` : ""}`).join(" · ")}
+          </p>
+        </section>
+      )
+    }
+
     <section class="max-w-prose space-y-6">
       <h2 class="title text-xl">{copy.experienceTitle}</h2>
       <div class="divide-textColor/20 divide-y divide-dashed">
@@ -117,15 +153,55 @@ const cvPdfHref = getLocalizedUrl(locale, "cv/philippe-lattention.pdf");
                 </p>
               </div>
               <p class="mt-3">{entry.data.summary}</p>
-              {entry.data.achievements.length > 0 && (
+              {(entry.data.achievements?.length ?? 0) > 0 && (
                 <ul class="mt-3 list-inside list-disc space-y-1 text-sm">
-                  {entry.data.achievements.map((achievement: string) => (
+                  {(entry.data.achievements ?? []).map((achievement: string) => (
                     <li>{achievement}</li>
                   ))}
                 </ul>
               )}
-              {entry.data.technologies.length > 0 && (
-                <p class="mt-3 text-sm opacity-70">{entry.data.technologies.join(" · ")}</p>
+              {(entry.data.detailGroups?.length ?? 0) > 0 && (
+                <ul class="mt-4 list-disc space-y-4 pl-5">
+                  {(entry.data.detailGroups ?? []).map((group) => (
+                    <li>
+                      <p class="font-medium">{group.title}</p>
+                      {group.summary && <p class="mt-1 text-sm">{group.summary}</p>}
+                      {(group.achievements?.length ?? 0) > 0 && (
+                        <ul class="mt-2 list-inside list-disc space-y-1 text-sm">
+                          {(group.achievements ?? []).map((achievement: string) => (
+                            <li>{achievement}</li>
+                          ))}
+                        </ul>
+                      )}
+                      {(group.items?.length ?? 0) > 0 && (
+                        <ul class="mt-2 list-disc space-y-3 pl-5">
+                          {(group.items ?? []).map((item) => (
+                            <li>
+                              <p class="text-sm font-medium">{item.title}</p>
+                              {item.summary && <p class="mt-1 text-sm">{item.summary}</p>}
+                              {(item.achievements?.length ?? 0) > 0 && (
+                                <ul class="mt-2 list-inside list-disc space-y-1 text-sm">
+                                  {(item.achievements ?? []).map((achievement: string) => (
+                                    <li>{achievement}</li>
+                                  ))}
+                                </ul>
+                              )}
+                              {(item.technologies?.length ?? 0) > 0 && (
+                                <p class="mt-2 text-sm opacity-70">{(item.technologies ?? []).join(" · ")}</p>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {(group.technologies?.length ?? 0) > 0 && (
+                        <p class="mt-2 text-sm opacity-70">{(group.technologies ?? []).join(" · ")}</p>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {(entry.data.technologies?.length ?? 0) > 0 && (
+                <p class="mt-3 text-sm opacity-70">{(entry.data.technologies ?? []).join(" · ")}</p>
               )}
             </article>
           ))
@@ -159,6 +235,35 @@ const cvPdfHref = getLocalizedUrl(locale, "cv/philippe-lattention.pdf");
         }
       </ul>
     </section>
+
+    {
+      clientProjects.length > 0 && (
+        <section class="max-w-prose space-y-6">
+          <h2 class="title text-xl">{copy.clientWorkTitle}</h2>
+          <ul class="space-y-4">
+            {clientProjects.map((project) => {
+              const href = getProjectPrimaryLink(project);
+
+              return (
+                <li>
+                  <h3 class="font-medium">
+                    {href ? (
+                      <a class="cactus-link" href={href} target="_blank" rel="noopener noreferrer">
+                        {project.data.title}
+                      </a>
+                    ) : (
+                      project.data.title
+                    )}
+                  </h3>
+                  <p class="mt-1 text-sm">{project.data.description}</p>
+                  <p class="mt-1 text-sm opacity-70">{project.data.technologies.join(" · ")}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </section>
+      )
+    }
 
     <section class="max-w-prose space-y-6">
       <h2 class="title text-xl">{copy.educationTitle}</h2>

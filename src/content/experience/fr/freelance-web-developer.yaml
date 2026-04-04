@@ -1,14 +1,16 @@
 locale: fr
 translationKey: freelance-web-developer
-company: freelance
+company: Freelance
 role: Développeur web freelance
 employmentType: freelance
 startDate: 2014-07-01
 endDate: 2015-05-31
 summary: >-
-  Activité indépendante de développement web avant un retour dans des équipes
-  produit.
+  Développeur web indépendant intervenant sur des sites et livrables clients
+  dans des missions courtes avant un retour vers des équipes produit.
 achievements:
-  - Livraison de projets web clients en intervenant directement en autonomie.
-  - Prise en charge de l'implémentation et de la livraison dans des cycles courts.
-technologies: []
+  - Cadrage et livraison de travaux de développement web directement pour des clients en tant qu'indépendant.
+  - Gestion de l'implémentation, des itérations et de la livraison sur des cycles projet courts.
+technologies:
+  - Développement web
+  - Livraison client

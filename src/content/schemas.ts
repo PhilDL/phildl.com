@@ -40,6 +40,25 @@ const languageSchema = z
   })
   .strict();
 
+const experienceDetailItemSchema = z
+  .object({
+    title: z.string().min(1),
+    summary: z.string().min(1).optional(),
+    achievements: z.array(z.string().min(1)).default([]),
+    technologies: z.array(z.string().min(1)).default([]),
+  })
+  .strict();
+
+const experienceDetailGroupSchema = z
+  .object({
+    title: z.string().min(1),
+    summary: z.string().min(1).optional(),
+    achievements: z.array(z.string().min(1)).default([]),
+    items: z.array(experienceDetailItemSchema).default([]),
+    technologies: z.array(z.string().min(1)).default([]),
+  })
+  .strict();
+
 const timelineBaseSchema = z
   .object({
     locale: localeSchema,
@@ -133,6 +152,7 @@ export const experienceSchema = timelineBaseSchema.extend({
   remote: z.boolean().default(false),
   summary: z.string().min(1),
   achievements: z.array(z.string().min(1)).default([]),
+  detailGroups: z.array(experienceDetailGroupSchema).default([]),
   technologies: z.array(z.string().min(1)).default([]),
 });
 

@@ -1,18 +1,81 @@
 locale: fr
 translationKey: basaltbytes-founder
 company: Basaltbytes
-role: Directeur-fondateur
+role: Fondateur & ingénieur logiciel full stack senior
 employmentType: founder
-location: Saint-Denis, La Réunion
+location: Pologne
+remote: true
 startDate: 2023-12-01
 summary: >-
-  Je développe Basaltbytes comme un studio produit et une activité de conseil
-  centrés sur des produits SaaS et mobiles construits de bout en bout avec des
-  architectures fortement orientées TypeScript.
+  Fondateur d'une structure logicielle indépendante dans laquelle je conçois,
+  développe et fais évoluer mes propres produits SaaS et mobiles, tout en
+  menant des missions clients.
 achievements:
-  - Conception et développement d'Atoly, une plateforme B2B de réservation multi-tenant avec isolation forte des données, facturation Stripe, flows marketplace via Stripe Connect et authentification OAuth complète.
-  - Livraison de Manywalls sur iOS, Android et web avec React Native, Expo, Skia, OpenCV, Reanimated et un backend temps réel sur Convex.
-  - Prise en charge de l'architecture, de la livraison, du déploiement, du monitoring, de l'analytics et de l'itération produit sur tout le cycle de vie.
+  - Je développe des solutions web pour mes clients en adéquation avec leur budget et qui solutionne leur problème. Je reste pragmatique dans ma démarche, en essayant de ne pas over-engineer mes solutions ou optimiser pour des cas non prouvés.
+  - Je développe mes propres produits inspirés de problématiques clients, je simplifie le problème pour le transformer en SaaS qui pourraient convenir à un maximum de clients dans une niche. Sur ces produits je conçois, défini le scope, développe un MVP et prend en charge le marketing sous divers angles (SEO, réseaux sociaux, cold emails, ASO, campagnes publicitaires)
+detailGroups:
+  - title: Atoly - Des pages de réservation que vos clients ont envie d'utiliser
+    summary: >-
+      Mon SaaS de réservation pour indépendants et petites structures, conçu
+      pour rendre la prise de rendez-vous et le paiement simples côté
+      entreprise comme côté client.
+    achievements:
+      - J'ai imaginé le produit, défini son positionnement et porté sa mise sur le marché.
+      - J'ai architecturé une plateforme multi-tenant avec abonnements Stripe (envers la plateforme), mais aussi Stripe Connect pour que les utilisateurs soient payés au moment de la réservation.
+      - J'ai créé une architecture orienté évennements autour du cycle de vie d'une réservation, annulation ou reprogrammation. Synchronisation avec les agendas, envois d'emails, rappels SMS.
+      - J'assure la conception et la livraison full stack, le déploiement, l'observabilité, l'analytics et le support client.
+    items: []
+    technologies:
+      - TypeScript
+      - React 19
+      - React Router
+      - Hono
+      - Turso (1 db par tenant + embedded replicas)
+      - Drizzle ORM
+      - Stripe
+      - Stripe Connect
+      - OAuth
+  - title: Manywalls - Une manière plus immersive d'exposer le travail des artistes
+    summary: >-
+      Mon produit iOS, Android pour les artistes qui cherchent une
+      expérience plus riche qu'un portfolio statique.
+    achievements:
+      - J'ai défini le concept produit et la direction de l'expérience, puis j'ai aussi pris en charge le marketing et le support.
+      - J'ai livré des applications iOS, Android et web avec rendu graphique avancé, animation, traitement d'image et synchronisation temps réel.
+      - J'ai construit des fondations réutilisables, dont un système de design et des briques d'édition.
+    items: []
+    technologies:
+      - TypeScript
+      - React Native
+      - Expo
+      - Skia
+      - OpenCV
+      - Reanimated
+      - Convex
+  - title: Exemples de missions clients
+    achievements: []
+    items:
+      - title: Art for Life
+        summary: >-
+          Conception et livraison du site artforlife.fr dans le cadre d'une
+          mission client menée en parallèle de mes propres produits.
+        achievements:
+          - J'ai pris en charge la réalisation et la mise en ligne dans un cadre client, avec responsabilité directe sur l'implémentation.
+        technologies:
+          - NextJS
+          - Sanity CMS
+      - title: Modules Odoo
+        summary: >-
+          Développement de modules Three.js pour Odoo, dont un module important
+          de visualisation des emplacements de stock et des machines de
+          production sur des plans 3D.
+        achievements:
+          - J'ai conçu des interfaces 3D métier avancées pour des usages opérationnels concrets dans Odoo.
+        technologies:
+          - Odoo
+          - Three.js
+          - JavaScript / OWL
+    technologies: []
 technologies:
   - TypeScript
   - React 19
@@ -23,11 +86,17 @@ technologies:
   - React Native
   - Expo
   - Convex
+  - OpenCV
+  - Reanimated
   - Stripe
+  - Stripe Connect
+  - OAuth
   - Sentry
   - PostHog
   - GrowthBook
   - Docker
   - Fly.io
   - Cloudflare Workers
+  - Three.js
+  - Odoo
 featured: true

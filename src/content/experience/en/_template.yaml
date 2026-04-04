@@ -16,6 +16,7 @@ summary: >-
 achievements:
   - Shipped an important feature or business outcome.
   - Improved developer experience, performance, or reliability.
+detailGroups: []
 technologies:
   - TypeScript
   - Astro
