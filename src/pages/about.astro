@@ -5,10 +5,10 @@ import FormattedDate from "@/components/FormattedDate";
 import {
   getClientProjects,
   getCv,
-  getCvFeaturedProjectsFromEntry,
-  getCvOpenSourceProjectsFromEntry,
   getEducation,
   getExperiences,
+  getFeaturedOpenSourceProjects,
+  getFeaturedProductProjects,
   getProjectPrimaryLink,
 } from "@/content/queries";
 import PageLayout from "@/layouts/Base";
@@ -18,8 +18,8 @@ import aboutImg from "@/assets/about.jpg";
 const locale = resolveSiteLocale(Astro.currentLocale);
 const copy = aboutPageCopy[locale];
 const cv = await getCv(locale);
-const featuredProjects = (await getCvFeaturedProjectsFromEntry(cv)).slice(0, 4);
-const openSourceProjects = (await getCvOpenSourceProjectsFromEntry(cv)).slice(0, 4);
+const featuredProjects = (await getFeaturedProductProjects(locale)).slice(0, 4);
+const openSourceProjects = (await getFeaturedOpenSourceProjects(locale)).slice(0, 4);
 const experiences = await getExperiences(locale);
 const education = await getEducation(locale);
 const clientProjects = (await getClientProjects(locale)).slice(0, 4);

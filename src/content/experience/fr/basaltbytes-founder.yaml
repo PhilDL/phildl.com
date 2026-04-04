@@ -22,7 +22,7 @@ detailGroups:
     achievements:
       - J'ai imaginé le produit, défini son positionnement et porté sa mise sur le marché.
       - J'ai architecturé une plateforme multi-tenant avec abonnements Stripe (envers la plateforme), mais aussi Stripe Connect pour que les utilisateurs soient payés au moment de la réservation.
-      - J'ai créé une architecture orienté évennements autour du cycle de vie d'une réservation, annulation ou reprogrammation. Synchronisation avec les agendas, envois d'emails, rappels SMS.
+      - Orchestration grâce aux évennements correspondant au cycle de vie d'une réservation, annulation ou reprogrammation. Synchronisation avec les agendas, envois d'emails, rappels SMS.
       - J'assure la conception et la livraison full stack, le déploiement, l'observabilité, l'analytics et le support client.
     items: []
     technologies:

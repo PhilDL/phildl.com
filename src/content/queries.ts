@@ -3,6 +3,8 @@ import { getCollection, getEntry } from "astro:content";
 
 import { DEFAULT_LOCALE, type SiteLocale } from "./locale";
 
+const FIRST_PARTY_PROJECT_KINDS = new Set<CollectionEntry<"project">["data"]["kind"]>(["saas", "product", "personal"]);
+
 function sortProjectsByDate(projects: Array<CollectionEntry<"project">>) {
   return [...projects].sort((a, b) => {
     const aDate = (a.data.updatedDate ?? a.data.endDate ?? a.data.startDate ?? new Date(0)).valueOf();
@@ -41,6 +43,10 @@ export async function getProjects(locale: SiteLocale = DEFAULT_LOCALE) {
 
 export async function getFeaturedProjects(locale: SiteLocale = DEFAULT_LOCALE) {
   return (await getProjects(locale)).filter(({ data }) => data.featured);
+}
+
+export async function getFeaturedProductProjects(locale: SiteLocale = DEFAULT_LOCALE) {
+  return (await getProjects(locale)).filter(({ data }) => data.featured && FIRST_PARTY_PROJECT_KINDS.has(data.kind));
 }
 
 async function resolveProjectReferences(references: CollectionEntry<"cv">["data"]["featuredProjects"]) {
