@@ -26,11 +26,10 @@ availability:
   status: open
   details: Open to selected remote freelance and contract engagements of 3 to 6 months.
 skillGroups:
-  - name: Languages and frameworks
+  - name: Frontend
     items:
       - TypeScript
       - JavaScript
-      - Python
       - React
       - React Native
       - Expo
@@ -38,12 +37,15 @@ skillGroups:
       - Astro
   - name: Backend and APIs
     items:
+      - Python
       - Hono
       - REST APIs
       - OpenAPI
       - OAuth
       - JWT
       - JWE
+  - name: Data and persistence
+    items:
       - Turso
       - Drizzle ORM
       - Convex
@@ -56,14 +58,12 @@ skillGroups:
       - Docker
       - Fly.io
       - Cloudflare Workers
-      - GDPR
-  - name: Payments and observability
+  - name: Payments, product analytics, and observability
     items:
       - Stripe
       - Stripe Connect
       - Sentry
       - PostHog
-      - GrowthBook
       - Product analytics
       - Feature flags
 languages:

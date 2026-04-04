@@ -28,11 +28,10 @@ availability:
   status: open
   details: Disponible pour des missions freelance à distance, de 3 à 6 mois sur le reste de l'année 2026.
 skillGroups:
-  - name: Langages et frameworks
+  - name: Frontend
     items:
       - TypeScript
       - JavaScript
-      - Python
       - React
       - React Native
       - Expo
@@ -40,12 +39,15 @@ skillGroups:
       - Astro
   - name: Backend et APIs
     items:
+      - Python
       - Hono
       - APIs REST
       - OpenAPI
       - OAuth
       - JWT
       - JWE
+  - name: Données et persistance
+    items:
       - Turso
       - Drizzle ORM
       - Convex
@@ -58,14 +60,12 @@ skillGroups:
       - Docker
       - Fly.io
       - Cloudflare Workers
-      - RGPD
-  - name: Paiements et observabilité
+  - name: Paiements, analytics produit et observabilité
     items:
       - Stripe
       - Stripe Connect
       - Sentry
       - PostHog
-      - GrowthBook
       - Product analytics
       - Feature flags
 languages:
