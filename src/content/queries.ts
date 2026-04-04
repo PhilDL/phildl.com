@@ -61,6 +61,19 @@ export async function getClientProjects(locale: SiteLocale = DEFAULT_LOCALE) {
   return (await getProjects(locale)).filter(({ data }) => data.kind === "client");
 }
 
+export async function getFeaturedOpenSourceProjects(locale: SiteLocale = DEFAULT_LOCALE) {
+  return (await getProjects(locale)).filter(({ data }) => data.kind === "open-source" && data.featured);
+}
+
+export async function getCvOpenSourceProjectsFromEntry(cv: CollectionEntry<"cv">) {
+  const projects = await resolveProjectReferences(cv.data.openSourceProjects ?? []);
+  return projects.length > 0 ? projects : getFeaturedOpenSourceProjects(cv.data.locale);
+}
+
+export async function getCvOpenSourceProjects(locale: SiteLocale = DEFAULT_LOCALE) {
+  return getCvOpenSourceProjectsFromEntry(await getCv(locale));
+}
+
 export async function getExperiences(locale: SiteLocale = DEFAULT_LOCALE) {
   const experiences = await getCollection("experience", ({ data }) => data.locale === locale && data.draft !== true);
   return sortTimelineByDate(experiences);

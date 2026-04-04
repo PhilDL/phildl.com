@@ -78,8 +78,9 @@ languages:
 featuredProjects:
   - fr/atoly
   - fr/manywalls
-  - fr/paintinglens
+openSourceProjects:
   - fr/ts-ghost
+  - fr/remix-gospel-stack
 experience:
   - fr/basaltbytes-founder
   - fr/infopro-automotive-software-architect

@@ -140,6 +140,7 @@ export const cvSchema = z
     experience: z.array(reference("experience")).default([]),
     education: z.array(reference("education")).default([]),
     featuredProjects: z.array(reference("project")).default([]),
+    openSourceProjects: z.array(reference("project")).default([]),
   })
   .strict();
 

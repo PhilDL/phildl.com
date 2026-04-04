@@ -1,4 +1,10 @@
-import { getCv, getCvFeaturedProjectsFromEntry, getEducation, getExperiences } from "@/content/queries";
+import {
+  getCv,
+  getCvFeaturedProjectsFromEntry,
+  getCvOpenSourceProjectsFromEntry,
+  getEducation,
+  getExperiences,
+} from "@/content/queries";
 import { renderCvPdf } from "@/utils/cvPdf";
 
 export async function GET() {
@@ -9,6 +15,7 @@ export async function GET() {
     getEducation(locale),
   ]);
   const featuredProjects = await getCvFeaturedProjectsFromEntry(cv);
+  const openSourceProjects = await getCvOpenSourceProjectsFromEntry(cv);
 
   const pdf = await renderCvPdf({
     locale,
@@ -16,6 +23,7 @@ export async function GET() {
     experiences,
     education,
     featuredProjects: featuredProjects.slice(0, 4),
+    openSourceProjects: openSourceProjects.slice(0, 4),
   });
   const body = pdf.slice().buffer as ArrayBuffer;
 

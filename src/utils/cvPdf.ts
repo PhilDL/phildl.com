@@ -26,6 +26,7 @@ type CvPdfInput = {
   experiences: Array<CollectionEntry<"experience">>;
   education: Array<CollectionEntry<"education">>;
   featuredProjects: Array<CollectionEntry<"project">>;
+  openSourceProjects: Array<CollectionEntry<"project">>;
 };
 
 type PdfAssets = {
@@ -793,8 +794,13 @@ function estimateProjectHeight(entry: CollectionEntry<"project">, ctx: DrawConte
   return estimateBlockHeight(blocks) + 8;
 }
 
-function drawProjectsSection(ctx: DrawContext, doc: PDFDocument, projects: CvPdfInput["featuredProjects"]) {
-  drawSectionTitle(ctx, doc, ctx.copy.selectedProjectsTitle);
+function drawProjectSection(
+  ctx: DrawContext,
+  doc: PDFDocument,
+  title: string,
+  projects: CvPdfInput["featuredProjects"] | CvPdfInput["openSourceProjects"],
+) {
+  drawSectionTitle(ctx, doc, title);
 
   for (const project of projects) {
     ensureSpace(ctx, doc, estimateProjectHeight(project, ctx, CONTENT_WIDTH));
@@ -975,7 +981,8 @@ export async function renderCvPdf(input: CvPdfInput) {
   drawSkillSection(ctx, doc, input.cv.data.skillGroups);
   drawLanguagesSection(ctx, doc, input.cv.data.languages);
   drawExperienceSection(ctx, doc, input.experiences);
-  drawProjectsSection(ctx, doc, input.featuredProjects);
+  drawProjectSection(ctx, doc, ctx.copy.selectedProjectsTitle, input.featuredProjects);
+  drawProjectSection(ctx, doc, ctx.copy.openSourceTitle, input.openSourceProjects);
   drawEducationSection(ctx, doc, input.education);
   drawFooter(ctx);
 

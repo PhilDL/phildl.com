@@ -42,6 +42,7 @@ type AboutPageCopy = {
   coreStackTitle: string;
   experienceTitle: string;
   selectedProjectsTitle: string;
+  openSourceTitle: string;
   clientWorkTitle: string;
   educationTitle: string;
   languagesTitle: string;
@@ -136,6 +137,7 @@ export const aboutPageCopy: Record<SiteLocale, AboutPageCopy> = {
     coreStackTitle: "Technical skills",
     experienceTitle: "Experience",
     selectedProjectsTitle: "Projects",
+    openSourceTitle: "Open source",
     clientWorkTitle: "Client work",
     educationTitle: "Education",
     languagesTitle: "Languages",
@@ -157,6 +159,7 @@ export const aboutPageCopy: Record<SiteLocale, AboutPageCopy> = {
     coreStackTitle: "Compétences techniques",
     experienceTitle: "Expérience",
     selectedProjectsTitle: "Projets",
+    openSourceTitle: "Open source",
     clientWorkTitle: "Quelques missions clients",
     educationTitle: "Formation",
     languagesTitle: "Langues",
