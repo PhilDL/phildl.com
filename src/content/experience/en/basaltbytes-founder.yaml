@@ -1,46 +1,47 @@
 locale: en
 translationKey: basaltbytes-founder
 company: Basaltbytes
-role: Founder & Senior Full-Stack Product Engineer
+role: Founder & Senior Full-Stack Software Engineer
 employmentType: founder
 location: Poland
 remote: true
 startDate: 2023-12-01
 summary: >-
-  Founder of a solo software company where I build and operate first-party SaaS
-  and mobile products while taking on selected client work.
+  Founder of an independent software company where I design, build, and evolve
+  my own SaaS and mobile products while also taking on client engagements.
 achievements:
-  - Run Basaltbytes end to end across product strategy, software architecture, implementation, deployment, analytics, marketing, and customer support.
-  - Balance self-initiated products with selected external delivery work, depending on fit and complexity.
+  - I build pragmatic web solutions for clients that fit their budget and solve the actual problem, without over-engineering or optimizing for unproven cases.
+  - I build my own products from recurring client problems, simplify them into SaaS products for a niche, define the scope, ship an MVP, and handle marketing across SEO, social, cold email, ASO, and paid campaigns.
 detailGroups:
   - title: Atoly - Booking pages your customers will love to use
     summary: >-
       My own booking SaaS for independents and small businesses, designed to
-      make scheduling and payments feel simple for both operators and their
+      make scheduling and payments feel simple for both businesses and their
       customers.
     achievements:
-      - Came up with the product idea, positioning, and go-to-market direction.
-      - Architected a multi-tenant platform with Stripe subscriptions, Stripe Connect payouts, and OAuth authentication.
-      - Own full-stack product delivery, deployment, observability, analytics, and customer support.
+      - I came up with the product, defined its positioning, and drove its go-to-market.
+      - I architected a multi-tenant platform with Stripe subscriptions for the platform itself, plus Stripe Connect so users get paid when a booking is made.
+      - I orchestrate booking lifecycle events for bookings, cancellations, and rescheduling, including calendar synchronization, email delivery, and SMS reminders.
+      - I own full-stack design and delivery, deployment, observability, analytics, and customer support.
     items: []
     technologies:
       - TypeScript
       - React 19
       - React Router
       - Hono
-      - Turso
+      - Turso (one DB per tenant + embedded replicas)
       - Drizzle ORM
       - Stripe
       - Stripe Connect
       - OAuth
   - title: Manywalls - A more immersive digital exhibition product for artists
     summary: >-
-      My own cross-platform product for artists who want something richer than
+      My own iOS and Android product for artists who want something richer than
       a static portfolio site.
     achievements:
-      - Defined the product concept and experience direction, then handled marketing and support myself.
-      - Delivered iOS, Android, and web apps with graphics-heavy rendering, animation, image workflows, and real-time sync.
-      - Built reusable product foundations including a design system and editing primitives.
+      - I defined the product concept and experience direction, then handled marketing and support myself.
+      - I delivered iOS, Android, and web apps with advanced graphics rendering, animation, image processing, and real-time synchronization.
+      - I built reusable foundations, including a design system and editing primitives.
     items: []
     technologies:
       - TypeScript
@@ -50,50 +51,30 @@ detailGroups:
       - OpenCV
       - Reanimated
       - Convex
+      - RevenueCat
   - title: Example client work
     achievements: []
     items:
       - title: Art for Life
         summary: >-
-          Client website delivery for artforlife.fr, shipped as external work
-          alongside my own products.
+          Design and delivery of artforlife.fr as a client engagement run in
+          parallel with my own products.
         achievements:
-          - Handled delivery as a client-facing engagement with direct ownership of implementation and launch.
+          - I handled delivery and launch in a client context, with direct ownership of the implementation.
         technologies:
-          - Web design
-          - Frontend development
+          - NextJS
+          - Sanity CMS
       - title: Odoo modules
         summary: >-
-          Large Three.js work inside Odoo, including modules that visualize
-          stock locations and manufacturing machines on 3D plant layouts.
+          Development of Three.js modules for Odoo, including a major module
+          to visualize stock locations and manufacturing machines on 3D plant
+          layouts.
         achievements:
-          - Built advanced 3D business interfaces for real operational use cases inside Odoo.
+          - I built advanced 3D business interfaces for concrete operational use cases inside Odoo.
         technologies:
           - Odoo
           - Three.js
-          - JavaScript
+          - JavaScript / OWL
     technologies: []
-technologies:
-  - TypeScript
-  - React 19
-  - React Router
-  - Hono
-  - Turso
-  - Drizzle ORM
-  - React Native
-  - Expo
-  - Convex
-  - OpenCV
-  - Reanimated
-  - Stripe
-  - Stripe Connect
-  - OAuth
-  - Sentry
-  - PostHog
-  - GrowthBook
-  - Docker
-  - Fly.io
-  - Cloudflare Workers
-  - Three.js
-  - Odoo
+technologies: []
 featured: true

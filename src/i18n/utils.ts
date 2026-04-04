@@ -106,7 +106,7 @@ export const homePageCopy: Record<SiteLocale, HomePageCopy> = {
   en: {
     metaTitle: "Home",
     metaDescription:
-      "Personal website of Philippe L'ATTENTION with projects, CV, open-source work, SaaS experiments, and technical writing.",
+      "Personal website of Philippe L'ATTENTION with CV, projects, products, open-source work, and technical writing.",
     heroTitle: "My organized chaos.",
     heroIntro: "Hi, I'm Philippe L'ATTENTION, a senior software engineer from Reunion Island.",
     projectsTitle: "Projects and public work",
@@ -128,8 +128,7 @@ export const aboutPageCopy: Record<SiteLocale, AboutPageCopy> = {
     metaTitle: "About",
     headline: "About",
     locationPrefix: "Currently in",
-    focusSentence:
-      "I work remotely through Basaltbytes on SaaS, mobile, and product engineering engagements where architecture, delivery, and iteration all matter.",
+    focusSentence: "",
     availabilityLabel: "Availability",
     websiteLabel: "Website",
     emailLabel: "Email",
@@ -144,7 +143,7 @@ export const aboutPageCopy: Record<SiteLocale, AboutPageCopy> = {
     presentLabel: "Present",
     technologiesLabel: "Technologies",
     profileImageAlt: "Profile image for Philippe L'ATTENTION",
-    downloadPdfLabel: "Download PDF resume",
+    downloadPdfLabel: "Download CV PDF",
   },
   fr: {
     metaTitle: "À propos",

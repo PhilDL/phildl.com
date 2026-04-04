@@ -1,13 +1,14 @@
 locale: en
 basics:
   name: Philippe L'ATTENTION
-  headline: Founder & Senior Full-Stack Product Engineer
+  headline: Founder & Senior Full-Stack Software Engineer
   summary: >-
-    Founder and senior full-stack product engineer with 10+ years of experience
-    building SaaS platforms, mobile apps, ERP systems, and e-commerce
-    products. Specializes in TypeScript architecture, React and React Native,
-    API design, payments, OAuth, observability, and iterative delivery.
-  location: Poland
+    Freelance and software engineer since 2013, now working independently and
+    focused on building SaaS platforms, mobile apps, ERP systems, and
+    e-commerce products. Specialized in TypeScript architecture, React and
+    React Native, API design, payments, Odoo and ERP workflows, and booking
+    systems.
+  location: Remote (Poland)
   email: philippe.lattention@hotmail.fr
   website: https://phildl.com
   profiles:
@@ -20,11 +21,12 @@ focusAreas:
   - Full-stack product engineering with React, React Native, and TypeScript
   - API design, OAuth authentication, and third-party integrations
   - Payments, subscriptions, and marketplace flows with Stripe and Stripe Connect
-  - Mobile app delivery across iOS, Android, and web
-  - Observability, analytics, experimentation, and iterative product delivery
+  - Deep experience in online booking systems, slots, time zones, and third-party calendar synchronization
+  - Delivery across iOS, Android, and web
+  - Observability, analytics, experimentation, and product iteration
 availability:
   status: open
-  details: Open to selected remote freelance and contract engagements of 3 to 6 months.
+  details: Available for remote freelance engagements of 3 to 6 months for the rest of 2026.
 skillGroups:
   - name: Frontend
     items:
@@ -50,7 +52,7 @@ skillGroups:
       - PostgreSQL
       - Cloudflare D1
       - File storage (Cloudflare R2 / Tigris / S3)
-  - name: Delivery techniques and deployment targets
+  - name: Delivery and platforms
     items:
       - CI/CD (GitHub actions, GitLab)
       - IaC (sst, ansible)
