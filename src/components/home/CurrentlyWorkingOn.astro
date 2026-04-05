@@ -1,0 +1,61 @@
+---
+import type { SiteLocale } from "@/content/locale";
+import { localeInfo } from "@/i18n/utils";
+import type { WorkingOnProject } from "@/utils/githubProjectRegistry";
+
+interface Props {
+  items: Array<WorkingOnProject>;
+  locale: SiteLocale;
+  title: string;
+  summary: string;
+  emptyMessage: string;
+  fallbackDescription: string;
+}
+
+const { items, locale, title, summary, emptyMessage, fallbackDescription } = Astro.props;
+
+const dateLocale = localeInfo[locale].dateLocale;
+const lastPushLabel = locale === "fr" ? "dernier push" : "last push";
+
+function formatLastPushedAt(value: string) {
+  return new Date(value).toLocaleDateString(dateLocale, {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
+---
+
+<section class="mt-16">
+  <div class="mb-4 flex flex-col gap-1">
+    <h2 class="title font-serif text-xl">{title}</h2>
+    <p class="text-textColor/70 text-sm">{summary}</p>
+  </div>
+  {
+    items.length ? (
+      <ul class="space-y-4 sm:space-y-2">
+        {items.map((item) => (
+          <li class="leading-7">
+            <a
+              class="cactus-link mr-1 inline-block"
+              href={item.href}
+              rel="noopener noreferrer"
+              target="_blank"
+              title={item.repositoryName}
+            >
+              {item.title}
+            </a>
+            <span class="mr-2">:</span>
+            <span>{item.description ?? fallbackDescription}</span>
+            <span class="text-textColor/55 ml-2 text-xs">
+              ({lastPushLabel}: {formatLastPushedAt(item.lastPushedAt)})
+            </span>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="text-textColor/70 text-sm">{emptyMessage}</p>
+    )
+  }
+</section>

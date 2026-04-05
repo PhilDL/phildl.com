@@ -8,9 +8,12 @@
     "build": "astro build",
     "postbuild": "pagefind --site dist",
     "preview": "astro preview",
+    "deploy": "pnpm build && wrangler deploy",
+    "cf:whoami": "wrangler whoami",
     "format": "prettier -w --cache . && prettier -w --cache **/*.astro",
     "lint": "ESLINT_USE_FLAT_CONFIG=false eslint .",
-    "typecheck": "astro check"
+    "typecheck": "astro check",
+    "refresh:github-activity": "node scripts/update-github-activity.mjs"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
@@ -37,7 +40,8 @@
     "reading-time": "^1.5.0",
     "rehype-unwrap-images": "^1.0.0",
     "tailwindcss": "^4.2.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.34.0"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.3",

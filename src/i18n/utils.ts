@@ -26,6 +26,15 @@ type HomePageCopy = {
   metaDescription: string;
   heroTitle: string;
   heroIntro: string;
+  contributionsTitle: string;
+  contributionsSummary: (count: number) => string;
+  contributionsEmpty: string;
+  contributionsLegendLess: string;
+  contributionsLegendMore: string;
+  workingOnTitle: string;
+  workingOnSummary: (count: number, windowDays: number) => string;
+  workingOnEmpty: string;
+  workingOnFallbackDescription: string;
   projectsTitle: string;
   postsTitle: string;
 };
@@ -109,6 +118,19 @@ export const homePageCopy: Record<SiteLocale, HomePageCopy> = {
       "Personal website of Philippe L'ATTENTION with CV, projects, products, open-source work, and technical writing.",
     heroTitle: "My organized chaos.",
     heroIntro: "Hi, I'm Philippe L'ATTENTION, a senior software engineer from Reunion Island.",
+    contributionsTitle: "GitHub contributions",
+    contributionsSummary: (count) => `${count} public contribution${count === 1 ? "" : "s"} over the last 12 months.`,
+    contributionsEmpty:
+      "GitHub contributions are not available yet. Run the activity refresh script or let the nightly workflow populate them.",
+    contributionsLegendLess: "Less",
+    contributionsLegendMore: "More",
+    workingOnTitle: "Currently working on",
+    workingOnSummary: (count, windowDays) =>
+      count
+        ? `${count} public repos with recent push activity in the last ${windowDays} days.`
+        : `Public repos with recent push activity in the last ${windowDays} days will appear here.`,
+    workingOnEmpty: "No recent public repository activity found.",
+    workingOnFallbackDescription: "Public repository with recent commit activity.",
     projectsTitle: "Projects and public work",
     postsTitle: "Latest posts",
   },
@@ -118,6 +140,20 @@ export const homePageCopy: Record<SiteLocale, HomePageCopy> = {
       "Site personnel de Philippe L'ATTENTION avec CV, projets, produits, travail open-source et articles techniques.",
     heroTitle: "Mon chaos organisé.",
     heroIntro: "Bonjour, je suis Philippe L'ATTENTION, ingénieur logiciel senior originaire de La Réunion.",
+    contributionsTitle: "Contributions GitHub",
+    contributionsSummary: (count) =>
+      `${count} contribution${count > 1 ? "s" : ""} publique${count > 1 ? "s" : ""} sur les 12 derniers mois.`,
+    contributionsEmpty:
+      "Les contributions GitHub ne sont pas encore disponibles. Lance le script de mise à jour ou laisse le workflow nocturne les générer.",
+    contributionsLegendLess: "Moins",
+    contributionsLegendMore: "Plus",
+    workingOnTitle: "En ce moment, je travaille sur",
+    workingOnSummary: (count, windowDays) =>
+      count
+        ? `${count} dépôts publics avec un push récent sur les ${windowDays} derniers jours.`
+        : `Les dépôts publics avec une activité récente sur les ${windowDays} derniers jours apparaîtront ici.`,
+    workingOnEmpty: "Aucune activité récente trouvée sur des dépôts publics.",
+    workingOnFallbackDescription: "Dépôt public avec une activité de commit récente.",
     projectsTitle: "Projets et travail public",
     postsTitle: "Derniers articles",
   },

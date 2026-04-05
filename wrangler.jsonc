@@ -1,0 +1,20 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "phildl-com",
+  "compatibility_date": "2026-04-05",
+  "routes": [
+    {
+      "pattern": "phildl.com",
+      "custom_domain": true,
+    },
+    {
+      "pattern": "www.phildl.com",
+      "custom_domain": true,
+    },
+  ],
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash",
+  },
+}

@@ -1,0 +1,159 @@
+---
+import type { SiteLocale } from "@/content/locale";
+import { localeInfo } from "@/i18n/utils";
+import type { GithubContributionCalendar, GithubContributionDay } from "@/utils/githubActivity";
+
+interface Props {
+  calendar: GithubContributionCalendar | null;
+  locale: SiteLocale;
+  title: string;
+  summary: string;
+  emptyMessage: string;
+  lessLabel: string;
+  moreLabel: string;
+}
+
+const { calendar, locale, title, summary, emptyMessage, lessLabel, moreLabel } = Astro.props;
+
+const CELL_SIZE = 11;
+const CELL_GAP = 3;
+const dateLocale = localeInfo[locale].dateLocale;
+const weekdayMarkers = locale === "fr" ? ["", "Lun", "", "Mer", "", "Ven", ""] : ["", "Mon", "", "Wed", "", "Fri", ""];
+const allDays = calendar ? calendar.weeks.flatMap((week) => week.days) : [];
+const graphWidth = calendar ? calendar.weeks.length * CELL_SIZE + (calendar.weeks.length - 1) * CELL_GAP : 0;
+const monthLabels = calendar
+  ? getMonthLabels(
+      calendar.weeks.map((week) => week.firstDay),
+      dateLocale,
+    )
+  : [];
+const legendColors = getLegendColors(allDays);
+
+function getMonthLabels(weekFirstDays: Array<string>, localeValue: string) {
+  const labels: Array<{ label: string; left: number }> = [];
+  const seenMonths = new Set<string>();
+
+  weekFirstDays.forEach((weekFirstDay, index) => {
+    const weekStart = parseIsoDate(weekFirstDay);
+    const firstOfMonth = Array.from({ length: 7 }, (_, offset) => addUtcDays(weekStart, offset)).find(
+      (date) => date.getUTCDate() === 1,
+    );
+    const labelDate = firstOfMonth ?? (index === 0 ? weekStart : null);
+
+    if (!labelDate) return;
+
+    const key = `${labelDate.getUTCFullYear()}-${labelDate.getUTCMonth()}`;
+    if (seenMonths.has(key)) return;
+
+    seenMonths.add(key);
+    labels.push({
+      label: labelDate.toLocaleDateString(localeValue, { month: "short", timeZone: "UTC" }),
+      left: index * (CELL_SIZE + CELL_GAP),
+    });
+  });
+
+  return labels;
+}
+
+function getLegendColors(days: Array<GithubContributionDay>) {
+  const intensityByColor = new Map<string, number>();
+
+  for (const day of days) {
+    const currentIntensity = intensityByColor.get(day.color);
+
+    if (currentIntensity === undefined || day.contributionCount < currentIntensity) {
+      intensityByColor.set(day.color, day.contributionCount);
+    }
+  }
+
+  return Array.from(intensityByColor.entries())
+    .sort((left, right) => left[1] - right[1])
+    .map(([color]) => color);
+}
+
+function formatContributionLabel(day: GithubContributionDay) {
+  const formattedDate = parseIsoDate(day.date).toLocaleDateString(dateLocale, {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+
+  if (locale === "fr") {
+    return `${day.contributionCount} contribution${day.contributionCount > 1 ? "s" : ""} le ${formattedDate}`;
+  }
+
+  return `${day.contributionCount} contribution${day.contributionCount === 1 ? "" : "s"} on ${formattedDate}`;
+}
+
+function parseIsoDate(value: string) {
+  return new Date(`${value}T00:00:00.000Z`);
+}
+
+function addUtcDays(date: Date, days: number) {
+  const nextDate = new Date(date);
+  nextDate.setUTCDate(nextDate.getUTCDate() + days);
+  return nextDate;
+}
+---
+
+<section class="mt-16">
+  <div class="mb-4 flex flex-col gap-1">
+    <h2 class="title font-serif text-xl">{title}</h2>
+    <p class="text-textColor/70 text-sm">{summary}</p>
+  </div>
+  {
+    calendar ? (
+      <div class="border-textColor/10 rounded-2xl border bg-white/40 p-4 shadow-sm shadow-black/5 dark:bg-white/5">
+        <div class="overflow-x-auto pb-1">
+          <div class="inline-grid min-w-fit grid-cols-[auto_1fr] gap-x-3">
+            <div class="pt-5">
+              <div class="text-textColor/60 grid grid-rows-7 gap-[3px] text-[11px] leading-[11px]">
+                {weekdayMarkers.map((label) => (
+                  <span class="h-[11px]">{label}</span>
+                ))}
+              </div>
+            </div>
+            <div class="min-w-fit">
+              <div
+                class="text-textColor/60 relative mb-[7px] h-4 text-[11px] leading-none"
+                style={`width: ${graphWidth}px;`}
+              >
+                {monthLabels.map((month) => (
+                  <span class="absolute top-0 whitespace-nowrap" style={`left: ${month.left}px;`}>
+                    {month.label}
+                  </span>
+                ))}
+              </div>
+              <div class="grid grid-flow-col grid-rows-7 gap-[3px]" style={`width: ${graphWidth}px;`}>
+                {allDays.map((day) => (
+                  <div
+                    aria-label={formatContributionLabel(day)}
+                    class="h-[11px] w-[11px] rounded-[2px] border border-black/5 dark:border-white/5"
+                    role="img"
+                    style={`background-color: ${day.color};`}
+                    title={formatContributionLabel(day)}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        {legendColors.length > 1 ? (
+          <div class="text-textColor/60 mt-3 flex items-center justify-end gap-2 text-[11px]">
+            <span>{lessLabel}</span>
+            {legendColors.map((color) => (
+              <span
+                class="h-[11px] w-[11px] rounded-[2px] border border-black/5 dark:border-white/5"
+                style={`background-color: ${color};`}
+              />
+            ))}
+            <span>{moreLabel}</span>
+          </div>
+        ) : null}
+      </div>
+    ) : (
+      <p class="text-textColor/70 text-sm">{emptyMessage}</p>
+    )
+  }
+</section>

@@ -2,10 +2,14 @@
 import type { SiteLocale } from "@/content/locale";
 
 import PostPreview from "@/components/blog/PostPreview";
+import CurrentlyWorkingOn from "@/components/home/CurrentlyWorkingOn";
+import GitHubContributionGrid from "@/components/home/GitHubContributionGrid";
 import SocialList from "@/components/SocialList";
-import { getCv, getCvFeaturedProjectsFromEntry, getProjectPrimaryLink } from "@/content/queries";
+import { getCv, getCvFeaturedProjectsFromEntry, getProjectPrimaryLink, getProjects } from "@/content/queries";
 import PageLayout from "@/layouts/Base";
 import { homePageCopy } from "@/i18n/utils";
+import { getGithubActivity, GITHUB_ACTIVITY_RECENT_WINDOW_DAYS } from "@/utils/githubActivity";
+import { buildWorkingOnProjects } from "@/utils/githubProjectRegistry";
 import { getAllPosts, sortMDByDate } from "@/utils";
 
 interface Props {
@@ -16,10 +20,15 @@ const { locale } = Astro.props;
 
 const MAX_POSTS = 10;
 const copy = homePageCopy[locale];
-const cv = await getCv(locale);
+const [cv, localizedProjects, githubActivity] = await Promise.all([
+  getCv(locale),
+  getProjects(locale),
+  getGithubActivity(),
+]);
 const featuredProjects = (await getCvFeaturedProjectsFromEntry(cv)).slice(0, 3);
 const allPosts = await getAllPosts();
 const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+const workingOnProjects = buildWorkingOnProjects(githubActivity.recentRepositories, localizedProjects);
 
 const meta = {
   title: copy.metaTitle,
@@ -35,6 +44,23 @@ const meta = {
     <p class="mb-4">{cv.data.basics.summary}</p>
     <SocialList />
   </section>
+  <GitHubContributionGrid
+    calendar={githubActivity.contributionCalendar}
+    emptyMessage={copy.contributionsEmpty}
+    lessLabel={copy.contributionsLegendLess}
+    locale={locale}
+    moreLabel={copy.contributionsLegendMore}
+    summary={copy.contributionsSummary(githubActivity.contributionCalendar?.totalContributions ?? 0)}
+    title={copy.contributionsTitle}
+  />
+  <CurrentlyWorkingOn
+    emptyMessage={copy.workingOnEmpty}
+    fallbackDescription={copy.workingOnFallbackDescription}
+    items={workingOnProjects}
+    locale={locale}
+    summary={copy.workingOnSummary(workingOnProjects.length, GITHUB_ACTIVITY_RECENT_WINDOW_DAYS)}
+    title={copy.workingOnTitle}
+  />
   <section class="mt-16">
     <h2 class="title mb-4 font-serif text-xl">{copy.projectsTitle}</h2>
     <ul class="space-y-4 sm:space-y-2">
