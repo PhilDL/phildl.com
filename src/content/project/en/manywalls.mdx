@@ -2,7 +2,7 @@
 locale: en
 translationKey: manywalls
 title: "Manywalls"
-description: "My own cross-platform digital exhibition product for artists across iOS, Android, and web, where I handle the concept, marketing, support, and engineering."
+description: "A digital exhibition platform created for artists — cross-platform on iOS, Android, and web — where I own concept, product, engineering, marketing, and support end to end."
 kind: product
 status: active
 featured: true
@@ -17,27 +17,31 @@ technologies:
   - Reanimated
   - Convex
 highlights:
-  - First-party product initiated and owned end to end, from concept and positioning to marketing and support.
-  - Delivered cross-platform apps with graphics-heavy rendering, animation, and mobile-first interactions.
-  - PaintingLens sits within the Manywalls funnel as a supporting top-of-funnel product rather than a separate main product line.
-  - Shipped production releases across App Store, Play Store, and web from a shared product architecture.
-  - Built a reusable design system and image editing primitives backed by a real-time backend.
-  - Designed product data flows with a privacy-first approach and GDPR-aware boundaries.
+  - Product conceived and owned end to end — from concept and market positioning to engineering, marketing, and user support.
+  - Cross-platform apps shipped on App Store, Play Store, and web from a shared TypeScript monorepo (Turborepo, Expo, React).
+  - Computer vision pipeline using OpenCV for automatic painting boundary detection, perspective correction, and background removal.
+  - GPU-accelerated Skia shaders for wall textures and grain effects, with Reanimated-driven 60 fps gesture interactions.
+  - Real-time serverless backend on Convex with Cloudflare R2 image storage, RevenueCat subscriptions, and credit-based AI features.
+  - PaintingLens built as a companion mobile app within the same monorepo, serving as a top-of-funnel acquisition tool.
 links:
   live: https://manywalls.art/
 relatedExperience:
   - en/basaltbytes-founder
 ---
 
-Manywalls is my own digital exhibition product for artists and visual work.
+Manywalls is a digital exhibition platform created for artists who work with
+physical pieces — paintings, sculptures, drawings. Instead of grid portfolios,
+artists compose full-screen, linear exhibitions wall by wall, each wall
+presenting a single artwork at proper scale on a textured, colored background.
 
-I built it as a richer alternative to static portfolio sites, with mobile-first
-experiences, image-heavy interactions, and a backend that supports real-time
-product behavior. The project also pushed work on design systems and reusable
-editing primitives.
+The mobile app handles exhibition creation: artists photograph their work, and
+an OpenCV pipeline detects the painting boundaries, corrects perspective, and
+cleans up the background. They then sequence walls — artwork, text, or
+intentional silence — with gesture-driven reordering and real-time preview. The
+web experience delivers exhibitions as immersive, scroll-snap pages stripped of
+all UI chrome, designed for juries, galleries, and grant committees.
 
-I came up with the product concept myself and I also handle marketing and user
-support alongside the product and engineering work.
-
-PaintingLens fits into that ecosystem as a top-of-funnel supporting product
-rather than a standalone main product line.
+The whole system ships from a Turborepo monorepo: two Expo apps (Manywalls and
+PaintingLens), a TanStack Start marketing site, a public exhibition viewer, an
+admin dashboard, and a Convex real-time backend — deployed across App Store,
+Play Store, and Cloudflare Workers.

@@ -2,7 +2,7 @@
 locale: fr
 translationKey: atoly
 title: "Atoly"
-description: "Mon SaaS B2B de réservation multi-tenant pour indépendants et petites structures, dont j'assure l'idée, la stratégie produit, le marketing, le support et le développement."
+description: "SaaS multi-tenant de réservation que j'ai fondé pour les studios créatifs et les petites entreprises de services — de la vision produit au code en production."
 kind: saas
 status: active
 featured: true
@@ -15,26 +15,33 @@ technologies:
   - Hono
   - Turso
   - Drizzle ORM
-  - Stripe
   - Stripe Connect
-  - OAuth
+  - Inngest
+  - Expo
 highlights:
-  - Produit imaginé, lancé et opéré par mes soins via Basaltbytes.
-  - Architecture multi-tenant avec isolation des tenants et frontières de données pensées pour le RGPD.
-  - Facturation SaaS, gestion des abonnements et reversements marketplace assurés par Stripe et Stripe Connect.
-  - Je prends en charge de bout en bout le frontend, le backend, l'authentification, le déploiement, l'observabilité et l'itération produit.
+  - Produit que j'ai conçu, développé et que j'opère de bout en bout via Basaltbytes — de l'étude de marché au support client.
+  - Multi-tenancy par base de données avec isolation complète des données et conformité RGPD.
+  - Intégration Stripe Connect pour les paiements en ligne, les acomptes et les reversements gérés par la plateforme.
+  - Monorepo domain-driven avec RPC typé, jobs asynchrones event-driven (Inngest) et synchronisation calendrier (Google, Outlook).
 links:
   live: https://atoly.co
 relatedExperience:
   - fr/basaltbytes-founder
 ---
 
-Atoly est mon produit SaaS développé via Basaltbytes.
+Atoly est une plateforme de réservation que j'ai créée pour les studios
+créatifs et les petites entreprises de services — ateliers poterie, cours de
+peinture, cours de cuisine et activités similaires. Les gérants disposent d'une
+page de réservation en ligne, d'un back-office pour gérer plannings et clients,
+et de paiements intégrés, le tout sans aucune compétence technique requise.
 
-Le produit s'adresse aux indépendants et petites structures qui ont besoin de
-gérer réservations, paiements et flux partenaires dans une seule plateforme. Le cœur
-du travail technique porte sur l'isolation des tenants, l'authentification
-OAuth et un backend simple à opérer mais robuste pour l'itération produit.
+Côté technique, la plateforme repose sur un monorepo Turborepo avec un backend
+Hono, des front-ends React 19 et des bases Turso isolées par tenant. La
+disponibilité est calculée en temps réel à partir des plannings hebdomadaires,
+des règles de réservation et des calendriers Google/Outlook connectés. Les
+paiements transitent par Stripe Connect et Inngest orchestre les workflows
+asynchrones : rappels email/SMS, synchronisation calendrier. Une application
+mobile compagnon est développée avec Expo.
 
-J'en ai eu l'idée et j'assure aussi le positionnement, le marketing et le
-support client, en plus du produit et de l'ingénierie.
+Je gère chaque couche du produit : idéation, positionnement, marketing, support
+client, architecture et développement au quotidien.

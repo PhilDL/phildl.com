@@ -6,17 +6,25 @@ const locale = resolveSiteLocale(Astro.currentLocale);
 const links = getLanguageSwitcherLinks(url, locale);
 ---
 
-<nav aria-label={locale === "fr" ? "Changer de langue" : "Switch language"} class="ms-4 flex items-center text-sm">
+<nav
+  aria-label={locale === "fr" ? "Changer de langue" : "Switch language"}
+  class="text-md ms-auto mr-2 flex h-9 items-center gap-1"
+>
   {
     links.map((link, i) => (
       <>
-        {i > 0 && <span class="text-textColor/40 mx-1">/</span>}
+        {i > 0 && <span class="text-textColor/30 mx-0.5">/</span>}
         {link.isCurrent ? (
-          <span class="text-accent-2 font-semibold" aria-current="true" title={link.title}>
+          <span class="text-textColor/50 font-medium" aria-current="true" title={link.title}>
             {link.label}
           </span>
         ) : (
-          <a href={link.href} class="cactus-link" hreflang={localeInfo[link.locale].htmlLang} title={link.title}>
+          <a
+            href={link.href}
+            class="hover:text-accent transition-colors"
+            hreflang={localeInfo[link.locale].htmlLang}
+            title={link.title}
+          >
             {link.label}
           </a>
         )}

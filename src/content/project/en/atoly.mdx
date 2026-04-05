@@ -2,7 +2,7 @@
 locale: en
 translationKey: atoly
 title: "Atoly"
-description: "My own multi-tenant B2B booking SaaS for independents and small businesses, where I own the idea, product strategy, marketing, support, and engineering."
+description: "A multi-tenant booking and scheduling SaaS I founded for creative studios and small service businesses — from product vision to production code."
 kind: saas
 status: active
 featured: true
@@ -15,26 +15,32 @@ technologies:
   - Hono
   - Turso
   - Drizzle ORM
-  - Stripe
   - Stripe Connect
-  - OAuth
+  - Inngest
+  - Expo
 highlights:
-  - First-party product conceived, positioned, marketed, and supported directly by me through Basaltbytes.
-  - Multi-tenant architecture with tenant isolation and GDPR-aware data boundaries.
-  - SaaS billing, subscription management, and marketplace payouts powered by Stripe and Stripe Connect.
-  - End-to-end ownership across frontend, backend, authentication, deployment, observability, and product iteration.
+  - Product I conceived, built, and operate end-to-end through Basaltbytes — from market research to customer support.
+  - Database-per-tenant multi-tenancy with full data isolation and GDPR-compliant boundaries.
+  - Stripe Connect integration for online payments, deposits, and platform-managed payouts.
+  - Domain-driven monorepo with type-safe RPC, event-driven background jobs (Inngest), and calendar sync (Google, Outlook).
 links:
   live: https://atoly.co
 relatedExperience:
   - en/basaltbytes-founder
 ---
 
-Atoly is my own SaaS product built through Basaltbytes.
+Atoly is a booking and scheduling platform I built for creative studios and
+small service businesses — pottery workshops, art classes, cooking lessons, and
+similar activity-based businesses. Owners get an online booking page, a
+back-office to manage schedules and customers, and integrated payments, all
+without any technical setup on their side.
 
-The product is designed for independents and small teams who need bookings,
-payments, and partner flows in one platform. The technical work centered on
-tenant isolation, OAuth-based sign-in, and a backend that stays simple to
-operate while supporting product iteration.
+Under the hood, the platform runs as a Turborepo monorepo with a Hono backend,
+React 19 front-ends, and isolated Turso databases per tenant. Real-time
+availability is computed from weekly schedules, booking rules, and connected
+Google/Outlook calendars. Payments flow through Stripe Connect, and Inngest
+handles asynchronous workflows like email/SMS reminders and calendar sync.
+A companion mobile app is built with Expo.
 
-I came up with the product idea myself and I also handle positioning, marketing,
-and customer support in addition to product and engineering work.
+I own every layer of the product: ideation, positioning, marketing, customer
+support, architecture, and day-to-day engineering.

@@ -2,7 +2,7 @@
 locale: fr
 translationKey: manywalls
 title: "Manywalls"
-description: "Mon produit d'exposition numérique pour artistes sur iOS, Android et web, dont j'assure le concept, le marketing, le support et le développement."
+description: "Plateforme d'exposition numérique que j'ai créée pour les artistes — multi-plateforme sur iOS, Android et web — dont j'assure le concept, le produit, le développement, le marketing et le support de bout en bout."
 kind: product
 status: active
 featured: true
@@ -17,28 +17,34 @@ technologies:
   - Reanimated
   - Convex
 highlights:
-  - Produit conçu et développé de bout en bout, du concept et du positionnement jusqu'au marketing et au support.
-  - Livraison d'applications sur iOS, Android et web avec rendu graphique avancé, animation et interactions pensées d'abord pour le mobile.
-  - PaintingLens s'inscrit dans l'écosystème Manywalls comme produit d'acquisition, et non comme une ligne produit indépendante.
-  - Mises en production sur App Store, Play Store et web à partir d'une architecture produit partagée.
-  - Création d'un système de design réutilisable et de briques d'édition d'image appuyées sur un backend temps réel.
-  - Conception des flux de données produit avec une approche privacy-first et des frontières pensées pour le RGPD.
+  - Produit conçu et porté de bout en bout — du concept et du positionnement marché jusqu'au développement, au marketing et au support utilisateur.
+  - Applications multi-plateformes livrées sur App Store, Play Store et web depuis un monorepo TypeScript partagé (Turborepo, Expo, React).
+  - Pipeline de vision par ordinateur avec OpenCV pour la détection automatique des contours de tableaux, la correction de perspective et le retrait d'arrière-plan.
+  - Shaders Skia accélérés GPU pour les textures et effets de grain des murs, avec interactions gestuelles pilotées par Reanimated à 60 fps.
+  - Backend serverless temps réel sur Convex avec stockage d'images Cloudflare R2, abonnements RevenueCat et fonctionnalités IA à la consommation.
+  - PaintingLens développé comme application mobile compagnon dans le même monorepo, servant d'outil d'acquisition en haut de funnel.
 links:
   live: https://manywalls.art/
 relatedExperience:
   - fr/basaltbytes-founder
 ---
 
-Manywalls est mon produit d'exposition numérique pensé pour les artistes
-et les travaux visuels.
+Manywalls est une plateforme d'exposition numérique que j'ai créée pour les
+artistes travaillant avec des œuvres physiques — peintures, sculptures, dessins.
+Au lieu de portfolios en grille, les artistes composent des expositions
+linéaires en plein écran, mur par mur, chaque mur présentant une œuvre unique à
+sa juste échelle sur un fond texturé et coloré.
 
-Je l'ai conçue comme une alternative plus riche aux portfolios statiques, avec
-une expérience pensée d'abord pour le mobile, des interactions centrées sur l'image et un
-backend adapté aux comportements temps réel. Le projet a aussi servi de terrain
-pour travailler un système de design et des briques d'édition réutilisables.
+L'application mobile gère la création d'expositions : les artistes
+photographient leurs œuvres, et un pipeline OpenCV détecte les contours du
+tableau, corrige la perspective et nettoie l'arrière-plan. Ils enchaînent
+ensuite les murs — œuvre, texte ou silence intentionnel — avec un
+réordonnancement gestuel et un aperçu en temps réel. L'expérience web restitue
+les expositions sous forme de pages immersives en scroll-snap, sans aucun
+élément d'interface superflu, pensées pour les jurys, galeries et comités de
+sélection.
 
-J'en assure aussi le marketing et le support utilisateur en plus du produit et
-du travail d'ingénierie.
-
-PaintingLens s'inscrit dans ce même ensemble comme produit d'entrée dans le
-funnel, et non comme un produit principal séparé.
+L'ensemble est livré depuis un monorepo Turborepo : deux applications Expo
+(Manywalls et PaintingLens), un site marketing TanStack Start, un visualiseur
+d'expositions public, un tableau de bord d'administration et un backend temps
+réel Convex — déployés sur App Store, Play Store et Cloudflare Workers.
