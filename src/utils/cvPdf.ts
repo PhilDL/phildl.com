@@ -15,6 +15,9 @@ const MARGIN_X = 48;
 const MARGIN_TOP = 48;
 const MARGIN_BOTTOM = 42;
 const CONTENT_WIDTH = PAGE_WIDTH - MARGIN_X * 2;
+const SECTION_GAP_ABOVE = 20;
+const SECTION_GAP_BELOW = 24;
+const SECTION_TITLE_MIN_HEIGHT = 34 + SECTION_GAP_ABOVE + (SECTION_GAP_BELOW - 16);
 const ACCENT = rgb(0.988, 0.298, 0.298);
 const TEXT = rgb(0.11, 0.122, 0.129);
 const MUTED = rgb(0.396, 0.435, 0.482);
@@ -170,8 +173,16 @@ function ensureSpace(ctx: DrawContext, doc: PDFDocument, minHeight: number) {
   ctx.cursorY = PAGE_HEIGHT - MARGIN_TOP;
 }
 
+function isAtTopOfPage(cursorY: number) {
+  return Math.abs(cursorY - (PAGE_HEIGHT - MARGIN_TOP)) < 0.5;
+}
+
 function drawSectionTitle(ctx: DrawContext, doc: PDFDocument, title: string) {
-  ensureSpace(ctx, doc, 34);
+  ensureSpace(ctx, doc, SECTION_TITLE_MIN_HEIGHT);
+
+  if (!isAtTopOfPage(ctx.cursorY)) {
+    ctx.cursorY -= SECTION_GAP_ABOVE;
+  }
 
   ctx.page.drawText(title.toUpperCase(), {
     x: MARGIN_X,
@@ -190,7 +201,7 @@ function drawSectionTitle(ctx: DrawContext, doc: PDFDocument, title: string) {
     color: BORDER,
   });
 
-  ctx.cursorY -= 16;
+  ctx.cursorY -= SECTION_GAP_BELOW;
 }
 
 function formatDateRange(locale: SiteLocale, startDate: Date, endDate: Date | undefined, presentLabel: string) {
