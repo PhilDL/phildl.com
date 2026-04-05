@@ -8,7 +8,7 @@ basics:
     e-commerce products. Specialized in TypeScript, React and
     React Native, tactical DDD, software architecture and agentic coding.
   location: Remote (Poland)
-  email: philippe.lattention@hotmail.fr
+  email: contact@basaltbytes.com
   website: https://phildl.com
   profiles:
     - label: GitHub
@@ -17,7 +17,7 @@ basics:
       href: https://www.linkedin.com/in/philippe-lattention/
 focusAreas:
   - SaaS architecture and multi-tenant systems
-  - Full-stack product engineering with React, React Native, and TypeScript
+  - Full-stack product engineering with TypeScript, NodeJS, React, and React Native
   - API design, OAuth authentication, and third-party integrations
   - Payments, subscriptions, and marketplace flows with Stripe and Stripe Connect
   - Deep experience in online booking systems, slots, time zones, and third-party calendar synchronization

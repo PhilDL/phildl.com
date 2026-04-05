@@ -47,6 +47,7 @@
     "@codesandbox/sandpack-react": "^2.20.0",
     "@iconify-json/mdi": "^1.2.3",
     "@pdf-lib/fontkit": "^1.1.1",
+    "@thesvg/react": "^2.1.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "astro": "^6.1.3",

@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 
 import FormattedDate from "@/components/FormattedDate";
+import TechnologyList from "../components/TechnologyList.tsx";
 import {
   getClientProjects,
   getCv,
@@ -115,7 +116,7 @@ const stripProtocol = (value: string) => value.replace(/^https?:\/\//, "").repla
           cv.data.skillGroups.map((group: (typeof cv.data.skillGroups)[number]) => (
             <div>
               <h3 class="text-accent font-medium">{group.name}</h3>
-              <p class="mt-1 text-sm leading-7">{group.items.join(" · ")}</p>
+              <TechnologyList technologies={group.items} className="mt-1 text-sm leading-7" />
             </div>
           ))
         }
@@ -189,21 +190,30 @@ const stripProtocol = (value: string) => value.replace(/^https?:\/\//, "").repla
                                 </ul>
                               )}
                               {(item.technologies?.length ?? 0) > 0 && (
-                                <p class="mt-2 text-sm opacity-70">{(item.technologies ?? []).join(" · ")}</p>
+                                <TechnologyList
+                                  technologies={item.technologies ?? []}
+                                  className="mt-2 text-sm text-textColor/70"
+                                />
                               )}
                             </li>
                           ))}
                         </ul>
                       )}
                       {(group.technologies?.length ?? 0) > 0 && (
-                        <p class="mt-2 text-sm opacity-70">{(group.technologies ?? []).join(" · ")}</p>
+                        <TechnologyList
+                          technologies={group.technologies ?? []}
+                          className="mt-2 text-sm text-textColor/70"
+                        />
                       )}
                     </li>
                   ))}
                 </ul>
               )}
               {(entry.data.technologies?.length ?? 0) > 0 && (
-                <p class="mt-3 text-sm opacity-70">{(entry.data.technologies ?? []).join(" · ")}</p>
+                <TechnologyList
+                  technologies={entry.data.technologies ?? []}
+                  className="mt-3 text-sm text-textColor/70"
+                />
               )}
             </article>
           ))
@@ -230,7 +240,7 @@ const stripProtocol = (value: string) => value.replace(/^https?:\/\//, "").repla
                   )}
                 </h3>
                 <p class="mt-1 text-sm">{project.data.description}</p>
-                <p class="mt-1 text-sm opacity-70">{project.data.technologies.join(" · ")}</p>
+                <TechnologyList technologies={project.data.technologies} className="mt-1 text-sm text-textColor/70" />
               </li>
             );
           })
@@ -258,7 +268,10 @@ const stripProtocol = (value: string) => value.replace(/^https?:\/\//, "").repla
                     )}
                   </h3>
                   <p class="mt-1 text-sm">{project.data.description}</p>
-                  <p class="mt-1 text-sm opacity-70">{project.data.technologies.join(" · ")}</p>
+                  <TechnologyList
+                    technologies={project.data.technologies}
+                    className="mt-1 text-sm text-textColor/70"
+                  />
                 </li>
               );
             })}
@@ -287,7 +300,10 @@ const stripProtocol = (value: string) => value.replace(/^https?:\/\//, "").repla
                     )}
                   </h3>
                   <p class="mt-1 text-sm">{project.data.description}</p>
-                  <p class="mt-1 text-sm opacity-70">{project.data.technologies.join(" · ")}</p>
+                  <TechnologyList
+                    technologies={project.data.technologies}
+                    className="mt-1 text-sm text-textColor/70"
+                  />
                 </li>
               );
             })}
