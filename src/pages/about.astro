@@ -51,7 +51,12 @@ const stripProtocol = (value: string) => value.replace(/^https?:\/\//, "").repla
             {cv.data.availability.details}
           </p>
           <p>
-            <a class="cactus-link font-medium" href={cvPdfHref} download>
+            <a
+              class="cactus-link font-medium"
+              href={cvPdfHref}
+              download="philippe-lattention-cv.pdf"
+              data-astro-reload
+            >
               {copy.downloadPdfLabel}
             </a>
           </p>

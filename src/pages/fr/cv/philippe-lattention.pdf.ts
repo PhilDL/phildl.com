@@ -30,7 +30,7 @@ export async function GET() {
   return new Response(body, {
     headers: {
       "Content-Type": "application/pdf",
-      "Content-Disposition": 'inline; filename="philippe-lattention-cv.pdf"',
+      "Content-Disposition": 'attachment; filename="philippe-lattention-cv.pdf"',
     },
   });
 }

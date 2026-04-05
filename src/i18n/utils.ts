@@ -299,7 +299,15 @@ export function getPathnameWithoutLocale(pathname: string) {
 }
 
 export function getLocalizedUrl(locale: SiteLocale, path = "") {
-  return getRelativeLocaleUrl(locale, path);
+  const localizedUrl = getRelativeLocaleUrl(locale, path);
+
+  // Keep file-like routes stable. Astro's locale helper appends a trailing slash,
+  // which breaks URLs such as `/fr/cv/philippe-lattention.pdf/`.
+  if (/\.[^/]+$/u.test(path)) {
+    return localizedUrl.replace(/\/$/u, "");
+  }
+
+  return localizedUrl;
 }
 
 export function getLocalizedHomeUrl(locale: SiteLocale) {

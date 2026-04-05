@@ -8,7 +8,7 @@ import SocialList from "@/components/SocialList";
 import { getCv, getCvFeaturedProjectsFromEntry, getProjectPrimaryLink, getProjects } from "@/content/queries";
 import PageLayout from "@/layouts/Base";
 import { homePageCopy } from "@/i18n/utils";
-import { getGithubActivity, GITHUB_ACTIVITY_RECENT_WINDOW_DAYS } from "@/utils/githubActivity";
+import { getGithubActivity } from "@/utils/githubActivity";
 import { buildWorkingOnProjects } from "@/utils/githubProjectRegistry";
 import { getAllPosts, sortMDByDate } from "@/utils";
 
@@ -49,7 +49,6 @@ const meta = {
     fallbackDescription={copy.workingOnFallbackDescription}
     items={workingOnProjects}
     locale={locale}
-    summary={copy.workingOnSummary(workingOnProjects.length, GITHUB_ACTIVITY_RECENT_WINDOW_DAYS)}
     title={copy.workingOnTitle}
   />
   <GitHubContributionGrid
