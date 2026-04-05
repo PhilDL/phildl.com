@@ -17,16 +17,15 @@ import HonoLogo from "@thesvg/react/hono";
 import InngestLogo from "@thesvg/react/inngest";
 import JavascriptLogo from "@thesvg/react/javascript";
 import JwtLogo from "@thesvg/react/jwt";
-import NextdotjsLogo from "@thesvg/react/nextdotjs";
-import Nodedotjs from "@thesvg/react/nodedotjs";
+import LaravelLogo from "@thesvg/react/laravel";
 import OdooLogo from "@thesvg/react/odoo";
 import OpenapiInitiativeLogo from "@thesvg/react/openapi-initiative";
 import OpencvLogo from "@thesvg/react/opencv";
 import PnpmLogo from "@thesvg/react/pnpm";
 import PosthogLogo from "@thesvg/react/posthog";
-import PostgresqlLogo from "@thesvg/react/postgresql";
 import PrestashopLogo from "@thesvg/react/prestashop";
 import PrismaLogo from "@thesvg/react/prisma";
+import PhpLogo from "@thesvg/react/php";
 import PythonLogo from "@thesvg/react/python";
 import ReactRouterLogo from "@thesvg/react/react-router";
 import ReactLogo from "@thesvg/react/react";
@@ -42,6 +41,7 @@ import TursoLogo from "@thesvg/react/turso";
 import TypescriptLogo from "@thesvg/react/typescript";
 import VuedotjsLogo from "@thesvg/react/vuedotjs";
 import ZodLogo from "@thesvg/react/zod";
+import { NextjsLogo, NodejsLogo, PostgresqlLogo } from "../components/technologyLogos";
 
 type TechnologyLogo = ComponentType<SVGProps<SVGSVGElement>>;
 
@@ -83,8 +83,9 @@ const technologyEntries = [
   { key: "inngest", label: "Inngest", logo: InngestLogo },
   { key: "javascript", label: "JavaScript", logo: JavascriptLogo, aliases: ["JavaScript / OWL"] },
   { key: "jwt", label: "JWT", logo: JwtLogo },
-  { key: "nextdotjs", label: "Next.js", logo: NextdotjsLogo, aliases: ["NextJS", "NodeJS (Fullstack RR / Hono)"] },
-  { key: "nodejs", label: "NodeJS", logo: Nodedotjs, aliases: ["NodeJS"] },
+  { key: "laravel", label: "Laravel", logo: LaravelLogo },
+  { key: "nextdotjs", label: "Next.js", logo: NextjsLogo, aliases: ["NextJS"] },
+  { key: "nodedotjs", label: "Node.js", logo: NodejsLogo, aliases: ["NodeJS", "NodeJS (Fullstack RR / Hono)"] },
   { key: "odoo", label: "Odoo", logo: OdooLogo },
   { key: "openapi-initiative", label: "OpenAPI", logo: OpenapiInitiativeLogo, aliases: ["REST APIs (OpenAPI)"] },
   { key: "opencv", label: "OpenCV", logo: OpencvLogo },
@@ -93,6 +94,7 @@ const technologyEntries = [
   { key: "postgresql", label: "PostgreSQL", logo: PostgresqlLogo },
   { key: "prestashop", label: "PrestaShop", logo: PrestashopLogo, aliases: ["Prestashop"] },
   { key: "prisma", label: "Prisma", logo: PrismaLogo },
+  { key: "php", label: "PHP", logo: PhpLogo },
   {
     key: "python",
     label: "Python",

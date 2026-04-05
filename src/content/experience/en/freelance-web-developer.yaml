@@ -12,5 +12,7 @@ achievements:
   - Scoped and delivered web development work directly with clients as an individual contractor.
   - Managed implementation, iteration, and delivery across short project cycles.
 technologies:
+  - PHP
+  - Laravel
   - Web development
   - Client delivery

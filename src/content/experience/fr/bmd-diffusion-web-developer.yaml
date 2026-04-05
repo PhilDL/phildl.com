@@ -13,6 +13,7 @@ achievements:
   - Refonte de Discountanoo.com avec intégration de la maquette graphique et développement backend Prestashop aligné sur les règles de gestion.
   - Refonte de Magrandeavenue.com avec création du nouveau design et intégration du frontend.
 technologies:
+  - PHP
   - Prestashop
   - E-commerce
   - Intégration frontend

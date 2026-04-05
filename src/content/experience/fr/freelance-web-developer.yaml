@@ -12,5 +12,7 @@ achievements:
   - Cadrage et livraison de travaux de développement web directement pour des clients en tant qu'indépendant.
   - Gestion de l'implémentation, des itérations et de la livraison sur des cycles projet courts.
 technologies:
+  - PHP
+  - Laravel
   - Développement web
   - Livraison client

@@ -5,7 +5,7 @@ import { SUPPORTED_LOCALES } from "./locale";
 
 const localeSchema = z.enum(SUPPORTED_LOCALES);
 const translationKeySchema = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
-const urlSchema = z.string().url();
+const urlSchema = z.url();
 
 function removeDupsAndLowerCase(array: string[]) {
   if (!array.length) return array;
@@ -122,7 +122,7 @@ export const cvSchema = z
         headline: z.string().min(1),
         summary: z.string().min(1),
         location: z.string().min(1).optional(),
-        email: z.string().email().optional(),
+        email: z.email().optional(),
         website: urlSchema.optional(),
         profiles: z.array(cvProfileSchema).default([]),
       })

@@ -13,6 +13,7 @@ achievements:
   - Redesigned Discountanoo.com by integrating the visual mockups and adapting the Prestashop backend to match business rules.
   - Redesigned Magrandeavenue.com by creating and integrating the new visual design.
 technologies:
+  - PHP
   - Prestashop
   - E-commerce
   - Frontend integration

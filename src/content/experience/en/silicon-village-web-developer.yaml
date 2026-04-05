@@ -14,6 +14,7 @@ achievements:
   - Developed Prestashop-to-Magento import modules to feed the marketplace.
   - Developed the Avahis.com frontend.
 technologies:
+  - PHP
   - Magento
   - Prestashop
   - E-commerce
