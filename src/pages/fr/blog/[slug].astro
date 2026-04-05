@@ -1,20 +1,7 @@
 ---
-import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
+import BlogPostPage from "@/components/pages/BlogPostPage";
 
-import BlogPostPage from "../../blog/[slug].astro";
-import { getAllPosts } from "@/utils";
-
-export const getStaticPaths = (async () => {
-  const blogEntries = await getAllPosts();
-  return blogEntries.map((entry) => ({
-    params: { slug: entry.id },
-    props: { entry },
-  }));
-}) satisfies GetStaticPaths;
-
-type Props = InferGetStaticPropsType<typeof getStaticPaths>;
-
-const { entry } = Astro.props;
+export { getStaticPaths } from "@/components/pages/BlogPostPage";
 ---
 
-<BlogPostPage entry={entry} />
+<BlogPostPage {...Astro.props} />

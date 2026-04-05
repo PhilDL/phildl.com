@@ -1,31 +1,5 @@
 ---
-import PageLayout from "@/layouts/Base";
-import { getAllPosts, getUniqueTagsWithCount } from "@/utils";
-import { getTagUrl, resolveSiteLocale, tagsIndexPageCopy } from "@/i18n/utils";
-
-const allPosts = await getAllPosts();
-const allTags = getUniqueTagsWithCount(allPosts);
-const locale = resolveSiteLocale(Astro.currentLocale);
-const copy = tagsIndexPageCopy[locale];
-
-const meta = {
-  title: copy.metaTitle,
-  description: copy.metaDescription,
-};
+import TagsIndexPage from "@/components/pages/TagsIndexPage";
 ---
 
-<PageLayout meta={meta}>
-  <h1 class="title mb-6">{copy.pageTitle}</h1>
-  <ul class="space-y-4">
-    {
-      allTags.map(([tag, val]) => (
-        <li class="flex items-center gap-x-2">
-          <a class="cactus-link inline-block" href={getTagUrl(locale, tag)} title={copy.tagTitle(tag)} rel="prefetch">
-            &#35;{tag}
-          </a>
-          <span class="inline-block">- {copy.countLabel(val)}</span>
-        </li>
-      ))
-    }
-  </ul>
-</PageLayout>
+<TagsIndexPage />
