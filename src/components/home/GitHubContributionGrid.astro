@@ -27,7 +27,20 @@ const monthLabels = calendar
       dateLocale,
     )
   : [];
-const legendColors = getLegendColors(allDays);
+
+const GITHUB_COLOR_TO_LEVEL: Record<string, number> = {
+  "#ebedf0": 0,
+  "#9be9a8": 1,
+  "#40c463": 2,
+  "#30a14e": 3,
+  "#216e39": 4,
+};
+
+function getIntensityLevel(color: string): number {
+  return GITHUB_COLOR_TO_LEVEL[color] ?? 0;
+}
+
+const maxLevel = allDays.reduce((max, day) => Math.max(max, getIntensityLevel(day.color)), 0);
 
 function getMonthLabels(weekFirstDays: Array<string>, localeValue: string) {
   const labels: Array<{ label: string; left: number }> = [];
@@ -53,22 +66,6 @@ function getMonthLabels(weekFirstDays: Array<string>, localeValue: string) {
   });
 
   return labels;
-}
-
-function getLegendColors(days: Array<GithubContributionDay>) {
-  const intensityByColor = new Map<string, number>();
-
-  for (const day of days) {
-    const currentIntensity = intensityByColor.get(day.color);
-
-    if (currentIntensity === undefined || day.contributionCount < currentIntensity) {
-      intensityByColor.set(day.color, day.contributionCount);
-    }
-  }
-
-  return Array.from(intensityByColor.entries())
-    .sort((left, right) => left[1] - right[1])
-    .map(([color]) => color);
 }
 
 function formatContributionLabel(day: GithubContributionDay) {
@@ -97,18 +94,18 @@ function addUtcDays(date: Date, days: number) {
 }
 ---
 
-<section class="mt-16">
+<section class="mt-6">
   <div class="mb-4 flex flex-col gap-1">
     <h2 class="title font-serif text-xl">{title}</h2>
     <p class="text-textColor/70 text-sm">{summary}</p>
   </div>
   {
     calendar ? (
-      <div class="border-textColor/10 rounded-2xl border bg-white/40 p-4 shadow-sm shadow-black/5 dark:bg-white/5">
+      <div>
         <div class="overflow-x-auto pb-1">
           <div class="inline-grid min-w-fit grid-cols-[auto_1fr] gap-x-3">
             <div class="pt-5">
-              <div class="text-textColor/60 grid grid-rows-7 gap-[3px] text-[11px] leading-[11px]">
+              <div class="text-textColor/50 grid grid-rows-7 gap-[3px] text-[11px] leading-[11px]">
                 {weekdayMarkers.map((label) => (
                   <span class="h-[11px]">{label}</span>
                 ))}
@@ -116,7 +113,7 @@ function addUtcDays(date: Date, days: number) {
             </div>
             <div class="min-w-fit">
               <div
-                class="text-textColor/60 relative mb-[7px] h-4 text-[11px] leading-none"
+                class="text-textColor/50 relative mb-[7px] h-4 text-[11px] leading-none"
                 style={`width: ${graphWidth}px;`}
               >
                 {monthLabels.map((month) => (
@@ -129,9 +126,8 @@ function addUtcDays(date: Date, days: number) {
                 {allDays.map((day) => (
                   <div
                     aria-label={formatContributionLabel(day)}
-                    class="h-[11px] w-[11px] rounded-[2px] border border-black/5 dark:border-white/5"
+                    class={`contrib-level-${getIntensityLevel(day.color)} h-[11px] w-[11px]`}
                     role="img"
-                    style={`background-color: ${day.color};`}
                     title={formatContributionLabel(day)}
                   />
                 ))}
@@ -139,21 +135,36 @@ function addUtcDays(date: Date, days: number) {
             </div>
           </div>
         </div>
-        {legendColors.length > 1 ? (
-          <div class="text-textColor/60 mt-3 flex items-center justify-end gap-2 text-[11px]">
+        {maxLevel > 0 && (
+          <div class="text-textColor/50 mt-3 flex items-center justify-end gap-1.5 text-[11px]">
             <span>{lessLabel}</span>
-            {legendColors.map((color) => (
-              <span
-                class="h-[11px] w-[11px] rounded-[2px] border border-black/5 dark:border-white/5"
-                style={`background-color: ${color};`}
-              />
+            {[0, 1, 2, 3, 4].map((level) => (
+              <span class={`contrib-level-${level} h-[11px] w-[11px]`} />
             ))}
             <span>{moreLabel}</span>
           </div>
-        ) : null}
+        )}
       </div>
     ) : (
       <p class="text-textColor/70 text-sm">{emptyMessage}</p>
     )
   }
 </section>
+
+<style>
+  .contrib-level-0 {
+    background-color: hsl(var(--theme-text) / 0.06);
+  }
+  .contrib-level-1 {
+    background-color: hsl(var(--theme-accent) / 0.25);
+  }
+  .contrib-level-2 {
+    background-color: hsl(var(--theme-accent) / 0.5);
+  }
+  .contrib-level-3 {
+    background-color: hsl(var(--theme-accent) / 0.75);
+  }
+  .contrib-level-4 {
+    background-color: hsl(var(--theme-accent) / 1);
+  }
+</style>

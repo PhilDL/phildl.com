@@ -44,15 +44,6 @@ const meta = {
     <p class="mb-4">{cv.data.basics.summary}</p>
     <SocialList />
   </section>
-  <GitHubContributionGrid
-    calendar={githubActivity.contributionCalendar}
-    emptyMessage={copy.contributionsEmpty}
-    lessLabel={copy.contributionsLegendLess}
-    locale={locale}
-    moreLabel={copy.contributionsLegendMore}
-    summary={copy.contributionsSummary(githubActivity.contributionCalendar?.totalContributions ?? 0)}
-    title={copy.contributionsTitle}
-  />
   <CurrentlyWorkingOn
     emptyMessage={copy.workingOnEmpty}
     fallbackDescription={copy.workingOnFallbackDescription}
@@ -60,6 +51,15 @@ const meta = {
     locale={locale}
     summary={copy.workingOnSummary(workingOnProjects.length, GITHUB_ACTIVITY_RECENT_WINDOW_DAYS)}
     title={copy.workingOnTitle}
+  />
+  <GitHubContributionGrid
+    calendar={githubActivity.contributionCalendar}
+    emptyMessage={copy.contributionsEmpty}
+    lessLabel={copy.contributionsLegendLess}
+    locale={locale}
+    moreLabel={copy.contributionsLegendMore}
+    summary={copy.contributionsSummary(githubActivity.contributionCalendar?.totalContributions ?? 0)}
+    title={""}
   />
   <section class="mt-16">
     <h2 class="title mb-4 font-serif text-xl">{copy.projectsTitle}</h2>

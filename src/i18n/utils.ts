@@ -116,7 +116,7 @@ export const homePageCopy: Record<SiteLocale, HomePageCopy> = {
     metaTitle: "Home",
     metaDescription:
       "Personal website of Philippe L'ATTENTION with CV, projects, products, open-source work, and technical writing.",
-    heroTitle: "My organized chaos.",
+    heroTitle: "Welcome to my personal site.",
     heroIntro: "Hi, I'm Philippe L'ATTENTION, a senior software engineer from Reunion Island.",
     contributionsTitle: "GitHub contributions",
     contributionsSummary: (count) => `${count} public contribution${count === 1 ? "" : "s"} over the last 12 months.`,
@@ -138,7 +138,7 @@ export const homePageCopy: Record<SiteLocale, HomePageCopy> = {
     metaTitle: "Accueil",
     metaDescription:
       "Site personnel de Philippe L'ATTENTION avec CV, projets, produits, travail open-source et articles techniques.",
-    heroTitle: "Mon chaos organisé.",
+    heroTitle: "Bienvenue sur mon site personnel.",
     heroIntro: "Bonjour, je suis Philippe L'ATTENTION, ingénieur logiciel senior originaire de La Réunion.",
     contributionsTitle: "Contributions GitHub",
     contributionsSummary: (count) =>

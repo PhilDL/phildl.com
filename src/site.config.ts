@@ -2,7 +2,7 @@ import type { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
   author: "Philippe L'ATTENTION",
-  title: "PhilDL Organized Chaos",
+  title: "Philippe L'ATTENTION personal site",
   // Meta property used as the default description meta property
   description:
     "I am Philippe L'ATTENTION, Senior Software Engineer born in Réunion Island 🇷🇪. Here you will find technical gibberish, thoughts, discoveries.",
