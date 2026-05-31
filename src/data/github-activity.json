@@ -1,56 +1,9 @@
 {
-  "generatedAt": "2026-05-30T01:58:04.721Z",
+  "generatedAt": "2026-05-31T01:58:30.238Z",
   "username": "PhilDL",
   "contributionCalendar": {
-    "totalContributions": 2679,
+    "totalContributions": 2655,
     "weeks": [
-      {
-        "firstDay": "2025-05-25",
-        "days": [
-          {
-            "date": "2025-05-25",
-            "contributionCount": 1,
-            "color": "#9be9a8",
-            "weekday": 0
-          },
-          {
-            "date": "2025-05-26",
-            "contributionCount": 5,
-            "color": "#9be9a8",
-            "weekday": 1
-          },
-          {
-            "date": "2025-05-27",
-            "contributionCount": 13,
-            "color": "#40c463",
-            "weekday": 2
-          },
-          {
-            "date": "2025-05-28",
-            "contributionCount": 4,
-            "color": "#9be9a8",
-            "weekday": 3
-          },
-          {
-            "date": "2025-05-29",
-            "contributionCount": 3,
-            "color": "#9be9a8",
-            "weekday": 4
-          },
-          {
-            "date": "2025-05-30",
-            "contributionCount": 3,
-            "color": "#9be9a8",
-            "weekday": 5
-          },
-          {
-            "date": "2025-05-31",
-            "contributionCount": 5,
-            "color": "#9be9a8",
-            "weekday": 6
-          }
-        ]
-      },
       {
         "firstDay": "2025-06-01",
         "days": [
@@ -2477,18 +2430,65 @@
           },
           {
             "date": "2026-05-28",
-            "contributionCount": 3,
+            "contributionCount": 4,
             "color": "#9be9a8",
             "weekday": 4
           },
           {
             "date": "2026-05-29",
+            "contributionCount": 7,
+            "color": "#9be9a8",
+            "weekday": 5
+          },
+          {
+            "date": "2026-05-30",
+            "contributionCount": 2,
+            "color": "#9be9a8",
+            "weekday": 6
+          }
+        ]
+      },
+      {
+        "firstDay": "2026-05-31",
+        "days": [
+          {
+            "date": "2026-05-31",
+            "contributionCount": 0,
+            "color": "#ebedf0",
+            "weekday": 0
+          },
+          {
+            "date": "2026-06-01",
+            "contributionCount": 0,
+            "color": "#ebedf0",
+            "weekday": 1
+          },
+          {
+            "date": "2026-06-02",
+            "contributionCount": 0,
+            "color": "#ebedf0",
+            "weekday": 2
+          },
+          {
+            "date": "2026-06-03",
+            "contributionCount": 0,
+            "color": "#ebedf0",
+            "weekday": 3
+          },
+          {
+            "date": "2026-06-04",
+            "contributionCount": 0,
+            "color": "#ebedf0",
+            "weekday": 4
+          },
+          {
+            "date": "2026-06-05",
             "contributionCount": 0,
             "color": "#ebedf0",
             "weekday": 5
           },
           {
-            "date": "2026-05-30",
+            "date": "2026-06-06",
             "contributionCount": 0,
             "color": "#ebedf0",
             "weekday": 6
