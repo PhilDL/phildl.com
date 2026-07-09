@@ -16,6 +16,7 @@ achievements:
   - Supported platform evolution for a domain-specific ERP used by garages and automotive parts distributors.
 technologies:
   - Python
+  - Odoo
   - JavaScript
   - Vue.js
   - OpenAPI

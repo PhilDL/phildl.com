@@ -17,6 +17,7 @@ achievements:
   - Contribution à l'évolution d'un ERP métier utilisé par des garages et des distributeurs de pièces automobiles.
 technologies:
   - Python
+  - Odoo
   - JavaScript
   - Vue.js
   - OpenAPI

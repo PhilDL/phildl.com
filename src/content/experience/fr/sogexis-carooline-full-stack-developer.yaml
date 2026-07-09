@@ -16,6 +16,7 @@ achievements:
   - Maintenance et extension d'un logiciel utilisé en production par des garages et des revendeurs de pièces automobiles.
 technologies:
   - Python
+  - Odoo
   - JavaScript
   - Vue.js
   - ERP

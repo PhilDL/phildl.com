@@ -16,6 +16,7 @@ achievements:
   - Maintained and extended production software used by garages and automotive parts resellers.
 technologies:
   - Python
+  - Odoo
   - JavaScript
   - Vue.js
   - ERP
