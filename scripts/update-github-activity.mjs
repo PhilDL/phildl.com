@@ -4,7 +4,10 @@ import { fileURLToPath } from "node:url";
 
 const DEFAULT_GITHUB_USERNAME = "PhilDL";
 const RECENT_ACTIVITY_WINDOW_DAYS = 30;
-const MAX_RECENT_REPOSITORIES = 6;
+const MAX_RECENT_REPOSITORIES = 3;
+const MAX_EVENT_PAGES = 3;
+// Pushes alone miss repositories where work lands through pull requests or new branches.
+const CODE_ACTIVITY_EVENT_TYPES = new Set(["PushEvent", "PullRequestEvent", "CreateEvent"]);
 const USER_AGENT = "phildl.com-github-activity-refresh";
 const GITHUB_CONTRIBUTION_LEVEL_COLORS = ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"];
 
@@ -58,45 +61,55 @@ async function fetchContributionCalendar(username, now) {
 }
 
 async function fetchRecentRepositories(username, now) {
-  const eventsResponse = await fetch(`https://api.github.com/users/${username}/events/public?per_page=100`, {
+  const cutoff = addUtcDays(startOfUtcDay(now), -(RECENT_ACTIVITY_WINDOW_DAYS - 1)).valueOf();
+  const latestActivityByRepository = new Map();
+
+  for (let page = 1; page <= MAX_EVENT_PAGES; page += 1) {
+    const events = await fetchPublicEvents(username, page);
+
+    if (!events.length) break;
+
+    for (const event of events) {
+      if (!CODE_ACTIVITY_EVENT_TYPES.has(event.type)) continue;
+
+      const repositoryNameWithOwner = event.repo?.name;
+      const lastPushedAt = event.created_at;
+
+      if (!repositoryNameWithOwner || !lastPushedAt) continue;
+      if (Date.parse(lastPushedAt) < cutoff) continue;
+
+      // The feed is not strictly ordered, so keep the newest timestamp per repository.
+      const knownLastPushedAt = latestActivityByRepository.get(repositoryNameWithOwner);
+      if (knownLastPushedAt && Date.parse(knownLastPushedAt) >= Date.parse(lastPushedAt)) continue;
+
+      latestActivityByRepository.set(repositoryNameWithOwner, lastPushedAt);
+    }
+  }
+
+  const mostRecentRepositories = Array.from(latestActivityByRepository.entries())
+    .sort(([, left], [, right]) => Date.parse(right) - Date.parse(left))
+    .slice(0, MAX_RECENT_REPOSITORIES);
+
+  const repositories = await Promise.all(
+    mostRecentRepositories.map(([nameWithOwner, lastPushedAt]) => fetchRepositoryDetails(nameWithOwner, lastPushedAt)),
+  );
+
+  return repositories.filter(Boolean);
+}
+
+async function fetchPublicEvents(username, page) {
+  const response = await fetch(`https://api.github.com/users/${username}/events/public?per_page=100&page=${page}`, {
     headers: {
       Accept: "application/vnd.github+json",
       "User-Agent": USER_AGENT,
     },
   });
 
-  if (!eventsResponse.ok) {
-    throw new Error(`Failed to fetch public events: ${eventsResponse.status} ${eventsResponse.statusText}`);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch public events: ${response.status} ${response.statusText}`);
   }
 
-  const events = await eventsResponse.json();
-  const cutoff = addUtcDays(startOfUtcDay(now), -(RECENT_ACTIVITY_WINDOW_DAYS - 1)).valueOf();
-  const latestPushByRepository = new Map();
-
-  for (const event of events) {
-    if (event.type !== "PushEvent") continue;
-
-    const repositoryNameWithOwner = event.repo?.name;
-    const lastPushedAt = event.created_at;
-
-    if (!repositoryNameWithOwner || !lastPushedAt) continue;
-    if (Date.parse(lastPushedAt) < cutoff) continue;
-    if (latestPushByRepository.has(repositoryNameWithOwner)) continue;
-
-    latestPushByRepository.set(repositoryNameWithOwner, lastPushedAt);
-
-    if (latestPushByRepository.size >= MAX_RECENT_REPOSITORIES) {
-      break;
-    }
-  }
-
-  const repositories = await Promise.all(
-    Array.from(latestPushByRepository.entries()).map(([nameWithOwner, lastPushedAt]) =>
-      fetchRepositoryDetails(nameWithOwner, lastPushedAt),
-    ),
-  );
-
-  return repositories.filter(Boolean);
+  return response.json();
 }
 
 async function fetchRepositoryDetails(nameWithOwner, lastPushedAt) {

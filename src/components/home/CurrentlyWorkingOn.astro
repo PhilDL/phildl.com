@@ -14,7 +14,7 @@ interface Props {
 const { items, locale, title, emptyMessage, fallbackDescription } = Astro.props;
 
 const dateLocale = localeInfo[locale].dateLocale;
-const lastPushLabel = locale === "fr" ? "dernier push" : "last push";
+const lastPushLabel = locale === "fr" ? "dernière activité" : "last activity";
 
 function formatLastPushedAt(value: string) {
   return new Date(value).toLocaleDateString(dateLocale, {
