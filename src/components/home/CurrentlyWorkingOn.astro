@@ -35,15 +35,21 @@ function formatLastPushedAt(value: string) {
       <ul class="space-y-4 sm:space-y-2">
         {items.map((item) => (
           <li class="leading-7">
-            <a
-              class="cactus-link mr-1 inline-block"
-              href={item.href}
-              rel="noopener noreferrer"
-              target="_blank"
-              title={item.repositoryName}
-            >
-              {item.title}
-            </a>
+            {item.href ? (
+              <a
+                class="cactus-link mr-1 inline-block"
+                href={item.href}
+                rel="noopener noreferrer"
+                target="_blank"
+                title={item.repositoryName}
+              >
+                {item.title}
+              </a>
+            ) : (
+              <span class="mr-1 inline-block" title={item.repositoryName}>
+                {item.title}
+              </span>
+            )}
             <span class="mr-2">:</span>
             <span>{item.description ?? fallbackDescription}</span>
             <span class="text-textColor/55 ml-2 text-xs">

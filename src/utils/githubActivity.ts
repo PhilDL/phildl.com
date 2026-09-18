@@ -23,6 +23,7 @@ export type GithubRecentRepository = {
   nameWithOwner: string;
   url: string;
   description: string | null;
+  isPrivate?: boolean;
   lastPushedAt: string;
 };
 
@@ -111,6 +112,7 @@ function isRecentRepository(value: unknown): value is GithubRecentRepository {
     typeof value.nameWithOwner === "string" &&
     typeof value.url === "string" &&
     (typeof value.description === "string" || value.description === null) &&
+    (typeof value.isPrivate === "boolean" || value.isPrivate === undefined) &&
     typeof value.lastPushedAt === "string"
   );
 }

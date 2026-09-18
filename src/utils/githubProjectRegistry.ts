@@ -1,5 +1,6 @@
 import type { CollectionEntry } from "astro:content";
 
+import { getProjectPrimaryLink } from "@/content/queries";
 import type { GithubRecentRepository } from "@/utils/githubActivity";
 
 const githubProjectRegistry: Record<string, Array<string>> = {
@@ -13,7 +14,7 @@ const githubProjectRegistry: Record<string, Array<string>> = {
 export type WorkingOnProject = {
   title: string;
   description: string | null;
-  href: string;
+  href: string | null;
   repositoryName: string;
   lastPushedAt: string;
 };
@@ -32,11 +33,19 @@ export function buildWorkingOnProjects(
     return {
       title: matchedProject?.data.title ?? repository.name,
       description: matchedProject?.data.description ?? repository.description,
-      href: repository.url,
+      // Visitors cannot open a private repository, so point them to the project instead.
+      href: repository.isPrivate ? getPrivateRepositoryLink(matchedProject) : repository.url,
       repositoryName: repository.nameWithOwner,
       lastPushedAt: repository.lastPushedAt,
     };
   });
+}
+
+function getPrivateRepositoryLink(project: CollectionEntry<"project"> | undefined) {
+  if (!project) return null;
+
+  const link = getProjectPrimaryLink(project);
+  return link && link !== project.data.links.repo ? link : null;
 }
 
 function buildProjectLookup(localizedProjects: Array<CollectionEntry<"project">>) {

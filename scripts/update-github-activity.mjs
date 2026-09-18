@@ -2,6 +2,8 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { excludedRepositories, privateRepositoryAllowlist } from "./github-activity.config.mjs";
+
 const DEFAULT_GITHUB_USERNAME = "PhilDL";
 const RECENT_ACTIVITY_WINDOW_DAYS = 30;
 const MAX_RECENT_REPOSITORIES = 3;
@@ -9,6 +11,7 @@ const MAX_EVENT_PAGES = 3;
 // Pushes alone miss repositories where work lands through pull requests or new branches.
 const CODE_ACTIVITY_EVENT_TYPES = new Set(["PushEvent", "PullRequestEvent", "CreateEvent"]);
 const USER_AGENT = "phildl.com-github-activity-refresh";
+const GITHUB_TOKEN = process.env.GITHUB_ACTIVITY_TOKEN;
 const GITHUB_CONTRIBUTION_LEVEL_COLORS = ["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"];
 
 main().catch((error) => {
@@ -86,7 +89,16 @@ async function fetchRecentRepositories(username, now) {
     }
   }
 
+  const allowlistedActivity = await Promise.all(
+    privateRepositoryAllowlist.map((nameWithOwner) => fetchLatestRepositoryActivity(nameWithOwner, username, cutoff)),
+  );
+
+  for (const activity of allowlistedActivity) {
+    if (activity) latestActivityByRepository.set(activity.nameWithOwner, activity.lastPushedAt);
+  }
+
   const mostRecentRepositories = Array.from(latestActivityByRepository.entries())
+    .filter(([nameWithOwner]) => !isExcludedRepository(nameWithOwner))
     .sort(([, left], [, right]) => Date.parse(right) - Date.parse(left))
     .slice(0, MAX_RECENT_REPOSITORIES);
 
@@ -97,12 +109,56 @@ async function fetchRecentRepositories(username, now) {
   return repositories.filter(Boolean);
 }
 
+async function fetchLatestRepositoryActivity(nameWithOwner, username, cutoff) {
+  if (!GITHUB_TOKEN) {
+    console.warn(`Skipping ${nameWithOwner}: GITHUB_ACTIVITY_TOKEN is not set.`);
+    return null;
+  }
+
+  const response = await fetch(`https://api.github.com/repos/${nameWithOwner}/activity?actor=${username}&per_page=1`, {
+    headers: githubApiHeaders(),
+  });
+
+  if (!response.ok) {
+    console.warn(`Skipping ${nameWithOwner}: ${response.status} ${response.statusText}`);
+    return null;
+  }
+
+  const [latestActivity] = await response.json();
+  const lastPushedAt = latestActivity?.timestamp;
+
+  if (!lastPushedAt || Date.parse(lastPushedAt) < cutoff) return null;
+
+  return { nameWithOwner, lastPushedAt };
+}
+
+function isExcludedRepository(nameWithOwner) {
+  const candidate = nameWithOwner.toLowerCase();
+
+  return excludedRepositories.some((pattern) => {
+    const normalizedPattern = pattern.toLowerCase();
+
+    return normalizedPattern.endsWith("/*")
+      ? candidate.startsWith(normalizedPattern.slice(0, -1))
+      : candidate === normalizedPattern;
+  });
+}
+
+function isAllowlistedPrivateRepository(nameWithOwner) {
+  return privateRepositoryAllowlist.some((allowed) => allowed.toLowerCase() === nameWithOwner.toLowerCase());
+}
+
+function githubApiHeaders() {
+  return {
+    Accept: "application/vnd.github+json",
+    "User-Agent": USER_AGENT,
+    ...(GITHUB_TOKEN ? { Authorization: `Bearer ${GITHUB_TOKEN}` } : {}),
+  };
+}
+
 async function fetchPublicEvents(username, page) {
   const response = await fetch(`https://api.github.com/users/${username}/events/public?per_page=100&page=${page}`, {
-    headers: {
-      Accept: "application/vnd.github+json",
-      "User-Agent": USER_AGENT,
-    },
+    headers: githubApiHeaders(),
   });
 
   if (!response.ok) {
@@ -114,10 +170,7 @@ async function fetchPublicEvents(username, page) {
 
 async function fetchRepositoryDetails(nameWithOwner, lastPushedAt) {
   const response = await fetch(`https://api.github.com/repos/${nameWithOwner}`, {
-    headers: {
-      Accept: "application/vnd.github+json",
-      "User-Agent": USER_AGENT,
-    },
+    headers: githubApiHeaders(),
   });
 
   if (!response.ok) {
@@ -128,17 +181,22 @@ async function fetchRepositoryDetails(nameWithOwner, lastPushedAt) {
       nameWithOwner,
       url: `https://github.com/${nameWithOwner}`,
       description: null,
+      isPrivate: isAllowlistedPrivateRepository(nameWithOwner),
       lastPushedAt,
     };
   }
 
   const repository = await response.json();
 
+  // Defense in depth: a private repository only ever leaves this script when it is allowlisted.
+  if (repository.private && !isAllowlistedPrivateRepository(repository.full_name)) return null;
+
   return {
     name: repository.name,
     nameWithOwner: repository.full_name,
     url: repository.html_url,
     description: repository.description,
+    isPrivate: repository.private,
     lastPushedAt,
   };
 }

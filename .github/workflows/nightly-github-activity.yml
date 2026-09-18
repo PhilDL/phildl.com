@@ -31,6 +31,8 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Refresh GitHub activity snapshot
+        env:
+          GITHUB_ACTIVITY_TOKEN: ${{ secrets.GH_ACTIVITY_TOKEN }}
         run: pnpm refresh:github-activity
 
       - name: Build site
