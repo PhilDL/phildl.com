@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-22T07:58:55.858Z",
+  "generatedAt": "2026-11-23T09:02:48.042Z",
   "username": "PhilDL",
   "contributionCalendar": {
-    "totalContributions": 9187,
+    "totalContributions": 9253,
     "weeks": [
       {
         "firstDay": "2025-11-23",
@@ -2442,7 +2442,7 @@
           },
           {
             "date": "2026-11-21",
-            "contributionCount": 247,
+            "contributionCount": 248,
             "color": "#216e39",
             "weekday": 6
           }
@@ -2453,14 +2453,14 @@
         "days": [
           {
             "date": "2026-11-22",
-            "contributionCount": 7,
-            "color": "#9be9a8",
+            "contributionCount": 67,
+            "color": "#30a14e",
             "weekday": 0
           },
           {
             "date": "2026-11-23",
-            "contributionCount": 0,
-            "color": "#ebedf0",
+            "contributionCount": 5,
+            "color": "#9be9a8",
             "weekday": 1
           },
           {
@@ -2499,20 +2499,20 @@
   },
   "recentRepositories": [
     {
+      "name": "rondyr",
+      "nameWithOwner": "basaltbytes/rondyr",
+      "url": "https://github.com/basaltbytes/rondyr",
+      "description": "Open-source, self-hosted form backend with classifier-model spam filtering (Jev & OpenAI Decisions). One-click deploy to Cloudflare.",
+      "isPrivate": false,
+      "lastPushedAt": "2026-11-23T07:45:55Z"
+    },
+    {
       "name": "usine",
       "nameWithOwner": "basaltbytes/usine",
       "url": "https://github.com/basaltbytes/usine",
       "description": "Run coding agents on your GitHub issues and pull requests, on your own machines. Alpha.",
       "isPrivate": false,
-      "lastPushedAt": "2026-11-22T07:23:28Z"
-    },
-    {
-      "name": "rondyr",
-      "nameWithOwner": "basaltbytes/rondyr",
-      "url": "https://github.com/basaltbytes/rondyr",
-      "description": null,
-      "isPrivate": false,
-      "lastPushedAt": "2026-11-21T17:10:15Z"
+      "lastPushedAt": "2026-11-22T09:35:15Z"
     },
     {
       "name": "skills",
