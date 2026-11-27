@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-11-26T09:30:46.099Z",
+  "generatedAt": "2026-11-27T09:40:20.060Z",
   "username": "PhilDL",
   "contributionCalendar": {
-    "totalContributions": 9438,
+    "totalContributions": 9465,
     "weeks": [
       {
         "firstDay": "2025-11-23",
@@ -2477,14 +2477,14 @@
           },
           {
             "date": "2026-11-26",
-            "contributionCount": 19,
-            "color": "#9be9a8",
+            "contributionCount": 37,
+            "color": "#40c463",
             "weekday": 4
           },
           {
             "date": "2026-11-27",
-            "contributionCount": 0,
-            "color": "#ebedf0",
+            "contributionCount": 9,
+            "color": "#9be9a8",
             "weekday": 5
           },
           {
@@ -2499,28 +2499,28 @@
   },
   "recentRepositories": [
     {
-      "name": "rondyr",
-      "nameWithOwner": "basaltbytes/rondyr",
-      "url": "https://github.com/basaltbytes/rondyr",
-      "description": "Open-source, self-hosted form backend with classifier-model spam filtering (Jev & OpenAI Decisions). One-click deploy to Cloudflare.",
-      "isPrivate": false,
-      "lastPushedAt": "2026-11-26T08:58:03Z"
-    },
-    {
       "name": "usine",
       "nameWithOwner": "basaltbytes/usine",
       "url": "https://github.com/basaltbytes/usine",
       "description": "Run coding agents on your GitHub issues and pull requests, on your own machines. Alpha.",
       "isPrivate": false,
-      "lastPushedAt": "2026-11-25T08:24:39Z"
+      "lastPushedAt": "2026-11-27T06:49:47Z"
     },
     {
-      "name": "skills",
-      "nameWithOwner": "basaltbytes/skills",
-      "url": "https://github.com/basaltbytes/skills",
-      "description": "Philippe's curated collection of agent skills.",
+      "name": "rondyr",
+      "nameWithOwner": "basaltbytes/rondyr",
+      "url": "https://github.com/basaltbytes/rondyr",
+      "description": "Open-source, self-hosted form backend with classifier-model spam filtering (Jev & OpenAI Decisions). One-click deploy to Cloudflare.",
       "isPrivate": false,
-      "lastPushedAt": "2026-11-20T15:56:38Z"
+      "lastPushedAt": "2026-11-27T04:02:17Z"
+    },
+    {
+      "name": "balade-cloud",
+      "nameWithOwner": "basaltbytes/balade-cloud",
+      "url": "https://github.com/basaltbytes/balade-cloud",
+      "description": "Hosted balade: a walkthrough link on every pull request",
+      "isPrivate": true,
+      "lastPushedAt": "2026-11-04T14:40:29Z"
     }
   ]
 }
